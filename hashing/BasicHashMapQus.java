@@ -3,6 +3,7 @@ package hashing;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 public class BasicHashMapQus {
 
@@ -33,7 +34,6 @@ public class BasicHashMapQus {
       return -1;
 
     }
-
 
     public static int lastNonRepeating(int[] arr){
         HashMap<Integer,Integer> freqMap = new HashMap<>();
@@ -109,6 +109,27 @@ public class BasicHashMapQus {
         }
         return true;
     }
+
+    static void duplicateValueUsingHashMap(int[] arr){
+
+        Map<Integer,Integer> duplicatCount = new HashMap<>();
+
+        for (int i = 0; i < arr.length; i++){
+            if(duplicatCount.containsKey(arr[i])){
+                int currentCount = duplicatCount.get(arr[i]);
+                duplicatCount.put(arr[i],currentCount + 1);
+            }else{
+                duplicatCount.put(arr[i], 1);
+            }
+        }
+        System.out.println("Duplicate Elements with Count:");
+        for (int i = 0; i < arr.length; i++){
+            if(duplicatCount.get(arr[i]) > 1){
+                System.out.println(arr[i] + " -> " + duplicatCount.get(arr[i]));
+                duplicatCount.put(arr[i], 0);
+            }
+        }
+    }
     public static void main(String[] args) {
 
         int[] arr = {4, 5, 1, 2, 0, 4, 5, 2};
@@ -125,7 +146,7 @@ public class BasicHashMapQus {
         } else {
             System.out.println("false");
         }
-
+        duplicateValueUsingHashMap(arr);
 
     }
 }
