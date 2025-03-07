@@ -97,15 +97,15 @@ public class BasicHashMapQus {
         int m = a.length;
         int n = b.length;
 
-        for (int i = 0; i < n; i++) { // Iterate through b[] (subset array)
+        for (int i = 0; i < n; i++) {
             boolean found = false;
-            for (int j = 0; j < m; j++) { // Check in a[] (main array)
+            for (int j = 0; j < m; j++) {
                 if (b[i] == a[j]) {
                     found = true;
                     break;
                 }
             }
-            if (!found) return false; // If any element is missing, return false
+            if (!found) return false;
         }
         return true;
     }
