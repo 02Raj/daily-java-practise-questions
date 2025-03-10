@@ -1,8 +1,6 @@
-package hashing;
+package hashmap;
 
-import java.util.ArrayList;
 import java.util.HashMap;
-import java.util.List;
 import java.util.Map;
 
 public class BasicHashMapQus {
@@ -93,7 +91,7 @@ public class BasicHashMapQus {
 
     }
 
-    static boolean isSubset(int a[], int b[]) {
+    static boolean isSubset(int[] a, int[] b) {
         int m = a.length;
         int n = b.length;
 

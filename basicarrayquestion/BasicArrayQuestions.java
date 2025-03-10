@@ -7,7 +7,7 @@ public class BasicArrayQuestions {
 
     // selection sort for sorting
     static void sortedArray(int[] arr){
-         int n  = arr.length;
+         int n  = arr.length;             // {2,4,15,4,10,1};
          int min_index;
          for (int i = 0; i < n - 1; i++){
              min_index = i;
@@ -123,6 +123,19 @@ public class BasicArrayQuestions {
         System.out.println("Updated Array: " + Arrays.toString(newArr));
     }
 
+  static List<Integer>removeSpecificElementUsingArrayList(int[] arr){
+
+        List<Integer> newArr = new ArrayList<>();
+
+        for (int i = 0; i < arr.length; i++){
+            newArr.add(arr[i]);
+        }
+
+        newArr.remove(2);
+
+        return newArr;
+ }
+
     static int[] insertElementSpecificPosition(int[] arr) {
         int element = 3;
         int position = 2;
@@ -137,6 +150,18 @@ public class BasicArrayQuestions {
                 j++;
             }
         }
+
+        return newArr;
+    }
+    static List<Integer> insertElementSpecificPositionUsingArrayList(int[] arr){
+
+        List<Integer> newArr = new ArrayList<>();
+
+        for (int i = 0; i < arr.length; i++){
+            newArr.add(arr[i]);
+        }
+
+        newArr.add(2,3);
 
         return newArr;
     }
@@ -245,6 +270,7 @@ public class BasicArrayQuestions {
 
     static void leftRotateArray(int[] arr){
        int n = arr.length;
+//        System.out.println("arr{n-1]: " + arr[n-1]);
        int temp = arr[0];
 
        for (int i = 0; i < arr.length - 1; i++){
@@ -252,54 +278,167 @@ public class BasicArrayQuestions {
        }
 
        arr[n-1] = temp;
+       System.out.println("arr{n-1]: " + arr[n-1]);
+    }
+
+    static int[] removeDuplicateElementOfArray(int[] arr) {
+        Arrays.sort(arr); // Step 1: Sort array
+
+        int j = 0;
+        for (int i = 1; i < arr.length; i++) {
+            if (arr[i] != arr[j]) {
+                j++;
+                arr[j] = arr[i]; // Overwrite duplicates
+            }
+        }
+
+        return Arrays.copyOf(arr, j + 1); // Step 3: Create a new array with unique values
+    }
+
+    static int longestConsecutive(int[] nums){
+        if ( nums == null || nums.length == 0){
+            return 0;
+        }
+         // Step 1: Sabhi numbers ko HashSet mein daalo
+        HashSet<Integer> numSet = new HashSet<>();
+        for (int i = 0; i < nums.length; i++){
+            numSet.add(nums[i]);
+        }
+
+        int longestStreak = 0;
+        // Step 2: Har number ke liye check karo
+        for (int i = 0; i < nums.length; i++){
+            int num = nums[i];
+            // Check karo ki yeh sequence ka starting point hai ya nahi
+            if ((!numSet.contains(num - 1))){
+                int currentNum = num;
+                int currentStreak = 1;
+                // Sequence ki length count karo
+                while(!numSet.contains(currentNum + 1)){
+                    currentNum += 1;
+                    currentStreak += 1;
+                }
+                // Maximum length update karo
+                longestStreak = Math.max(longestStreak,currentStreak);
+
+            }
+        }
+
+        return longestStreak;
+    }
+    static void  reverseArray(int[]a,int i, int j){
+        int li = i;
+        int ri = j;
+
+        while(li < ri){
+            int temp = a[li];
+            a[li] = a[ri];
+            a[ri] = temp;
+            li++;
+            ri--;
+        }
+    }
+
+  static void  rotateArrayKtimes(int[] arr,int k){
+        k = k % arr.length;
+        if(k < 0){
+            k = k + arr.length;
+        }
+//     part 1
+      reverseArray(arr,0,arr.length - k - 1);
+        // part 2
+      reverseArray(arr,arr.length - k, arr.length - 1);
+// part 1 + part 2 ( complete)
+      reverseArray(arr,0,arr.length -1);
+    }
 
 
+    static void moveAllZerosToEnd(int[] arr){
+        int left = 0;
+
+        for (int i = 0; i < arr.length; i++){
+            if (arr[i] != 0){
+                int temp = arr[i];
+                arr[i] = arr[left];
+                arr[left] = temp;
+                left++;
+            }
+        }
     }
 
     public static void main(String[] args) {
+        int[] arr = {1789, 2035, 1899, 1456, 2013};
+        int[] arr2 = {2, 4, 15, 4, 10, 1};
+        int[] arr3 = {1, 2, 3, 4, 5};
+        int[] arr4 = {1 ,0 ,2 ,3 ,0 ,4 ,0 ,1};
+        int[] nums = {49, 1, 3, 200, 2, 4, 70, 5};
 
-        int[] arr = {1789,2035,1899,1456,2013};
-        int[] arr2 = {2,4,15,4,10,1};
-        int[] arr3 = {1,2,3,4,5};
-        sumOfArray(arr2);
-        avgOfArray(arr2);
-        sortedArray(arr);
+        // 1. SUM AND AVERAGE OF ARRAY
+      /*  sumOfArray(arr2);
+        avgOfArray(arr2);*/
 
+        //  2. SORTING ARRAY
+     /*   sortedArray(arr);
         System.out.println("Sorted Array:");
         for (int num : arr2) {
             System.out.print(num + " ");
-        }
+        }*/
 
-        largestElementArray(arr2);
+        //  3. FINDING ELEMENTS IN ARRAY
+      /*  largestElementArray(arr2);
         secondLrgestElementArray(arr2);
-        ifArraySort(arr2);
-        System.out.println("Is arr1 sorted? " + ifArraySort(arr2));
+        boolean isSorted = ifArraySort(arr2);
+        System.out.println("Is arr2 sorted? " + isSorted);*/
 
-        containSpecificValue(arr2);
-
-        System.out.println("Is  contain specific value? " + containSpecificValue(arr2));
-
+        //  4. CHECK IF ARRAY CONTAINS A SPECIFIC VALUE
+       /* boolean containsValue = containSpecificValue(arr2);
+        System.out.println("Does arr2 contain specific value? " + containsValue);
+*/
+        //  5. FIND INDEX OF AN ELEMENT
         int index = findIndexOfArrayElement(arr2);
         System.out.println("Index of specific value: " + index);
+
+        //  6. REMOVE SPECIFIC ELEMENT
         removeSpecificElement(arr2);
 
+        //  7. COPY ARRAY
         copyOfArray(arr2);
 
+        //  8. INSERT ELEMENT AT A SPECIFIC POSITION
         int[] result = insertElementSpecificPosition(arr2);
+        System.out.println("New Array after insertion: " + Arrays.toString(result));
 
-        duplicateValueOfArray(arr2);
-        System.out.println("New Array: " + Arrays.toString(result));
-        duplicateValueUsingHashMap(arr2);
-        int[] maxAndMinresult = maxAndminValueOfArray(arr2);
-        System.out.println("Max: " + Arrays.toString(maxAndMinresult));
+        List<Integer> result2 = insertElementSpecificPositionUsingArrayList(arr2);
+        System.out.println("Insert element at specific position (ArrayList): " + result2);
 
+        //  9. FIND DUPLICATE VALUES
+    /*    duplicateValueOfArray(arr2);
+        duplicateValueUsingHashMap(arr2);*/
+
+        //  10. REMOVE DUPLICATE ELEMENTS
+        removeDuplicateElementOfArray(arr2);
+        List<Integer> result3 = removeSpecificElementUsingArrayList(arr2);
+        System.out.println("Array after removing specific element: " + result3);
+
+        //  11. FIND MAX AND MIN ELEMENTS
+        int[] maxAndMinResult = maxAndminValueOfArray(arr2);
+        System.out.println("Max and Min: " + Arrays.toString(maxAndMinResult));
+
+        //  12. REVERSE ARRAY
         reverseArray(arr2);
 
-        commonElementArrays(arr3,arr3);
-        leftRotateArray(arr2);
+        leftRotateArray(arr3);
         System.out.println("Rotated Array: " + Arrays.toString(arr2));
-        }
 
+        int length = longestConsecutive(nums);
+        System.out.println("Length of the longest consecutive sequence: " + length);
+        int k = 3;
+        rotateArrayKtimes(arr3,k);
+        System.out.println("Rotated Array: " + Arrays.toString(arr3));
+
+        moveAllZerosToEnd(arr4);
+        System.out.println("move all zero to end: " + Arrays.toString(arr4));
+        }
 
 
 }
