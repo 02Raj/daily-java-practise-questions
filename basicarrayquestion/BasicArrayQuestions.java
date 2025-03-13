@@ -366,13 +366,57 @@ public class BasicArrayQuestions {
         }
     }
 
+    static void countOfsmallerElement(int[] arr, int x) {
+        int count = 0;
+
+
+        for (int i = 0; i < arr.length; i++) {
+            if (arr[i] <= x) {
+                count++;
+            }
+        }
+
+
+        System.out.println("Count of elements smaller or equal to " + x + ": " + count);
+    }
+
+    static void findUnion(int[] arr6,int[] arr7){
+
+        Set<Integer> temp = new TreeSet<>();
+
+        for (int i = 0; i < arr6.length; i++){
+            temp.add(arr6[i]);
+        }
+        for (int i = 0; i < arr7.length; i++){
+            temp.add(arr7[i]);
+        }
+
+        System.out.println("temp; " + temp);
+    }
+
+
+    static void missingNumber(int[] arr8){
+
+        for (int i = 1; i <= arr8.length;i++){
+//            System.out.println("Index: " + i + ", Value: " + arr8[i - 1]);
+            if (i !=  arr8[i - 1]){
+//                System.out.println("Index: " + i + ", Value: " + arr8[i - 1]);
+                System.out.println("missing number is: " + i);
+                break;
+            }
+        }
+
+    }
     public static void main(String[] args) {
         int[] arr = {1789, 2035, 1899, 1456, 2013};
         int[] arr2 = {2, 4, 15, 4, 10, 1};
         int[] arr3 = {1, 2, 3, 4, 5};
         int[] arr4 = {1 ,0 ,2 ,3 ,0 ,4 ,0 ,1};
+        int[] arr5 = {10, 1, 2, 8, 4, 5};
+        int[] arr6 = {1,2,3,4,5,6,7,8,9,10};
+        int[] arr7 = {2,3,4,4,5,11,12};
         int[] nums = {49, 1, 3, 200, 2, 4, 70, 5};
-
+        int[] arr8 = {1, 2, 4, 5};
         // 1. SUM AND AVERAGE OF ARRAY
       /*  sumOfArray(arr2);
         avgOfArray(arr2);*/
@@ -438,6 +482,13 @@ public class BasicArrayQuestions {
 
         moveAllZerosToEnd(arr4);
         System.out.println("move all zero to end: " + Arrays.toString(arr4));
+
+        int x = 9;
+        countOfsmallerElement(arr5,x);
+
+        findUnion(arr6,arr7);
+
+        missingNumber(arr8);
         }
 
 
