@@ -407,6 +407,50 @@ public class BasicArrayQuestions {
         }
 
     }
+
+    static void maximumConsecutiveOnes(int[] arr){
+
+        int count = 0;
+        int maxCount = 0;
+
+        for (int i = 0; i < arr.length; i++){
+            if(arr[i] == 1){
+                count++;
+
+            }else{
+                maxCount = Math.max(maxCount,count);
+            }
+        }
+
+        maxCount = Math.max(maxCount, count);
+
+        System.out.println("Maximum Consecutive Ones: " + maxCount);
+    }
+
+    static int longestSubarrayWithSumK(int[] arr, int k) {
+        int left = 0, right = 0, maxLength = 0;
+        int currentSum = 0;
+
+        while (right < arr.length) {
+            currentSum += arr[right];
+
+            // Adjust the left pointer until the sum becomes ≤ k
+            while (currentSum > k && left <= right) {
+                currentSum -= arr[left];
+                left++;
+            }
+
+            // If we find a valid subarray with sum k
+            if (currentSum == k) {
+                maxLength = Math.max(maxLength, right - left + 1);
+            }
+
+            right++;
+        }
+
+        return maxLength;
+    }
+
     public static void main(String[] args) {
         int[] arr = {1789, 2035, 1899, 1456, 2013};
         int[] arr2 = {2, 4, 15, 4, 10, 1};
@@ -417,6 +461,9 @@ public class BasicArrayQuestions {
         int[] arr7 = {2,3,4,4,5,11,12};
         int[] nums = {49, 1, 3, 200, 2, 4, 70, 5};
         int[] arr8 = {1, 2, 4, 5};
+        int[] arr9 = {1, 1, 0, 1, 1, 1};
+        int[] arr10 ={2,3,5,1,9};
+        int k = 10;
         // 1. SUM AND AVERAGE OF ARRAY
       /*  sumOfArray(arr2);
         avgOfArray(arr2);*/
@@ -476,7 +523,7 @@ public class BasicArrayQuestions {
 
         int length = longestConsecutive(nums);
         System.out.println("Length of the longest consecutive sequence: " + length);
-        int k = 3;
+        int m = 3;
         rotateArrayKtimes(arr3,k);
         System.out.println("Rotated Array: " + Arrays.toString(arr3));
 
@@ -489,7 +536,11 @@ public class BasicArrayQuestions {
         findUnion(arr6,arr7);
 
         missingNumber(arr8);
-        }
+        maximumConsecutiveOnes(arr9);
+
+        longestSubarrayWithSumK(arr10,k);
+        System.out.println("Longest Subarray Length: " + longestSubarrayWithSumK(arr10,m));
+    }
 
 
 }
