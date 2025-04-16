@@ -451,6 +451,28 @@ public class BasicArrayQuestions {
         return maxLength;
     }
 
+    static int longestSubarrayWithSumK2(int[] arr,int k){
+     Map<Integer,Integer>  map = new HashMap<>();
+       int sum = 0;
+       int maxLen = 0;
+
+       map.put(0,-1);
+       for (int i = 0; i < arr.length; i++){
+           sum += arr[i];
+
+           if(sum == k){
+               maxLen = i + 1;
+           }
+
+           if (map.containsKey(sum - k)){
+               int prevIndex = map.get(sum - k);
+               maxLen = Math.max(maxLen, i - prevIndex);
+           }
+       }
+
+       return maxLen;
+    }
+
     public static void main(String[] args) {
         int[] arr = {1789, 2035, 1899, 1456, 2013};
         int[] arr2 = {2, 4, 15, 4, 10, 1};
@@ -464,6 +486,9 @@ public class BasicArrayQuestions {
         int[] arr9 = {1, 1, 0, 1, 1, 1};
         int[] arr10 ={2,3,5,1,9};
         int k = 10;
+
+        int[] arr11 = {2, 3, 5};
+        int k1 = 5;
         // 1. SUM AND AVERAGE OF ARRAY
       /*  sumOfArray(arr2);
         avgOfArray(arr2);*/
@@ -540,6 +565,10 @@ public class BasicArrayQuestions {
 
         longestSubarrayWithSumK(arr10,k);
         System.out.println("Longest Subarray Length: " + longestSubarrayWithSumK(arr10,m));
+
+        longestSubarrayWithSumK(arr11,k1);
+
+
     }
 
 
