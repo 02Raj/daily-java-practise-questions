@@ -128,11 +128,38 @@ public class BasicHashMapQus {
             }
         }
     }
+
+    static void majorityElement(int[] arr){
+        int n = arr.length;
+        int halfLength = n / 2;
+
+        HashMap<Integer,Integer> freqMap = new HashMap<>();
+
+        for (int i = 0; i < arr.length; i++){
+            int num = arr[i];
+
+            if (freqMap.get(arr[i]) != null){
+                int count = freqMap.get(num) + 1;
+                freqMap.put(num,count);
+
+                // check if the count exceeds of half-length
+                if (count > halfLength) {
+                    System.out.println("Majority element is: " + num);
+                    return;
+                }
+            } else {
+                freqMap.put(num, 1);
+            }
+        }
+        System.out.println("No majority element found.");
+    }
+
     public static void main(String[] args) {
 
         int[] arr = {4, 5, 1, 2, 0, 4, 5, 2};
         int[] a = {11, 1, 13, 21, 3, 7};
         int[] b = {11, 3, 7, 1};
+        int[] arr1 = {3,2,3};
       System.out.println("First Non-Repeating Element: " + findFirstNonRepeating(arr));
 
       System.out.println("First Last-Non-Repeating Element: " + lastNonRepeating(arr));
@@ -146,5 +173,6 @@ public class BasicHashMapQus {
         }
         duplicateValueUsingHashMap(arr);
 
+        majorityElement(arr1);
     }
 }

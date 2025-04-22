@@ -473,6 +473,123 @@ public class BasicArrayQuestions {
        return maxLen;
     }
 
+    // 2 passes
+    static void sortColors(int[] nums) {
+        int n = nums.length;
+        int count0 = 0, count1 = 0, count2 = 0;
+
+        // Step 1: Count 0s, 1s, and 2s
+        for (int i = 0; i < n; i++) {
+            if (nums[i] == 0) count0++;
+            else if (nums[i] == 1) count1++;
+            else count2++;
+        }
+
+        // Step 2: Overwrite array with 0s, then 1s, then 2s
+        int idx = 0;
+
+        for (int i = 0; i < count0; i++) {
+            nums[idx++] = 0;
+        }
+        for (int i = 0; i < count1; i++) {
+            nums[idx++] = 1;
+        }
+        for (int i = 0; i < count2; i++) {
+            nums[idx++] = 2;
+        }
+    }
+
+    //Dutch National Flag Algorithm
+    static void sortColors2(int[] nums) {
+        int low = 0, mid = 0, high = nums.length - 1;
+
+        while (mid <= high) {
+            if (nums[mid] == 0) {
+                int temp = nums[low];
+                nums[low] = nums[mid];
+                nums[mid] = temp;
+                low++;
+                mid++;
+            } else if (nums[mid] == 1) {
+                mid++;
+            } else {
+                int temp = nums[mid];
+                nums[mid] = nums[high];
+                nums[high] = temp;
+                high--;
+            }
+        }
+    }
+    static void majorityElement(int[] nums){
+        int n = nums.length;
+        int halfLength = n / 2;
+
+        for (int i = 0; i < n; i++) {
+            int count = 0;
+            for (int j = i + 1; j < n; j++) {
+                if (nums[i] == nums[j]) {
+                    count++;
+                }
+            }
+
+            System.out.println(nums[i] + " => " + count);
+
+            if (count > halfLength) {
+                System.out.println("Majority element is: " + nums[i]);
+                return;
+            }
+        }
+    }
+
+    static void maxSubarraySum(int[] arr){
+
+/*        Brut-force-method TimeComplexcity O(n^2)
+       int maxSum = Integer.MIN_VALUE;
+
+        for (int start = 0; start < arr.length; start++){
+            int currentSum = 0;
+            for (int end = start; end < arr.length; end++){
+                currentSum += arr[end];
+                maxSum = Math.max(currentSum,maxSum);
+            }
+        }
+        System.out.println("Max subarray Sum: " + maxSum);*/
+
+        //optimal  imeComplexcity O(n)
+        int maxSum = Integer.MIN_VALUE;
+        int currentSum = 0;
+
+        for (int i = 0 ; i < arr.length; i++){
+            currentSum += arr[i];
+            maxSum= Math.max(currentSum, maxSum);
+
+            if (currentSum < 0){
+                currentSum = 0;
+            }
+        }
+
+        System.out.println("Max subarray Sum: " + maxSum);
+
+    }
+
+    static void maxProft(int[] arr) {
+        int min_price = Integer.MAX_VALUE;
+        int max_profit = 0;
+        int profit;
+
+        for (int i = 0; i < arr.length; i++) {
+            if (arr[i] < min_price) {
+                min_price = arr[i];
+            } else {
+                profit = arr[i] - min_price;  // sell - buy
+                max_profit = Math.max(max_profit, profit);  // maximum profit update
+            }
+        }
+
+        System.out.println("Max Profit = " + max_profit);
+    }
+
+
     public static void main(String[] args) {
         int[] arr = {1789, 2035, 1899, 1456, 2013};
         int[] arr2 = {2, 4, 15, 4, 10, 1};
@@ -489,6 +606,11 @@ public class BasicArrayQuestions {
 
         int[] arr11 = {2, 3, 5};
         int k1 = 5;
+        int[] arr12 = {2,0,2,1,1,0};
+        int[] arr13 = {3,2,3};
+        int[] arr14 = {-2,1,-3,4,-1,2,1,-5,4};
+        int[] arr15 = {7,1,5,3,6,4};
+
         // 1. SUM AND AVERAGE OF ARRAY
       /*  sumOfArray(arr2);
         avgOfArray(arr2);*/
@@ -542,33 +664,38 @@ public class BasicArrayQuestions {
 
         //  12. REVERSE ARRAY
         reverseArray(arr2);
-
         leftRotateArray(arr3);
         System.out.println("Rotated Array: " + Arrays.toString(arr2));
-
         int length = longestConsecutive(nums);
         System.out.println("Length of the longest consecutive sequence: " + length);
         int m = 3;
         rotateArrayKtimes(arr3,k);
         System.out.println("Rotated Array: " + Arrays.toString(arr3));
-
         moveAllZerosToEnd(arr4);
         System.out.println("move all zero to end: " + Arrays.toString(arr4));
-
         int x = 9;
         countOfsmallerElement(arr5,x);
-
         findUnion(arr6,arr7);
-
         missingNumber(arr8);
         maximumConsecutiveOnes(arr9);
-
         longestSubarrayWithSumK(arr10,k);
         System.out.println("Longest Subarray Length: " + longestSubarrayWithSumK(arr10,m));
-
         longestSubarrayWithSumK(arr11,k1);
+        sortColors(arr12);
+        for (int num : arr12) {
+            System.out.print(num + " ");
+        }
 
+        sortColors2(arr12);
 
+        for (int num1 : arr12) {
+            System.out.print(num1 + " ");
+        }
+        majorityElement(arr13);
+
+        maxSubarraySum(arr14);
+
+        maxProft(arr15);
     }
 
 
