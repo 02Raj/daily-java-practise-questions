@@ -268,6 +268,8 @@ public class BasicArrayQuestions {
         }
     }
 
+//    array[] = {1,2,3,4,5}
+//    Output: 2,3,4,5,1
     static void leftRotateArray(int[] arr){
        int n = arr.length;
 //        System.out.println("arr{n-1]: " + arr[n-1]);
@@ -278,7 +280,9 @@ public class BasicArrayQuestions {
        }
 
        arr[n-1] = temp;
-       System.out.println("arr{n-1]: " + arr[n-1]);
+        for (int i = 0; i < n; i++) {
+            System.out.print(arr[i]+" ");
+        }
     }
 
     static int[] removeDuplicateElementOfArray(int[] arr) {
@@ -339,6 +343,8 @@ public class BasicArrayQuestions {
         }
     }
 
+//    Input: N = 7, array[] = {1,2,3,4,5,6,7} , k=2 , right
+//    Output: 6 7 1 2 3 4 5
   static void  rotateArrayKtimes(int[] arr,int k){
         k = k % arr.length;
         if(k < 0){
@@ -349,10 +355,11 @@ public class BasicArrayQuestions {
         // part 2
       reverseArray(arr,arr.length - k, arr.length - 1);
 // part 1 + part 2 ( complete)
-      reverseArray(arr,0,arr.length -1);
+      reverseArray(arr,0,arr.length - 1);
     }
 
-
+//    Input: 1 ,0 ,2 ,3 ,0 ,4 ,0 ,1
+//    Output: 1 ,2 ,3 ,4 ,1 ,0 ,0 ,0
     static void moveAllZerosToEnd(int[] arr){
         int left = 0;
 
@@ -380,8 +387,13 @@ public class BasicArrayQuestions {
         System.out.println("Count of elements smaller or equal to " + x + ": " + count);
     }
 
+//    arr6[] = {1,2,3,4,5}
+//    arr7[] = {2,3,4,4,5}
+//    Output:
+//    {1,2,3,4,5}
     static void findUnion(int[] arr6,int[] arr7){
 
+        //TreeSet is a collection that stores unique elements in sorted (ascending) order.
         Set<Integer> temp = new TreeSet<>();
 
         for (int i = 0; i < arr6.length; i++){
@@ -408,6 +420,8 @@ public class BasicArrayQuestions {
 
     }
 
+    //prices = {1, 1, 0, 1, 1, 1}
+//    Output: 3
     static void maximumConsecutiveOnes(int[] arr){
 
         int count = 0;
@@ -427,7 +441,9 @@ public class BasicArrayQuestions {
         System.out.println("Maximum Consecutive Ones: " + maxCount);
     }
 
-    static int longestSubarrayWithSumK(int[] arr, int k) {
+//    N = 3, k = 5, array[] = {2,3,5}
+//    Result: 2
+    static int longestSubarrayWithSumKPositive(int[] arr, int k) {
         int left = 0, right = 0, maxLength = 0;
         int currentSum = 0;
 
@@ -451,7 +467,9 @@ public class BasicArrayQuestions {
         return maxLength;
     }
 
-    static int longestSubarrayWithSumK2(int[] arr,int k){
+//    Input Format: N = 3, k = 1, array[] = {-1, 1, 1}
+//    Result: 3
+    static int longestSubarrayWithSumKPositoveAndNegative(int[] arr,int k){
      Map<Integer,Integer>  map = new HashMap<>();
        int sum = 0;
        int maxLen = 0;
@@ -474,6 +492,8 @@ public class BasicArrayQuestions {
     }
 
     // 2 passes
+//    Input: nums = [2,0,2,1,1,0]
+//    Output: [0,0,1,1,2,2]
     static void sortColors(int[] nums) {
         int n = nums.length;
         int count0 = 0, count1 = 0, count2 = 0;
@@ -499,7 +519,9 @@ public class BasicArrayQuestions {
         }
     }
 
-    //Dutch National Flag Algorithm
+//    Input: nums = [2,0,2,1,1,0]
+//    Output: [0,0,1,1,2,2]
+//Dutch National Flag Algorithm  (single passes)
     static void sortColors2(int[] nums) {
         int low = 0, mid = 0, high = nums.length - 1;
 
@@ -520,6 +542,9 @@ public class BasicArrayQuestions {
             }
         }
     }
+
+//    Input Format: N = 3, nums[] = {3,2,3}
+//    Result: 3
     static void majorityElement(int[] nums){
         int n = nums.length;
         int halfLength = n / 2;
@@ -539,6 +564,25 @@ public class BasicArrayQuestions {
                 return;
             }
         }
+
+/*        optimal code with time complexity is O(n)
+        int count = 0;
+        int candidate = 0;
+
+        for (int i = 0; i < nums.length; i++) {
+            if (count == 0) {
+                candidate = nums[i];
+            }
+
+            if (nums[i] == candidate) {
+                count++;
+            } else {
+                count--;
+            }
+        }
+
+        return candidate;*/
+
     }
 
     static void maxSubarraySum(int[] arr){
@@ -555,7 +599,7 @@ public class BasicArrayQuestions {
         }
         System.out.println("Max subarray Sum: " + maxSum);*/
 
-        //optimal  imeComplexcity O(n)
+        //Kadane's Algorithm (optimal  TimeComplexcity O(n) )
         int maxSum = Integer.MIN_VALUE;
         int currentSum = 0;
 
@@ -572,6 +616,14 @@ public class BasicArrayQuestions {
 
     }
 
+//    Input: prices = [7,1,5,3,6,4]
+//    Output: 5
+//    Explanation: Buy on day 2 (price = 1) and
+//    sell on day 5 (price = 6), profit = 6-1 = 5.
+//
+//    Note: That buying on day 2 and selling on day 1
+//    is not allowed because you must buy before
+//    you sell.
     static void maxProft(int[] arr) {
         int min_price = Integer.MAX_VALUE;
         int max_profit = 0;
@@ -588,8 +640,70 @@ public class BasicArrayQuestions {
 
         System.out.println("Max Profit = " + max_profit);
     }
+    static List<Integer> rearrangeBySign(int[] arr){
 
+        List<Integer> positive = new ArrayList<>();
+        List<Integer> negative = new ArrayList<>();
+        for (int i = 0; i < arr.length; i++){
+            if(arr[i] > 0){
+                positive.add(arr[i]);
+            }else {
+                negative.add(arr[i]);
+            }
+        }
 
+        List<Integer> result = new ArrayList<>();
+        for (int i = 0; i < positive.size(); i++) {
+            result.add(positive.get(i));
+            result.add(negative.get(i));
+        }
+        return result;
+    }
+
+    static List<Integer> printLeaders(int[] arr){
+              List<Integer> leaders = new ArrayList<>();
+              int max_from_right = arr[arr.length - 1];
+               leaders.add(max_from_right); // rightmost element is always a leader
+                for (int i = arr.length - 2; i > 0; i--){
+               if(arr[i] > max_from_right){
+            max_from_right = arr[i];
+          leaders.add(max_from_right);
+            }
+         }
+        // Leaders are collected from right to left, so reverse them
+        Collections.reverse(leaders);
+        return leaders;
+    }
+
+//    input: [100, 200, 1, 3, 2, 4]
+//    Output: 4
+   static void longestSuccessiveElements(int[] arr){
+//        TreeSet is a collection in Java that stores unique elements in sorted (ascending) order and does not allow null elements.
+//        It is based on a Red-Black Tree and provides log(n) time complexity for basic operations
+        Set<Integer> set = new HashSet<>();
+        for (int i = 0 ; i < arr.length; i++){
+            set.add(arr[i]);
+        }
+        int max_len = 0;
+
+        for (int i = 0; i < arr.length; i++){
+            int num = arr[i];
+
+            if(!set.contains(num - 1)){
+                int currentNum = num;
+                int count = 1;
+
+                while(set.contains(currentNum + 1)){
+                    currentNum++;
+                    count++;
+                }
+
+                max_len = Math.max(max_len,count);
+                System.out.println("Longest consecutive length: " + max_len);
+            }
+        }
+
+    }
     public static void main(String[] args) {
         int[] arr = {1789, 2035, 1899, 1456, 2013};
         int[] arr2 = {2, 4, 15, 4, 10, 1};
@@ -604,13 +718,15 @@ public class BasicArrayQuestions {
         int[] arr10 ={2,3,5,1,9};
         int k = 10;
 
-        int[] arr11 = {2, 3, 5};
+        int[] arr11 = {-1, 1, 1};
         int k1 = 5;
         int[] arr12 = {2,0,2,1,1,0};
         int[] arr13 = {3,2,3};
         int[] arr14 = {-2,1,-3,4,-1,2,1,-5,4};
         int[] arr15 = {7,1,5,3,6,4};
-
+        int[] arr16 = {1, 2, -4, -5};
+        int[] arr17 = {10, 22, 12, 3, 0, 6};
+        int[] arr18 = {100, 200, 1, 3, 2, 4};
         // 1. SUM AND AVERAGE OF ARRAY
       /*  sumOfArray(arr2);
         avgOfArray(arr2);*/
@@ -678,9 +794,10 @@ public class BasicArrayQuestions {
         findUnion(arr6,arr7);
         missingNumber(arr8);
         maximumConsecutiveOnes(arr9);
-        longestSubarrayWithSumK(arr10,k);
-        System.out.println("Longest Subarray Length: " + longestSubarrayWithSumK(arr10,m));
-        longestSubarrayWithSumK(arr11,k1);
+        longestSubarrayWithSumKPositive(arr10,k);
+        System.out.println("Longest Subarray Length: " + longestSubarrayWithSumKPositive(arr10,m));
+        longestSubarrayWithSumKPositoveAndNegative(arr11,k1);
+        System.out.println("Longest Subarray Length: " + longestSubarrayWithSumKPositoveAndNegative(arr10,m));
         sortColors(arr12);
         for (int num : arr12) {
             System.out.print(num + " ");
@@ -696,6 +813,20 @@ public class BasicArrayQuestions {
         maxSubarraySum(arr14);
 
         maxProft(arr15);
+
+        List<Integer> result1 = rearrangeBySign(arr16);
+
+   /*     for (int num : result1) {
+            System.out.print(num + " ");
+        }*/
+
+        List<Integer> leaders = printLeaders(arr17);
+
+        for (int val : leaders) {
+            System.out.print(val + " ");
+        }
+
+        longestSuccessiveElements(arr18);
     }
 
 
