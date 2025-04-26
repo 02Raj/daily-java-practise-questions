@@ -222,16 +222,36 @@ public class BasicArrayQuestions {
 
 
     static void duplicateValueOfArray(int[] arr){
-        int duplicateValue = 0;
 
+
+        int duplicateValue = 0;
+/*        Brut-Force-Aproach
         for (int i = 0; i < arr.length-1; i++){
            for (int j = i + 1; j < arr.length; j++){
                if (arr[i] == arr[j]){
                    duplicateValue = arr[i];
                }
            }
+        }*/
+
+        // optimal approach usinh hashMap
+        Map<Integer,Integer> map = new HashMap<>();
+        for (int i = 0 ; i < arr.length; i++){
+            int num = arr[i];
+             if(map.containsKey(arr[i])){
+                 map.put(num,map.get(num) + 1);
+             }else{
+                 map.put(num,1);
+             }
         }
-        System.out.println("duplicate value is:" + duplicateValue);
+        // Loop through the map to print elements with count > 1 (duplicates)
+        for (Map.Entry<Integer, Integer> entry : map.entrySet()) {
+            if (entry.getValue() > 1) {  // If count is greater than 1, it's a duplicate
+                System.out.println("Duplicate value: " + entry.getKey() + ", Count: " + entry.getValue());
+            }
+        }
+
+//        System.out.println("duplicate value is:" + duplicateValue);
     }
 
     static void commonElementArrays(int[] arr1, int[] arr2) {
@@ -286,7 +306,7 @@ public class BasicArrayQuestions {
     }
 
     static int[] removeDuplicateElementOfArray(int[] arr) {
-        Arrays.sort(arr); // Step 1: Sort array
+    /*    Arrays.sort(arr); // Step 1: Sort array
 
         int j = 0;
         for (int i = 1; i < arr.length; i++) {
@@ -296,7 +316,23 @@ public class BasicArrayQuestions {
             }
         }
 
-        return Arrays.copyOf(arr, j + 1); // Step 3: Create a new array with unique values
+        return Arrays.copyOf(arr, j + 1); // Step 3: Create a new array with unique values*/
+
+
+       // using HashMap
+        Map<Integer,Integer> map = new HashMap<>();
+        // Step 1: Add elements to the map (duplicates will be discarded)
+        for (int i = 0; i < arr.length; i++){
+           map.put(arr[i] , 1);
+        }
+        // Step 2: Extract unique elements from the map keys
+        int[] result = new int[map.size()];
+        int index = 0;
+        for (int key:map.keySet()){
+            result[index++]= key;
+        }
+
+        return result;
     }
 
     static int longestConsecutive(int[] nums){
@@ -704,6 +740,63 @@ public class BasicArrayQuestions {
         }
 
     }
+//    Input: [[1,2,3],[4,5,6],[7,8,9]]
+//    Output: [[7,4,1],[8,5,2],[9,6,3]]
+     static void rotateMatrix(int[][] matrix){
+           int n = matrix.length;
+
+           for (int i = 0; i < matrix.length; i++){
+               for (int j = i + 1; j < matrix.length; j++){
+                   int temp = matrix[i][j];
+                   matrix[i][j] = matrix[j][i];
+                   matrix[j][i] = temp;
+               }
+           }
+
+           for (int i = 0 ; i < n; i++){
+               reverseRow(matrix[i]);
+           }
+    }
+
+    static void reverseRow(int[] row){
+        int left = 0; int right = row.length - 1;
+
+        while(left < right){
+            int temp = row[left];
+            row[left] = row[right];
+            row[right] = temp;
+            left++;
+            right--;
+        }
+    }
+
+//    Input Format: N = 4, array[] = {3, 1, 2, 4}, k = 6
+//    Result: 2
+    static void countSubarrays(int[] arr){
+        Map<Integer,Integer> map = new HashMap<>();
+        int sum = 0;
+        int count = 0;
+        int k = 6;
+        map.put(0,1);
+        for (int i = 0; i < arr.length; i++){
+            sum += arr[i];
+
+            if (map.containsKey(sum)){
+                count += map.get(sum - k);
+            }
+
+            if (map.containsKey(sum)) {
+                int freq = map.get(sum);
+                map.put(sum, freq + 1);
+            } else {
+                map.put(sum, 1);
+            }
+        }
+
+        System.out.println("count: " + count);
+
+    }
+
     public static void main(String[] args) {
         int[] arr = {1789, 2035, 1899, 1456, 2013};
         int[] arr2 = {2, 4, 15, 4, 10, 1};
@@ -727,6 +820,8 @@ public class BasicArrayQuestions {
         int[] arr16 = {1, 2, -4, -5};
         int[] arr17 = {10, 22, 12, 3, 0, 6};
         int[] arr18 = {100, 200, 1, 3, 2, 4};
+        int arr19[][] =  {{1, 2, 3}, {4, 5, 6}, {7, 8, 9}};
+        int arr20[] =  {3, 1, 2, 4};
         // 1. SUM AND AVERAGE OF ARRAY
       /*  sumOfArray(arr2);
         avgOfArray(arr2);*/
@@ -766,8 +861,8 @@ public class BasicArrayQuestions {
         System.out.println("Insert element at specific position (ArrayList): " + result2);
 
         //  9. FIND DUPLICATE VALUES
-    /*    duplicateValueOfArray(arr2);
-        duplicateValueUsingHashMap(arr2);*/
+        duplicateValueOfArray(arr2);
+       duplicateValueUsingHashMap(arr2);
 
         //  10. REMOVE DUPLICATE ELEMENTS
         removeDuplicateElementOfArray(arr2);
@@ -827,6 +922,16 @@ public class BasicArrayQuestions {
         }
 
         longestSuccessiveElements(arr18);
+
+        rotateMatrix(arr19);
+
+        for (int i = 0; i < arr19.length; i++) {
+            for (int j = 0; j < arr19[0].length; j++) {
+                System.out.print(arr19[i][j] + " ");
+            }
+            System.out.println();
+        }
+        countSubarrays(arr20);
     }
 
 
