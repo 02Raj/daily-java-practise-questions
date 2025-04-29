@@ -31,16 +31,28 @@ public class TwoSum {
             int sum = arr[left] + arr[right];
 
             if (sum == targetSum) {
+                // Found a pair, return it
                 return new int[]{arr[left], arr[right]};
             } else if (sum > targetSum) {
                 right--;
             } else {
                 left++;
             }
+
+            // Skip duplicates for the left pointer
+            while (left < right && arr[left] == arr[left + 1]) {
+                left++;
+            }
+
+            // Skip duplicates for the right pointer
+            while (left < right && arr[right] == arr[right - 1]) {
+                right--;
+            }
         }
 
         return new int[]{-1, -1}; // No pair found
     }
+
 
     // HashMap Approach (Best for Unsorted Arrays)
     // Time Complexity: O(n)

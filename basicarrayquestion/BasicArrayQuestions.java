@@ -676,6 +676,8 @@ public class BasicArrayQuestions {
 
         System.out.println("Max Profit = " + max_profit);
     }
+//    arr[] = {1,2,-4,-5}, N = 4
+//    Output: 1 -4 2 -5
     static List<Integer> rearrangeBySign(int[] arr){
 
         List<Integer> positive = new ArrayList<>();
@@ -797,6 +799,90 @@ public class BasicArrayQuestions {
 
     }
 
+/*    Input Format: N = 5, r = 5, c = 3
+    Result: 6 (for variation 1)
+            1 4 6 4 1 (for variation 2)
+
+            1
+            1 1
+            1 2 1
+            1 3 3 1
+            1 4 6 4 1    (for variation 3)
+
+    Explanation: There are 5 rows in the output matrix. Each row is formed using the logic of Pascal’s triangle.*/
+    public static List<List<Integer>> pascalTriangle(int numRows){
+        List<List<Integer>> result = new ArrayList<>();
+
+        for(int i = 0; i<numRows; i++) {
+            List<Integer> row = new ArrayList<>(i+1);
+            for(int j = 0; j <= i; j++) {
+                if(j == 0 || j == i) {
+                    row.add(1);
+                } else {
+                    int num = result.get(i-1).get(j) + result.get(i-1).get(j-1);
+                    row.add(num);
+                }
+            }
+            result.add(row);
+        }
+        return result;
+
+
+
+    }
+    public static void printPascalTriangle(int numRows) {
+        List<List<Integer>> triangle = pascalTriangle(numRows);
+
+
+        for (List<Integer> row : triangle) {
+            for (Integer num : row) {
+                System.out.print(num + " ");
+            }
+            System.out.println();
+        }
+    }
+
+    public static int getElementAtPosition(int r, int c) {
+        List<List<Integer>> triangle = pascalTriangle(r);
+        if (r <= 0 || c < 0 || c >= triangle.get(r - 1).size()) {
+            throw new IndexOutOfBoundsException("Invalid row or column index.");
+        }
+        return triangle.get(r - 1).get(c);
+    }
+    /*Input Format: N = 5, array[] = {1,2,2,3,2}
+        Result: 2
+        Explanation: Here we can see that the Count(1) = 1, Count(2) = 3 and Count(3) = 1.Therefore, the count of 2 is greater than N/2 times. Hence, 2 is the answer.*/
+    static void majorityElementNBy2Times(int[] arr) {
+        int halfLength = arr.length / 2;
+        Map<Integer, Integer> map = new HashMap<>();
+
+        for (int i = 0; i < arr.length; i++) {
+            map.put(arr[i], map.getOrDefault(arr[i], 0) + 1); // count badhao
+
+            if (map.get(arr[i]) > halfLength) {
+                System.out.println("majorityEleement1: " + arr[i]);
+                return;
+            }
+        }
+    }
+
+    /*Input Format: N = 5, array[] = {1,2,2,3,2}
+    Result: 2
+    Explanation: Here we can see that the Count(1) = 1, Count(2) = 3 and Count(3) = 1.Therefore, the count of 2 is greater than N/3 times. Hence, 2 is the answer.*/
+    static void majorityElementNBy3Times(int[] arr) {
+        int halfLength = arr.length / 3;
+        Map<Integer, Integer> map = new HashMap<>();
+
+        for (int i = 0; i < arr.length; i++) {
+            map.put(arr[i], map.getOrDefault(arr[i], 0) + 1); // count badhao
+
+            if (map.get(arr[i]) > halfLength) {
+                System.out.println("majorityEleement: " + arr[i]);
+                return;
+            }
+        }
+    }
+
     public static void main(String[] args) {
         int[] arr = {1789, 2035, 1899, 1456, 2013};
         int[] arr2 = {2, 4, 15, 4, 10, 1};
@@ -822,6 +908,8 @@ public class BasicArrayQuestions {
         int[] arr18 = {100, 200, 1, 3, 2, 4};
         int arr19[][] =  {{1, 2, 3}, {4, 5, 6}, {7, 8, 9}};
         int arr20[] =  {3, 1, 2, 4};
+        int[] arr21 = {1,2,2,3,2};
+        int numRows = 5;
         // 1. SUM AND AVERAGE OF ARRAY
       /*  sumOfArray(arr2);
         avgOfArray(arr2);*/
@@ -932,6 +1020,12 @@ public class BasicArrayQuestions {
             System.out.println();
         }
         countSubarrays(arr20);
+        printPascalTriangle(numRows);
+        int result4 = getElementAtPosition(5, 3);  // row = 5, column = 3
+        System.out.println("Element at position 5, 3: " + result4);
+
+        majorityElementNBy2Times(arr21);
+        majorityElementNBy3Times(arr21);
     }
 
 
