@@ -883,6 +883,10 @@ public class BasicArrayQuestions {
         }
     }
 
+//    static int[] subarraysWithXorK(int[] arr){
+//
+//    }
+
     public static void main(String[] args) {
         int[] arr = {1789, 2035, 1899, 1456, 2013};
         int[] arr2 = {2, 4, 15, 4, 10, 1};
@@ -910,6 +914,8 @@ public class BasicArrayQuestions {
         int arr20[] =  {3, 1, 2, 4};
         int[] arr21 = {1,2,2,3,2};
         int numRows = 5;
+        int[] arr22 = {4, 2, 2, 6, 4};
+        int k2 = 6;
         // 1. SUM AND AVERAGE OF ARRAY
       /*  sumOfArray(arr2);
         avgOfArray(arr2);*/
@@ -1026,6 +1032,8 @@ public class BasicArrayQuestions {
 
         majorityElementNBy2Times(arr21);
         majorityElementNBy3Times(arr21);
+
+//        subarraysWithXorK(arr22,k2);
     }
 
 
