@@ -1,8 +1,43 @@
-# Default ignored files
-/shelf/
-/workspace.xml
-# Editor-based HTTP Client requests
-/httpRequests/
-# Datasource local storage ignored files
-/dataSources/
-/dataSources.local.xml
+# Ignore IDE-specific files (IntelliJ IDEA)
+.idea/
+*.iml
+out/
+
+# Ignore Eclipse files
+.project
+.classpath
+.settings/
+
+# Ignore Maven target folder
+target/
+
+# Ignore Gradle build folder
+build/
+
+# Ignore Java version settings files (if any)
+*.jvmconfig
+*.jdkconfig
+
+# Ignore system files
+.DS_Store
+
+# Ignore logs
+*.log
+
+# Ignore local Java version manager files (if you use SDKMAN or jenv)
+.sdkmanrc
+.java-version
+.jenv-version
+
+# Ignore other config files that may have environment specific settings
+*.env
+
+# Ignore workspace or user-specific config
+workspace.xml
+
+# Ignore local HTTP client requests (if used)
+httpRequests/
+
+# Ignore datasource local storage files
+dataSources/
+dataSources.local.xml
