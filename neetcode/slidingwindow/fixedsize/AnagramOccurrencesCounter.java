@@ -2,7 +2,7 @@ package neetcode.slidingwindow.fixedsize;
 
 import java.lang.reflect.Array;
 import java.util.Arrays;
-
+// not leetcode
 public class AnagramOccurrencesCounter {
 
     // Method to count occurrences of anagrams of pattern in text
