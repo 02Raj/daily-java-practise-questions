@@ -1,7 +1,5 @@
 package neetcode.slidingwindow.fixedsize;
 
-// File: neetcode/slidingwindow/fixedsize/ContainsNearbyDuplicate.java
-
 
 
 import java.util.HashMap;
