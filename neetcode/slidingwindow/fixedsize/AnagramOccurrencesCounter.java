@@ -1,96 +1,83 @@
 package neetcode.slidingwindow.fixedsize;
 
+import java.lang.reflect.Array;
 import java.util.Arrays;
-
-/*
-🔍 Problem Statement:
-Hume ek `text` string aur ek `pattern` string di gayi hai.
-Task hai ye find karna ki `text` mein `pattern` ke kitne anagram (shuffled versions) maujood hain.
-
-💡 Example:
-Text:    "cbaebabacd"
-Pattern: "abc"
-"abc" ke anagrams ho sakte hain: [abc, acb, bac, bca, cab, cba]
-Toh output hoga: 2 (cba at index 0 and bac at index 6)
-
-🧠 Approach:
-- Sliding Window lagayenge jiska size = pattern ki length hoga.
-- Pattern ke characters ka frequency array banayenge.
-- Jab window slide karega, right char ko window mein include karenge → count kam karenge.
-- Jab window ka size pattern ke barabar hoga, check karenge ki kya count array mein sab 0 hain.
-- Agar haan → valid anagram mila.
-- Phir left se window ko slide karenge → left char ka count wapas increase karenge.
-*/
 
 public class AnagramOccurrencesCounter {
 
-    // ✅ Function to count total anagram occurrences in text
+    // Method to count occurrences of anagrams of pattern in text
     public int countAnagramOccurrences(String text, String pattern) {
-        int k = pattern.length();             // ✅ Window size = pattern ka length
-        int[] count = new int[26];            // ✅ 26 characters (a-z) ka frequency array banaya
+        int k = pattern.length();  // Pattern ki length, jo window size hogi
 
-        Arrays.fill(count, 0);                // 🔄 Pura array 0 se initialize kiya (default)
+        // Frequency array for pattern characters (26 letters for 'a' to 'z')
+        int[] count = new int[26];
+        Arrays.fill(count, 0);  // Initially zero se fill kar diya
 
-        // 🏗️ Pattern ke har character ka count array mein frequency badhaya
+        // Pattern ke har character ka frequency array mein count badhao
         for (char ch : pattern.toCharArray()) {
-            count[ch - 'a']++;                // ➕ Example: 'a' - 'a' = 0 index, 'c' - 'a' = 2
+            count[ch - 'a']++;
         }
 
-        int left = 0, right = 0;              // 🧭 Sliding window ke pointers
-        int result = 0;                       // 🎯 Final result (kitne anagrams mile)
-        int n = text.length();                // 📏 Text ki total length
+        int left = 0, right = 0;  // Sliding window ke pointers
+        int n = text.length();    // Text ki length
+        int result = 0;           // Total anagram count
 
-        // 🧭 Window ko text pe slide karo
+        // Sliding window ko text par chalao jab tak right pointer end tak na pahunch jaye
         while (right < n) {
-
-            // 🔽 Window mein right char include kiya aur uska count kam kiya
-            // ❓ Kyun? Kyunki wo char ab window ke andar aa gaya hai
+            // Window me right pointer pe jo char hai, uska frequency array se ek kam karo
+            // Kyunki hum window me ye char include kar rahe hain
             count[text.charAt(right) - 'a']--;
 
-            // 🚪 Jab tak window chhoti hai pattern se, sirf right badhao
+            // Agar window ka size abhi pattern se chhota hai to right pointer aage badhao
             if (right - left + 1 < k) {
-                right++; // ➡️ Right pointer aage badhaya (window expand)
+                right++;
             }
-
-            // ✅ Jab window ka size pattern ke barabar ho gaya
+            // Jab window size pattern ke barabar ho jaye to check karo
             else if (right - left + 1 == k) {
-
-                // 🔍 Check karo kya count array ka har value 0 hai
+                // Agar count array ke sare elements zero hain to iska matlab
+                // ye window pattern ka anagram hai
                 if (allZero(count)) {
-                    result++;  // 🎯 Valid anagram mila, result increment karo
+                    result++;  // Anagram mila, count increment karo
                 }
 
-                // ♻️ Window slide karne se pehle left char ka count wapas badhao
-                // ❓ Kyun? Kyunki wo ab window se bahar jaa raha hai
+                // Sliding window ko aage badhane se pehle left pointer pe wala character
+                // frequency array me wapas add karo, kyunki wo ab window me nahi rahega
                 count[text.charAt(left) - 'a']++;
 
-                // 🪟 Window ko slide karo → left aur right dono badhao
-                left++;   // ⬅️ Left pointer ko aage le jao
-                right++;  // ➡️ Right pointer bhi aage le jao
+                // Window ko slide karo, left aur right dono ek step aage badhao
+                left++;
+                right++;
             }
         }
 
-        return result;  // 🔁 Total valid anagram count return karo
+        // Finally total anagram count return karo
+        return result;
     }
 
-    // ✅ Helper method: check karo kya count array ka har value 0 hai
+    // Helper method: Check karo ki count array ke sare elements zero hain ya nahi
     private boolean allZero(int[] count) {
         for (int num : count) {
-            if (num != 0) return false;  // ❌ Agar koi bhi element non-zero mila → not an anagram
+            if (num != 0) {
+                return false;  // Agar koi bhi element zero nahi hai to false return karo
+            }
         }
-        return true;  // ✅ Sab 0 hain → perfect match mila
+        return true;  // Agar sab zero hain to true return karo
     }
 
-    // 🚀 Main method to test the function
+    // Main method to test the solution
     public static void main(String[] args) {
         AnagramOccurrencesCounter counter = new AnagramOccurrencesCounter();
 
-        String text = "cbaebabacd";     // 📝 Text jisme anagrams dhoondhna hai
-        String pattern = "abc";         // 🎯 Pattern jiska anagram check karna hai
+        // Text jisme hume pattern ke anagrams dhundhne hain
+        String text = "cbaebabacd";
 
-        int result = counter.countAnagramOccurrences(text, pattern);  // 🧪 Function call
+        // Pattern jiska anagram count karna hai
+        String pattern = "abc";
 
+        // Function call karke result lo
+        int result = counter.countAnagramOccurrences(text, pattern);
+
+        // Result print karo
         System.out.println("Number of anagram occurrences of '" + pattern + "' in '" + text + "' is: " + result);
-        // 📢 Final output print karo
     }
 }

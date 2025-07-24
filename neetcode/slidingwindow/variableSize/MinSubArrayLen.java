@@ -61,6 +61,8 @@ public class MinSubArrayLen {
         int target = 7;
 
         int result = solver.minSubArrayLen(target, nums);
-        System.out.println("🔍 Minimum length of subarray with sum >= " + target + " is: " + result);
+        System.out.println("🔍 Minimum length of " +
+                "" +
+                " with sum >= " + target + " is: " + result);
     }
 }
