@@ -642,7 +642,6 @@ public class BasicArrayQuestions {
         for (int i = 0 ; i < arr.length; i++){
             currentSum += arr[i];
             maxSum= Math.max(currentSum, maxSum);
-
             if (currentSum < 0){
                 currentSum = 0;
             }
