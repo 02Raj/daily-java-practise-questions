@@ -1,4 +1,4 @@
-# 📌 LeetCode Problem: Count Subarrays With Fixed Bounds
+#  LeetCode Problem: Count Subarrays With Fixed Bounds
 
 🔗 Problem Link: [https://leetcode.com/problems/count-subarrays-with-fixed-bounds/](https://leetcode.com/problems/count-subarrays-with-fixed-bounds/)  
 🔢 Problem Number: 2444
@@ -14,7 +14,7 @@ Given an integer array `nums` and two integers `minK` and `maxK`, return the num
 
 ---
 
-## 🧠 Approach: Variable Size Sliding Window
+##  Approach: Variable Size Sliding Window
 
 ### ✅ Idea:
 - Har index `i` pe hum ye dekhte hain ki kitne subarrays `i` pe end ho rahe hain jo valid hain (yaani minK aur maxK dono include karte hain).
