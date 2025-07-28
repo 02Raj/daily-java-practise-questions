@@ -1,129 +1,131 @@
-Core Concepts & Manipulations
-Palindrome Check
+# Most Important String Questions for Technical Interviews
 
-Problem: Given a string, determine if it's a palindrome (reads the same forwards and backwards).
+These string-related questions are commonly asked in technical interviews. Understanding these problems and their solutions will help you stand out in coding rounds and whiteboard interviews.
 
-Key Idea: Two-pointer approach. Use one pointer at the start and one at the end, comparing characters. Learn to handle non-alphanumeric characters and case sensitivity.
+---
 
-Example: "Madam", "racecar"
+## 📌 Core Concepts & Manipulations
 
-Anagram Check
+### 🔹 Palindrome Check
+**Problem:** Determine if a given string is a palindrome (reads the same forwards and backwards).  
+**Key Idea:** Two-pointer approach; handle non-alphanumeric characters and case sensitivity.  
+**Example:** `"Madam"`, `"racecar"`
 
-Problem: Given two strings, determine if they are anagrams of each other (contain the same characters with the same frequencies).
+---
 
-Key Idea: Use a hash map or array to compare character frequencies, or sort both strings and compare them.
+### 🔹 Anagram Check
+**Problem:** Check if two strings are anagrams (same characters, same frequency).  
+**Key Idea:** Use a hash map for frequency count, or sort both strings and compare.  
+**Example:** `"listen"` and `"silent"`
 
-Example: "listen", "silent"
+---
 
-Reverse a String
+### 🔹 Reverse a String
+**Problem:** Reverse the characters in a string.  
+**Key Idea:** Two-pointer in-place reversal, or use `StringBuilder` in Java.  
+**Example:** `"hello"` → `"olleh"`
 
-Problem: Reverse a given string.
+---
 
-Key Idea: Use a two-pointer approach for in-place reversal, or utilize StringBuilder/StringBuffer for efficiency.
+### 🔹 First Non-Repeating Character
+**Problem:** Find the first character in a string that appears only once.  
+**Key Idea:** Count characters using hash map, then iterate again.  
+**Example:** `"leetcode"` → `'l'`
 
-Example: "hello" -> "olleh"
+---
 
-First Non-Repeating Character
+### 🔹 Remove Duplicates from a String
+**Problem:** Remove all duplicate characters from a string.  
+**Key Idea:** Use a HashSet or boolean array to track characters.
 
-Problem: Find the first character in a string that appears only once.
+---
 
-Key Idea: Use a hash map to store character counts, then iterate again to find the first character with a count of 1.
+## 🔍 Substring & Pattern Matching
 
-Example: "leetcode" -> 'l'
+### 🔹 Longest Substring Without Repeating Characters
+**Problem:** Find the length of the longest substring with no repeating characters.  
+**Key Idea:** Sliding window with hash set/hash map.  
+**Example:** `"abcabcbb"` → `3` (`"abc"`)
 
-Remove Duplicates from a String
+---
 
-Problem: Given a string, remove duplicate characters.
+### 🔹 Longest Palindromic Substring
+**Problem:** Find the longest substring that is a palindrome.  
+**Key Idea:** Expand around center or use dynamic programming.
 
-Key Idea: Use a HashSet to keep track of seen characters, or a boolean array if the character set is small (e.g., 'a'-'z'). Build a new string or modify in-place if allowed.
+---
 
-Substring & Pattern Matching
-Longest Substring Without Repeating Characters
+### 🔹 Implement strStr() / Substring Search
+**Problem:** Find the first occurrence of a needle string in a haystack string.  
+**Key Idea:** Naive approach or advanced (KMP, Rabin-Karp) for efficiency.
 
-Problem: Find the length of the longest substring in a given string that does not contain any repeating characters.
+---
 
-Key Idea: Employ a sliding window approach with a hash set/map to track characters within the current window.
+### 🔹 Count Occurrences of a Character/Substring
+**Problem:** Count how often a character or substring occurs.  
+**Key Idea:** Iterate through string or use built-in methods.
 
-Example: "abcabcbb" -> 3 ("abc")
+---
 
-Longest Palindromic Substring
+### 🔹 Group Anagrams
+**Problem:** Group strings that are anagrams.  
+**Key Idea:** Use a hash map with sorted string as key.
 
-Problem: Find the longest palindromic substring within a given string.
+---
 
-Key Idea: Expand around center (for odd and even length palindromes), or dynamic programming.
+## 🔄 Conversions & Formatting
 
-Implement strStr() / Substring Search
+### 🔹 String to Integer (atoi)
+**Problem:** Implement `atoi`, converting a string to an integer.  
+**Key Idea:** Parse char-by-char, manage sign, handle overflows.
 
-Problem: Find the first occurrence of a needle string in a haystack string.
+---
 
-Key Idea: Naive approach (brute force), KMP algorithm (more efficient for larger texts and patterns), Rabin-Karp algorithm (hashing-based).
+### 🔹 Reverse Words in a Sentence
+**Problem:** Reverse the word order in a sentence.  
+**Key Idea:** Split by spaces, reverse the array, and join.  
+**Example:** `"the sky is blue"` → `"blue is sky the"`
 
-Count Occurrences of a Character/Substring
+---
 
-Problem: Count how many times a specific character or substring appears in a string.
+### 🔹 Valid Parentheses
+**Problem:** Check if a string of parentheses is valid.  
+**Key Idea:** Use a stack to match pairs.
 
-Key Idea: Simple iteration, or using built-in string methods (if allowed) for substrings.
+---
 
-Group Anagrams
+### 🔹 Roman to Integer / Integer to Roman
+**Problem:** Convert between Roman numerals and integers.  
+**Key Idea:** Use a value map and handle subtractive cases.
 
-Problem: Given an array of strings, group anagrams together.
+---
 
-Key Idea: Use a hash map where the key is the sorted version of the word (e.g., "eat" -> "aet") and the value is a list of its anagrams.
+### 🔹 Simplify Path (Unix-style)
+**Problem:** Simplify an absolute Unix file path.  
+**Key Idea:** Use a stack to handle `"."`, `".."`, and directory names.
 
-Conversions & Formatting
-String to Integer (atoi)
+---
 
-Problem: Implement the atoi function, which converts a string to an integer. Handle various edge cases like whitespace, signs, and overflow.
+### 🔹 Text Justification (Word Wrap)
+**Problem:** Format text so each line is fully justified with a given width.  
+**Key Idea:** Greedy approach with space distribution.
 
-Key Idea: Parse character by character, manage the sign, and rigorously check for overflow conditions.
+---
 
-Reverse Words in a Sentence
+### 🔹 Decode String (with numbers and brackets)
+**Problem:** Decode a string like `"3[a2[c]]"` → `"accaccacc"`.  
+**Key Idea:** Use two stacks (for numbers and strings) or recursion.
 
-Problem: Reverse the order of words in a sentence, while keeping the words themselves intact.
+---
 
-Key Idea: Split the string into words, reverse the array of words, then join them back. Handle multiple spaces.
+### 🔹 Longest Common Prefix
+**Problem:** Find the longest common prefix in a string array.  
+**Key Idea:** Compare characters at each position across all strings.
 
-Example: "the sky is blue" -> "blue is sky the"
+---
 
-Valid Parentheses
+### 🔹 Zigzag Conversion
+**Problem:** Convert string into zigzag pattern on n rows and read row-by-row.  
+**Key Idea:** Simulate zigzag or calculate correct row for each character.
 
-Problem: Determine if the input string containing parentheses (round, curly, square) is valid.
-
-Key Idea: Use a stack to track opening parentheses and check for matching closing ones.
-
-Roman to Integer / Integer to Roman
-
-Problem: Convert a Roman numeral to an integer, or vice versa.
-
-Key Idea: Map Roman symbols to values. For Roman to Integer, handle subtractive notation (e.g., IV, IX).
-
-Simplify Path (Unix-style)
-
-Problem: Given a Unix-style absolute path, simplify it.
-
-Key Idea: Use a stack to process path components (e.g., ".", "..", directory names).
-
-Text Justification (Word Wrap)
-
-Problem: Given an array of words and a maximum width, format the text such that each line has exactly maxWidth characters and is fully justified.
-
-Key Idea: Greedy approach for line fitting, then distribution of extra spaces. This is a complex problem often seen in hard rounds.
-
-Decode String (with numbers and brackets)
-
-Problem: Given an encoded string, return its decoded string. k[encoded_string] means encoded_string is repeated k times.
-
-Key Idea: Use two stacks: one for counts and one for strings, or recursion.
-
-Longest Common Prefix
-
-Problem: Find the longest common prefix string amongst an array of strings.
-
-Key Idea: Iterate through characters, comparing the character at the current position across all strings.
-
-Zigzag Conversion
-
-Problem: Convert a given string into a zigzag pattern on a given number of rows.
-
-Key Idea: Simulate the pattern, or calculate indices where each character should go.
-
+---
