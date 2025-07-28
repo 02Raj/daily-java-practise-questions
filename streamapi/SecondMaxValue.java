@@ -9,14 +9,14 @@ public class SecondMaxValue {
         List<Integer> numbers =  Arrays.asList(10, 25, 5, 12, 5);
 
         int secondHighest = numbers.stream()
-                .distinct() // duplicate hatao
-                .sorted(Comparator.reverseOrder()) // descending sort
-                .skip(1) // first (highest) ko skip karo
-                .findFirst() // ab next highest milega
-                .orElseThrow(() -> new RuntimeException("No second highest value"));
+            .distinct() // duplicate hatao
+            .sorted(Comparator.reverseOrder()) // descending sort
+            .skip(1) // first (highest) ko skip karo
+            .findFirst() // ab next highest milega
+            .orElseThrow(() -> new RuntimeException("No second highest value"));
 
         System.out.println("Second Highest value: " + secondHighest);
-    }
+}
 }
 
 
