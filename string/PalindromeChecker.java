@@ -2,7 +2,7 @@ package string;
 
 public class PalindromeChecker {
 
-    // ✅ 1. Two Pointer Approach (Using for loop)
+    //  1. Two Pointer Approach (Using for loop)
     public static boolean isPalindromeTwoPointer(String str) {
         int left = 0;
         int right = str.length() - 1;
@@ -15,14 +15,14 @@ public class PalindromeChecker {
         return true;
     }
 
-    // ✅ 2. Using StringBuilder reverse() method
+    // 2. Using StringBuilder reverse() method
     public static boolean isPalindromeStringBuilder(String str) {
         StringBuilder sb = new StringBuilder(str);
         String reversed = sb.reverse().toString();
         return str.equals(reversed);
     }
 
-    // ✅ 3. Using toCharArray() and manual reverse
+    // 3. Using toCharArray() and manual reverse
     public static boolean isPalindromeToCharArray(String str) {
         char[] chars = str.toCharArray();
         int left = 0;

@@ -33,12 +33,13 @@ public class LongestPalindromeBuilder {
         return result;
     }
 
-    // 🔵 Approach 2: Using HashMap to Count Frequency
-    // -----------------------------------------
+    // 🔹 Approach 2: Using HashMap to Count Frequency
     // 🧠 Logic:
-    // Count the frequency of each character.
-    // - Add all even frequencies to result.
-    // - For odd frequency, add (freq - 1), and keep 1 character for the center if needed.
+    // Step 1: Har character ka frequency count nikaalte hain
+    // Step 2: Jitne bhi even frequency hain, unko fully use kar lete hain
+    // Step 3: Odd frequency wale characters me se (freq - 1) characters use karte hain (pair ke liye)
+    // Step 4: Agar koi odd frequency mila, to ek character center me use kar sakte hain (only once)
+
     public static int approach2(String s) {
         HashMap<Character, Integer> map = new HashMap<>();
         int result = 0;
