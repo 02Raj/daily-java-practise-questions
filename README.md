@@ -20,4 +20,4 @@ This repository contains a collection of Java coding questions that I practice d
 ## 🚀 How to Use
 1. Clone the repository:
    ```bash
-   git clone https://github.com/your-username/daily-java-practise-questions.git
+   git clone https://github.com/02Raj/daily-java-practise-questions.git
