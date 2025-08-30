@@ -1,5 +1,6 @@
 package basicarrayquestion;
 
+import java.util.Arrays;
 import java.util.HashMap;
 
 public class RemoveDuplicatesSortedArray {
@@ -38,6 +39,7 @@ public class RemoveDuplicatesSortedArray {
         int[] nums1 = {1, 1, 2, 2, 3, 4, 4, 5};
         int[] nums2 = nums1.clone();
 
+        System.out.println("nums2: " + Arrays.toString(nums2));
         System.out.println("Using Two Pointers:");
         int length1 = removeDuplicates(nums1);
         for (int i = 0; i < length1; i++) {
