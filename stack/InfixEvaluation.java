@@ -3,8 +3,6 @@ package stack;
 import java.util.Scanner;
 import java.util.Stack;
 
-
-
 public class InfixEvaluation {
     // Method: precedence check
     public static int precedence(char op) {
