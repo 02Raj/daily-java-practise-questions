@@ -1,41 +1,48 @@
 package stack;
 
 import java.util.Stack;
-public class NextGreaterElement {
-    public static void main(String[] args) {
-        int[] arr = {4, 5, 2, 25};   // Input array
-        int[] result = nextGreaterElement(arr); // Function call
 
-        System.out.print("Next Greater Elements: ");
-        for (int val : result) {
-            System.out.print(val + " "); // Print final result
-        }
-    }
+public class NextGreaterElement {
+
+    // ✅ Problem Statement:
+    // Given an array, for each element find the next greater element (NGE) on its right.
+    // If no such element, return -1.
+    //
+    // Example:
+    // Input: [4, 5, 2, 25]
+    // Output: [5, 25, 25, -1]
 
     public static int[] nextGreaterElement(int[] arr) {
         int n = arr.length;
-        int[] nge = new int[n];  // Array to store results
-        Stack<Integer> stack = new Stack<>(); // Stack to track "next greater candidates"
+        int[] nge = new int[n];
+        Stack<Integer> stack = new Stack<>();
 
-        // Traverse array from RIGHT to LEFT
+        // 👉 Traverse from RIGHT to LEFT (reverse)
         for (int i = n - 1; i >= 0; i--) {
-            int current = arr[i];  // Current element
+            int current = arr[i];
 
-            // 1. Pop all smaller (or equal) elements
-            // Because they can't be "next greater" for current
+            // Step 1: Pop all smaller or equal elements (they can't be NGE)
             while (!stack.isEmpty() && stack.peek() <= current) {
                 stack.pop();
             }
 
-            // 2. Check result
-            // If stack is empty → no greater element on right → put -1
-            // Else → stack.top is the next greater
+            // Step 2: If stack empty → no greater element on right → -1
+            // Else → top of stack is the next greater
             nge[i] = stack.isEmpty() ? -1 : stack.peek();
 
-            // 3. Push current element into stack
-            // Because it might be "next greater" for future (left-side) elements
+            // Step 3: Push current element for future reference
             stack.push(current);
         }
-        return nge; // Return result array
+        return nge;
+    }
+
+    public static void main(String[] args) {
+        int[] arr = {4, 5, 2, 25};
+        int[] result = nextGreaterElement(arr);
+
+        System.out.print("Next Greater Elements: ");
+        for (int val : result) {
+            System.out.print(val + " ");
+        }
     }
 }
