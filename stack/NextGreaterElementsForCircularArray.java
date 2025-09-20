@@ -2,7 +2,7 @@ package stack;
 
 import java.util.Stack;
 
-public class nextGreaterElementsForCircularArray {
+public class NextGreaterElementsForCircularArray {
     // ✅ Problem Statement:
     // Given a circular array, find the next greater element for each element.
     // Circular means after the last element, wrap around to the start.

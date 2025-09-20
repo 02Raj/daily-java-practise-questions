@@ -45,7 +45,7 @@ import java.util.Stack;
  *    - Because each element is pushed + popped only once in stack.
  */
 
-public class sumSubarrayMins {
+public class SumSubarrayMins {
 
     // -------------------------------------------------
     // Brute Force Approach (for understanding only)
