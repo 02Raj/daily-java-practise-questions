@@ -19,41 +19,39 @@ public class MaximalRectangle {
      * 1. Largest Rectangle in Histogram (LeetCode 84)
      * 2. Dynamic Programming on matrix (row-by-row heights)
      * -----------------------------------------------
-     *
-     * APPROACH STORY:
-     * - Think of each row as the base of a histogram.
-     * - Build "heights" array where each column keeps
-     *   track of consecutive '1's from top to current row.
-     * - For each row, solve "Largest Rectangle in Histogram"
-     *   using a stack.
-     * - Keep global maximum area.
      */
 
     private int maximalRectangle(char[][] matrix) {
-        // ✅ Edge case: empty matrix
+        //  Edge case: matrix empty
         if (matrix.length == 0) return 0;
 
-        // Number of columns
+        // Number of columns in matrix
         int n = matrix[0].length;
 
-        // Heights array for histogram
+        // Heights array (for histogram of each row)
         int[] heights = new int[n];
 
-        // Global maximum area
+        // Store global max area
         int maxArea = 0;
 
-        // Traverse each row of the matrix
+        // Traverse each row
         for (char[] row : matrix) {
-            // Step 1: Update heights based on current row
+            // -------------------------------------------
+            // STEP 1: Update heights[] for this row
+            // if '1' → add 1 to height, if '0' → reset 0
+            // -------------------------------------------
             for (int j = 0; j < n; j++) {
                 if (row[j] == '1') {
-                    heights[j] += 1;   // Increase height if '1'
+                    heights[j] += 1;
                 } else {
-                    heights[j] = 0;    // Reset if '0'
+                    heights[j] = 0;
                 }
             }
 
-            // Step 2: Calculate largest rectangle in this histogram row
+            // -------------------------------------------
+            // STEP 2: For this updated histogram,
+            // find the largest rectangle area
+            // -------------------------------------------
             maxArea = Math.max(maxArea, largestRectangleArea(heights));
         }
         return maxArea;
@@ -63,34 +61,41 @@ public class MaximalRectangle {
      * ====================================================
      * Helper Function: Largest Rectangle in Histogram
      * ====================================================
-     * - Standard monotonic stack approach
-     * - Complexity: O(n)
-     * - Trick: add a "sentinel bar of height 0" at the end
-     *   so that all bars are popped and processed
+     * Approach:
+     * - Use Monotonic Increasing Stack
+     * - Each bar is processed once (push + pop)
+     * - Add a sentinel '0' at the end → force pop all
+     *
+     * Formula for area:
+     *   while currentHeight < stackTopHeight:
+     *       height = popped bar height
+     *       width = (rightIndex - leftIndex - 1)
+     *       area  = height * width
      */
     public int largestRectangleArea(int[] heights) {
         Stack<Integer> stack = new Stack<>();
         int maxArea = 0;
 
-        // Extended array with one extra '0' at the end
+        // Extended array with extra 0 at end
         int[] extended = Arrays.copyOf(heights, heights.length + 1);
 
-        // Traverse bars
+        // Traverse all bars
         for (int i = 0; i < extended.length; i++) {
-            // While current bar is smaller → pop from stack
+            // Pop until stack top is bigger than current bar
             while (!stack.isEmpty() && extended[stack.peek()] > extended[i]) {
                 int height = extended[stack.pop()]; // height of popped bar
-                int width = stack.isEmpty() ? i : i - stack.peek() - 1;
+                int width = stack.isEmpty() ? i : i - stack.peek() - 1; // width formula
                 int area = height * width;
-                maxArea = Math.max(maxArea, area);
+                maxArea = Math.max(maxArea, area); // update max
             }
+            // Push current bar index
             stack.push(i);
         }
         return maxArea;
     }
 
     public static void main(String[] args) {
-        // Example matrix
+        // Example input
         char[][] matrix = {
                 {'1','0','1','0','0'},
                 {'1','0','1','1','1'},
@@ -101,6 +106,39 @@ public class MaximalRectangle {
         MaximalRectangle obj = new MaximalRectangle();
         int ans = obj.maximalRectangle(matrix);
 
-        System.out.println("Maximal Rectangle Area = " + ans); // ✅ Expected: 6
+        // ✅ Expected output: 6
+        System.out.println("Maximal Rectangle Area = " + ans);
     }
 }
+
+/**
+ * ===============================
+ *  DRY RUN (row-wise heights)
+ * ===============================
+ * Row1: [1,0,1,0,0]  → max area = 1
+ * Row2: [2,0,2,1,1]  → max area = 3
+ * Row3: [3,1,3,2,2]  → max area = 6
+ * Row4: [4,0,0,3,0]  → max area = 4
+ * Global max = 6
+ *
+ * ===============================
+ *  COMPLEXITY ANALYSIS
+ * ===============================
+ * Time Complexity:
+ * - For each row O(C) to update heights
+ * - For each row O(C) for histogram via stack
+ * - Total = O(R * C)
+ *
+ * Space Complexity:
+ * - heights[] = O(C)
+ * - stack = O(C)
+ * => Overall O(C)
+ *
+ * ===============================
+ *  INTUITION STORY
+ * ===============================
+ * - Convert each row into histogram of 1’s
+ * - Use stack to find largest rectangle in histogram
+ * - Keep track of global max
+ * - Sentinel 0 at end ensures all bars processed
+ */
