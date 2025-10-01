@@ -120,8 +120,7 @@ public class MaxSlidingWindow {
 
     /**
      * --------------------------------
-     * 🔹 Main method for testing
-     * --------------------------------
+     * 🔹 Main method for testing     *
      */
     public static void main(String[] args) {
         int[] nums = {1, 3, -1, -3, 5, 3, 6, 7};
