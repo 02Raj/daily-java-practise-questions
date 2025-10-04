@@ -1,4 +1,6 @@
-package linkedlist;
+package linkedlist.singlylinkedlist;
+
+
 
 public class Main {
 
@@ -39,7 +41,7 @@ public class Main {
             }else{
                 head = head.next;
                 size--;
-             }
+            }
         }
 
         int get(int index){
@@ -78,11 +80,9 @@ public class Main {
             newNode.data = data;
             newNode.next = head;
             head = newNode;
-
             if (size == 0) {
                 tail = newNode;
             }
-
             size++;
         }
 
