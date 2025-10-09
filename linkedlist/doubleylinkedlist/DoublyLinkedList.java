@@ -48,4 +48,61 @@ public class DoublyLinkedList {
 
     }
 
+   public void insertBefore(int key, int data){
+        ListNode temp = head;
+
+        while(temp != null && temp.data != key){
+            temp = temp.next;
+        }
+
+        if(temp == null ){
+            System.out.println("Key Not Found");
+            return;
+        }
+
+         ListNode newNode = new ListNode(data);
+         newNode.next = temp;
+         newNode.prev = temp.prev;
+
+         if(temp.prev != null){
+             temp.prev.next = newNode;
+         }else{
+             head = newNode;
+         }
+
+         temp.prev = newNode;
+   }
+
+   public void deleteFromBeginninid(){
+        if(head == null){
+            System.out.println("List is Empty!");
+            return;
+        }
+
+        head = head.next;
+
+        if(head != null){
+            head.prev = null;
+        }
+   }
+
+   public void deleteFromEnd(){
+        if(head == null){
+            System.out.println("List is empty!");
+            return;
+        }
+
+       if(head.next == null){
+           head = null;
+           return;
+       }
+       ListNode temp = head;
+       while(temp.next != null){
+           temp = temp.next;
+       }
+       temp.prev.next = null;
+   }
+
+
+
 }
