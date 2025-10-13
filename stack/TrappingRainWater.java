@@ -78,9 +78,9 @@ public class TrappingRainWater {
 
                 // Water ki height = dono boundary ka min - bottom ki height
                 int boundedHeight = Math.min(height[left], height[right]) - height[bottom];
-
                 // Area add karo
                 totalWater += distance * boundedHeight;
+
             }
 
             // Current bar ko stack me daal do future ke liye

@@ -30,7 +30,7 @@ public class DoublyLinkedList {
         newNode.prev = temp;
     }
 
-    // 3️⃣ Insert After a Given Nod
+    // 3️⃣ Insert After a Given Node
     public void insertAfter(int key, int data){
         ListNode temp = head;
 

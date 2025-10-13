@@ -52,9 +52,9 @@ import java.util.Stack;
  * Intuition:
  * ----------
  * - Har element apna contribution karta hai jitne subarrays me wo min ya max hai.
- * - NSL/NSR → bataata hai ki element kitna stretch kar sakta hai as MIN
- * - NGL/NGR → bataata hai ki element kitna stretch kar sakta hai as MAX
- * - Multiply karke count nikal lo, phir arr[i] * count add/subtract kar do.
+ *  * - NSL/NSR → bataata hai ki element kitna stretch kar sakta hai as MIN
+ *  * - NGL/NGR → bataata hai ki element kitna stretch kar sakta hai as MAX
+ *  * - Multiply karke count nikal lo, phir arr[i] * count add/subtract kar do.
  */
 public class SubarrayRanges {
 
