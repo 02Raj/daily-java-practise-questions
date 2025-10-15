@@ -22,7 +22,7 @@ You’re told to “remove the middle compartment” without breaking the train.
 But — you can only move one step at a time (slow pointer),
 and your helper (fast pointer) moves twice as fast.
 By the time your helper reaches the last compartment,
-you’ll exactly be standing at the middle one! Perfect moment to detach it.
+you’ll exactlay be standing at the middle one! Perfect moment to detach it.
 ================================================================================
 */
 
