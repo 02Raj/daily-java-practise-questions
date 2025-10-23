@@ -98,13 +98,13 @@ public class DeleteMiddle {
      Input List: [1 → 3 → 4 → 7 → 1 → 2 → 6]
      Steps:
      --------------------------------------------------------------------------
-     | Step | Slow | Fast | Prev | Explanation                                |
+     | Step | Slow | Fast | Prev | Explanation                                 |
      |------|------|------|-------|--------------------------------------------|
-     | 1    | 1    | 1    | null | start                                      |
-     | 2    | 3    | 4    | 1    | fast moves 2x                              |
-     | 3    | 4    | 1    | 3    | move again                                 |
-     | 4    | 7    | 6    | 4    | fast reaches end                           |
-     | ✅    | stop | end  | 4    | slow at middle (7), prev=4                |
+     | 1    | 1    | 1    | null | start                                       |
+     | 2    | 3    | 4    | 1    | fast moves 2x                               |
+     | 3    | 4    | 1    | 3    | move again                                  |
+     | 4    | 7    | 6    | 4    | fast reaches end                            |
+     | ✅    | stop | end  | 4    | slow at middle (7), prev=4                 |
      --------------------------------------------------------------------------
 
      Delete middle → link 4 → 1 (skipping 7)
