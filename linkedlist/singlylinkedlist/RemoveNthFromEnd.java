@@ -13,12 +13,12 @@ package linkedlist.singlylinkedlist;
  * Approach:
  * ---------
  * 1. Brute Force (Two-pass):
- *    - First, count the total number of nodes in the linked list.
- *    - Then, move to (length - n)-th node and remove the next node.
- *    - Time Complexity: O(N + N) = O(N)
- *    - Space Complexity: O(1)
  *
- * 2. Optimal (One-pass, Two-pointer):
+ *
+ * 2. Optimal (One-pass, Two-pointer): - First, count the total number of nodes in the linked list.
+ *  *    - Then, move to (length - n)-th node and remove the next node.
+ *  *    - Time Complexity: O(N + N) = O(N)
+ *  *    - Space Complexity: O(1)
  *    - Use dummy node to simplify edge cases (like removing head)
  *    - Use fast and slow pointers:
  *      1. Move fast pointer n+1 steps ahead
