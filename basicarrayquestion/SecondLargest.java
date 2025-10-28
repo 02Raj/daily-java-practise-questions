@@ -14,6 +14,7 @@ public class SecondLargest {
               second = num;
           }
         }
+        return second;
     }
 
     public static void main(String[] args) {
