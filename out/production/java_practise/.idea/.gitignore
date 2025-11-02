@@ -1,43 +1,54 @@
-# Ignore IDE-specific files (IntelliJ IDEA)
+# ===============================
+# 🧠 Core Java Project .gitignore
+# ===============================
+
+# 🔹 Ignore IntelliJ IDEA project files
 .idea/
 *.iml
 out/
+workspace.xml
+dataSources/
+dataSources.local.xml
+httpRequests/
 
-# Ignore Eclipse files
+# 🔹 Ignore Eclipse project files (if opened there)
 .project
 .classpath
 .settings/
 
-# Ignore Maven target folder
+# 🔹 Ignore build output folders
 target/
-
-# Ignore Gradle build folder
 build/
 
-# Ignore Java version settings files (if any)
-*.jvmconfig
-*.jdkconfig
+# 🔹 Ignore compiled Java bytecode
+*.class
 
-# Ignore system files
-.DS_Store
-
-# Ignore logs
+# 🔹 Ignore logs
 *.log
 
-# Ignore local Java version manager files (if you use SDKMAN or jenv)
+# 🔹 Ignore temporary or system files
+.DS_Store
+Thumbs.db
+ehthumbs.db
+desktop.ini
+
+# 🔹 Ignore Java version manager files (SDKMAN / jenv)
 .sdkmanrc
 .java-version
 .jenv-version
+*.jvmconfig
+*.jdkconfig
 
-# Ignore other config files that may have environment specific settings
+.idea/
+out/
+*.class
+
+# 🔹 Ignore environment configuration files
 *.env
 
-# Ignore workspace or user-specific config
-workspace.xml
+# 🔹 Ignore VS Code settings (if occasionally opened)
+.vscode/
 
-# Ignore local HTTP client requests (if used)
-httpRequests/
-
-# Ignore datasource local storage files
-dataSources/
-dataSources.local.xml
+# ===============================
+# ✅ End of .gitignore
+# ===============================
