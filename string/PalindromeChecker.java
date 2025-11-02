@@ -1,6 +1,6 @@
 package string;
 
-public class PalindromeChecker {
+public class PalindromeChecker     {
 
     //  1. Two Pointer Approach (Using for loop)
     public static boolean isPalindromeTwoPointer(String str) {
