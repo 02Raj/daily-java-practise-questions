@@ -109,7 +109,6 @@ public class PascalTriangle {
         return result;
     }
 
-    // 🔥 MAIN METHOD (run from here)
     public static void main(String[] args) {
 
         PascalTriangle obj = new PascalTriangle();
@@ -121,7 +120,6 @@ public class PascalTriangle {
         printTriangle(triangle);
     }
 
-    // 🔥 Helper: print triangle nicely
     public static void printTriangle(List<List<Integer>> triangle) {
         for (List<Integer> row : triangle) {
             System.out.println(row);
