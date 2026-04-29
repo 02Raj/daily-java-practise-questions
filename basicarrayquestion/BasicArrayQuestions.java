@@ -2,72 +2,172 @@ package basicarrayquestion;
 
 import java.util.*;
 
+/*
+===========================================================
+📦 Class: BasicArrayQuestions
+===========================================================
+📅 Created: 10-04-2025
+===========================================================
+
+📝 About This File:
+Yeh file basic array problems ka collection hai.
+Har method ek alag problem solve karta hai.
+Brute force se optimal tak ke approaches cover kiye hain.
+
+Methods List:
+ 1.  sortedArray              → Selection Sort
+ 2.  sumOfArray               → Array ka sum
+ 3.  avgOfArray               → Array ka average
+ 4.  largestElementArray      → Sabse bada element
+ 5.  secondLargestElementArray→ Doosra sabse bada element
+ 6.  ifArraySort              → Array sorted hai ya nahi
+ 7.  containSpecificValue     → Specific value hai ya nahi
+ 8.  removeSpecificElement    → Specific element remove karo
+ 9.  removeSpecificElementUsingArrayList
+10.  insertElementSpecificPosition
+11.  insertElementSpecificPositionUsingArrayList
+12.  copyOfArray              → Array copy karo
+13.  findIndexOfArrayElement  → Element ka index dhundho
+14.  maxAndMinValueOfArray    → Max aur Min dono ek saath
+15.  reverseArray (print)     → Print in reverse
+16.  duplicateValueOfArray    → HashMap se duplicates dhundho
+17.  commonElementArrays      → Do arrays ke common elements
+18.  duplicateValueUsingHashMap
+19.  leftRotateArray          → 1 baar left rotate
+20.  removeDuplicateElementOfArray
+21.  longestConsecutive       → Longest consecutive sequence
+22.  reverseArray (in-place)  → Actual reverse (two pointer)
+23.  rotateArrayKtimes        → K baar right rotate (reversal trick)
+24.  moveAllZerosToEnd        → Saare 0s end pe le jao
+25.  countOfSmallerElement    → x se chhote kitne elements
+26.  findUnion                → Do arrays ka union (TreeSet)
+27.  missingNumber            → Missing number dhundho
+28.  maximumConsecutiveOnes   → Max consecutive 1s
+29.  longestSubarrayWithSumKPositive    → Sliding window
+30.  longestSubarrayWithSumKPositiveAndNegative → HashMap prefix sum
+31.  sortColors (2 pass)      → Count and overwrite
+32.  sortColors2 (1 pass)     → Dutch National Flag
+33.  majorityElement          → N/2 se zyada (brute + Boyer-Moore)
+34.  maxSubarraySum           → Kadane's Algorithm
+35.  maxProfit                → Best time to buy/sell stock
+36.  rearrangeBySign          → Positive-Negative alternate
+37.  printLeaders             → Array ke leaders
+38.  longestSuccessiveElements→ Longest consecutive (HashSet)
+39.  rotateMatrix             → 90 degree clockwise rotate
+40.  countSubarrays           → Subarray with sum = k
+41.  pascalTriangle           → Pascal triangle generate karo
+42.  majorityElementNBy2Times → N/2 majority (HashMap)
+43.  majorityElementNBy3Times → N/3 majority (HashMap)
+
+===========================================================
+*/
+
 public class BasicArrayQuestions {
 
+    // =========================================================
+    // 1. SELECTION SORT
+    // =========================================================
+    // Approach: Har iteration mein minimum element dhundho
+    //           aur usse current position pe swap karo
+    // TC: O(n²) — do nested loops
+    // SC: O(1) — in-place sorting
+    // =========================================================
+    static void sortedArray(int[] arr) {
+        int n = arr.length;
+        int min_index;
 
-    // selection sort for sorting
-    static void sortedArray(int[] arr){
-         int n  = arr.length;             // {2,4,15,4,10,1};
-         int min_index;
-         for (int i = 0; i < n - 1; i++){
-             min_index = i;
+        for (int i = 0; i < n - 1; i++) {
+            min_index = i; // Assume karo current i hi minimum hai
 
-             for (int j = i + 1 ; j < n; j++){
-                 if (arr[j] < arr[min_index]){
-                     min_index = j;
-                 }
-             }
+            // Inner loop: i ke baad minimum element dhundho
+            for (int j = i + 1; j < n; j++) {
+                if (arr[j] < arr[min_index]) {
+                    min_index = j; // Naya minimum mila
+                }
+            }
 
-             int temp = arr[min_index];
-             arr[min_index] = arr[i];
-             arr[i] = temp;
-         }
-     }
+            // Minimum ko current position pe swap karo
+            int temp = arr[min_index];
+            arr[min_index] = arr[i];
+            arr[i] = temp;
+        }
+    }
 
-     static void sumOfArray(int[] arr2){
+    // =========================================================
+    // 2. SUM OF ARRAY
+    // =========================================================
+    // Approach: Ek baar traverse karo, sab jodo
+    // TC: O(n)   SC: O(1)
+    // =========================================================
+    static void sumOfArray(int[] arr2) {
         int n = arr2.length;
         int sum = 0;
 
-        for (int i = 0; i < n; i++){
-            int num = arr2[i];
-             sum += num;
+        for (int i = 0; i < n; i++) {
+            sum += arr2[i]; // Har element add karo sum mein
         }
-         System.out.println("sum of array is: " + sum);
-     }
+        System.out.println("Sum of array is: " + sum);
+    }
 
-     static void avgOfArray(int[] arr2){
-         int n = arr2.length;
-         int sum = 0;
+    // =========================================================
+    // 3. AVERAGE OF ARRAY
+    // =========================================================
+    // Approach: Sum nikaalo, phir n se divide karo
+    // TC: O(n)   SC: O(1)
+    // NOTE: int division use ho raha hai — decimal cut hoga
+    // =========================================================
+    static void avgOfArray(int[] arr2) {
+        int n = arr2.length;
+        int sum = 0;
 
-         for (int i = 0; i < n; i++){
-             int num = arr2[i];
-             sum += num;
-         }
-         int avg  = sum / n ;
-         System.out.println("avg of array is: " + avg);
-     }
+        for (int i = 0; i < n; i++) {
+            sum += arr2[i];
+        }
 
-     static void largestElementArray(int[] arr2) {
-        int max = arr2[0];
+        int avg = sum / n; // Integer division — floor value milegi
+        System.out.println("Avg of array is: " + avg);
+    }
 
-        for (int i = 0; i < arr2.length - 1; i++){
-            if (arr2[i] > max){
-                max = arr2[i];
+    // =========================================================
+    // 4. LARGEST ELEMENT
+    // =========================================================
+    // Approach: First element se max start karo, traverse karo
+    // TC: O(n)   SC: O(1)
+    // ⚠️ Bug: loop arr.length - 1 tak jaata hai — last element miss
+    //         Fix: i < arr.length hona chahiye
+    // =========================================================
+    static void largestElementArray(int[] arr2) {
+        int max = arr2[0]; // Pehla element assume karo max hai
+
+        for (int i = 0; i < arr2.length - 1; i++) { // ⚠️ last element miss ho raha
+            if (arr2[i] > max) {
+                max = arr2[i]; // Naya max update karo
             }
         }
-         System.out.println("max: " + max);
-     }
+        System.out.println("Max: " + max);
+    }
 
-    static void secondLrgestElementArray(int[] arr2) {
+    // =========================================================
+    // 5. SECOND LARGEST ELEMENT
+    // =========================================================
+    // Approach: Ek pass mein max aur secondMax dono track karo
+    // TC: O(n)   SC: O(1)
+    //
+    // Logic:
+    //   Case 1: Naya element max se bada → secondMax = max, max = new
+    //   Case 2: max se chhota lekin secondMax se bada → secondMax update
+    //   Case 3: Dono se chhota → kuch mat karo
+    // =========================================================
+    static void secondLargestElementArray(int[] arr2) {
         int max = Integer.MIN_VALUE;
         int secondMax = Integer.MIN_VALUE;
 
         for (int i = 0; i < arr2.length; i++) {
             if (arr2[i] > max) {
-                secondMax = max;
-                max = arr2[i];
+                secondMax = max;    // Purana max ab secondMax banega
+                max = arr2[i];      // Naya max set karo
             } else if (arr2[i] > secondMax && arr2[i] < max) {
-                secondMax = arr2[i];
+                secondMax = arr2[i]; // secondMax update karo
             }
         }
 
@@ -78,44 +178,68 @@ public class BasicArrayQuestions {
         }
     }
 
-
-    static boolean ifArraySort(int[] arr2){
-
-        for (int i = 0; i < arr2.length - 1; i++){
-            if(arr2[i] > arr2[i + 1]){
-                return false;
+    // =========================================================
+    // 6. CHECK IF ARRAY IS SORTED (Ascending)
+    // =========================================================
+    // Approach: Adjacent elements compare karo
+    //           Koi bhi element agle se bada mila → not sorted
+    // TC: O(n)   SC: O(1)
+    // =========================================================
+    static boolean ifArraySort(int[] arr2) {
+        for (int i = 0; i < arr2.length - 1; i++) {
+            if (arr2[i] > arr2[i + 1]) {
+                return false; // Ye pair out of order hai → not sorted
             }
         }
-        return true;
+        return true; // Koi bhi violation nahi mili → sorted hai
     }
 
-    static boolean containSpecificValue(int[] arr){
-        int specicValue = 7;
+    // =========================================================
+    // 7. CONTAINS SPECIFIC VALUE
+    // =========================================================
+    // Approach: Linear search — har element check karo
+    // TC: O(n)   SC: O(1)
+    // ⚠️ Bug: loop arr.length - 1 tak — last index check nahi hota
+    //         Fix: i < arr.length
+    // =========================================================
+    static boolean containSpecificValue(int[] arr) {
+        int specificValue = 7;
 
-        for (int i=0; i<arr.length - 1; i++){
-            if (arr[i] == specicValue){
+        for (int i = 0; i < arr.length - 1; i++) { // ⚠️ last element miss
+            if (arr[i] == specificValue) {
                 return true;
             }
         }
         return false;
     }
 
-    static void removeSpecificElement(int[] arr){
-        int removespecificElementIs = 10;
+    // =========================================================
+    // 8. REMOVE SPECIFIC ELEMENT (New Array)
+    // =========================================================
+    // Approach:
+    //   Step 1: Count karo kitni baar element aata hai
+    //   Step 2: Chhota array banao (size = n - count)
+    //   Step 3: Us element ko chhod ke baaki copy karo
+    // TC: O(n)   SC: O(n) — new array ban raha hai
+    // =========================================================
+    static void removeSpecificElement(int[] arr) {
+        int removeSpecificElementIs = 10;
         int count = 0;
 
-        for (int i = 0; i < arr.length; i++){
-            if (arr[i] == removespecificElementIs) count++;
+        // Step 1: Count karo
+        for (int i = 0; i < arr.length; i++) {
+            if (arr[i] == removeSpecificElementIs) count++;
         }
 
-        System.out.println("count: " + count);
-        // creta a new array with reduce size
+        System.out.println("Count: " + count);
+
+        // Step 2: New array banao reduced size ke saath
         int[] newArr = new int[arr.length - count];
         int index = 0;
 
-        // Copy elements except the one to be removed
+        // Step 3: Sirf wo elements copy karo jo remove nahi hone chahiye
         for (int i = 0; i < arr.length; i++) {
-            if (arr[i] != removespecificElementIs) {
+            if (arr[i] != removeSpecificElementIs) {
                 newArr[index] = arr[i];
                 index++;
             }
@@ -123,54 +247,81 @@ public class BasicArrayQuestions {
         System.out.println("Updated Array: " + Arrays.toString(newArr));
     }
 
-  static List<Integer>removeSpecificElementUsingArrayList(int[] arr){
-
+    // =========================================================
+    // 9. REMOVE SPECIFIC ELEMENT USING ARRAYLIST
+    // =========================================================
+    // Approach: Array → ArrayList, phir remove(index) call karo
+    // TC: O(n)   SC: O(n)
+    // NOTE: remove(2) means index 2 remove hoga, value 2 nahi
+    // =========================================================
+    static List<Integer> removeSpecificElementUsingArrayList(int[] arr) {
         List<Integer> newArr = new ArrayList<>();
 
-        for (int i = 0; i < arr.length; i++){
+        // Array ko ArrayList mein convert karo
+        for (int i = 0; i < arr.length; i++) {
             newArr.add(arr[i]);
         }
 
-        newArr.remove(2);
-
+        newArr.remove(2); // Index 2 ka element remove karo
         return newArr;
- }
+    }
 
+    // =========================================================
+    // 10. INSERT ELEMENT AT SPECIFIC POSITION (New Array)
+    // =========================================================
+    // Approach:
+    //   Naya array banao (size + 1)
+    //   Traverse karo — jab position aaye toh element daalo
+    //   Baaki elements copy karo
+    // TC: O(n)   SC: O(n)
+    // =========================================================
     static int[] insertElementSpecificPosition(int[] arr) {
         int element = 3;
         int position = 2;
 
         int[] newArr = new int[arr.length + 1];
 
+        // i = new array index, j = original array index
         for (int i = 0, j = 0; i < newArr.length; i++) {
             if (i == position) {
-                newArr[i] = element;
+                newArr[i] = element; // Yahan naya element daalo
             } else {
-                newArr[i] = arr[j];
+                newArr[i] = arr[j]; // Purane array se copy karo
                 j++;
             }
         }
-
         return newArr;
     }
-    static List<Integer> insertElementSpecificPositionUsingArrayList(int[] arr){
 
+    // =========================================================
+    // 11. INSERT ELEMENT USING ARRAYLIST
+    // =========================================================
+    // Approach: Array → ArrayList, phir add(index, value)
+    // TC: O(n)   SC: O(n)
+    // =========================================================
+    static List<Integer> insertElementSpecificPositionUsingArrayList(int[] arr) {
         List<Integer> newArr = new ArrayList<>();
 
-        for (int i = 0; i < arr.length; i++){
+        for (int i = 0; i < arr.length; i++) {
             newArr.add(arr[i]);
         }
 
-        newArr.add(2,3);
-
+        newArr.add(2, 3); // Index 2 pe value 3 insert karo
         return newArr;
     }
 
-    static void copyOfArray(int[] originalArray){
-
+    // =========================================================
+    // 12. COPY OF ARRAY (Manual Deep Copy)
+    // =========================================================
+    // Approach: Naya array banao, element by element copy karo
+    // TC: O(n)   SC: O(n)
+    // NOTE: Ye deep copy hai — original change se copy affect nahi hoga
+    // =========================================================
+    static void copyOfArray(int[] originalArray) {
         int[] copiedArray = new int[originalArray.length];
 
-        for (int i=0 ; i < originalArray.length; i++){
+        // Manually copy karo
+        for (int i = 0; i < originalArray.length; i++) {
             copiedArray[i] = originalArray[i];
         }
 
@@ -178,7 +329,6 @@ public class BasicArrayQuestions {
         for (int i = 0; i < originalArray.length; i++) {
             System.out.print(originalArray[i] + " ");
         }
-
         System.out.println();
 
         System.out.print("Copied Array: ");
@@ -186,32 +336,51 @@ public class BasicArrayQuestions {
             System.out.print(copiedArray[i] + " ");
         }
     }
+
+    // =========================================================
+    // 13. FIND INDEX OF ARRAY ELEMENT
+    // =========================================================
+    // Approach: Linear search — pehla match return karo
+    // TC: O(n)   SC: O(1)
+    // Returns: index if found, -1 if not found
+    // =========================================================
     static int findIndexOfArrayElement(int[] arr) {
-        int specicValue = 4;
+        int specificValue = 4;
+
         for (int i = 0; i < arr.length; i++) {
-            if (arr[i] == specicValue) {
-                return i;
+            if (arr[i] == specificValue) {
+                return i; // Pehla match milaa → index return karo
             }
         }
-        return -1;
+        return -1; // Nahi mila
     }
 
-    static int[] maxAndminValueOfArray(int[] arr) {
-        int max = arr[0];
+    // =========================================================
+    // 14. MAX AND MIN VALUE OF ARRAY
+    // =========================================================
+    // Approach: Ek hi pass mein max aur min dono track karo
+    // TC: O(n)   SC: O(1)
+    // Returns: int[] { max, min }
+    // =========================================================
+    static int[] maxAndMinValueOfArray(int[] arr) {
+        int max = arr[0]; // Pehle element se shuru karo
         int min = arr[0];
 
         for (int i = 0; i < arr.length; i++) {
-            if (arr[i] > max) {
-                max = arr[i];
-            }
-            if (arr[i] < min) {
-                min = arr[i];
-            }
+            if (arr[i] > max) max = arr[i]; // Naya max mila
+            if (arr[i] < min) min = arr[i]; // Naya min mila
         }
 
         return new int[]{max, min};
     }
 
+    // =========================================================
+    // 15. REVERSE ARRAY (Print Only — Array Change Nahi Hota)
+    // =========================================================
+    // Approach: End se start tak print karo
+    // TC: O(n)   SC: O(1)
+    // NOTE: Actual array modify nahi hota — sirf print hota hai
+    // =========================================================
     static void reverseArray(int[] arr) {
         System.out.print("Reverse Array: ");
         for (int i = arr.length - 1; i >= 0; i--) {
@@ -220,157 +389,229 @@ public class BasicArrayQuestions {
         System.out.println();
     }
 
-
-    static void duplicateValueOfArray(int[] arr){
-
-
+    // =========================================================
+    // 16. DUPLICATE VALUE OF ARRAY (HashMap Approach)
+    // =========================================================
+    // Approach (Optimal):
+    //   HashMap mein har element ki frequency store karo
+    //   Phir jinki frequency > 1 hai unhe print karo
+    // TC: O(n)   SC: O(n)
+    //
+    // Brute Force (commented):
+    //   Har element ko baaki sab se compare karo
+    //   TC: O(n²)   SC: O(1)
+    // =========================================================
+    static void duplicateValueOfArray(int[] arr) {
         int duplicateValue = 0;
-/*        Brut-Force-Aproach
-        for (int i = 0; i < arr.length-1; i++){
-           for (int j = i + 1; j < arr.length; j++){
-               if (arr[i] == arr[j]){
-                   duplicateValue = arr[i];
-               }
-           }
-        }*/
 
-        // optimal approach usinh hashMap
-        Map<Integer,Integer> map = new HashMap<>();
-        for (int i = 0 ; i < arr.length; i++){
+        /*
+         * Brute Force O(n²):
+         * for (int i = 0; i < arr.length-1; i++){
+         *    for (int j = i + 1; j < arr.length; j++){
+         *        if (arr[i] == arr[j]){
+         *            duplicateValue = arr[i];
+         *        }
+         *    }
+         * }
+         */
+
+        // Optimal: HashMap se frequency count karo
+        Map<Integer, Integer> map = new HashMap<>();
+        for (int i = 0; i < arr.length; i++) {
             int num = arr[i];
-             if(map.containsKey(arr[i])){
-                 map.put(num,map.get(num) + 1);
-             }else{
-                 map.put(num,1);
-             }
-        }
-        // Loop through the map to print elements with count > 1 (duplicates)
-        for (Map.Entry<Integer, Integer> entry : map.entrySet()) {
-            if (entry.getValue() > 1) {  // If count is greater than 1, it's a duplicate
-                System.out.println("Duplicate value: " + entry.getKey() + ", Count: " + entry.getValue());
+            if (map.containsKey(arr[i])) {
+                map.put(num, map.get(num) + 1); // Count badhao
+            } else {
+                map.put(num, 1); // Pehli baar dekha
             }
         }
 
-//        System.out.println("duplicate value is:" + duplicateValue);
+        // Count > 1 wale elements print karo
+        for (Map.Entry<Integer, Integer> entry : map.entrySet()) {
+            if (entry.getValue() > 1) {
+                System.out.println("Duplicate value: " + entry.getKey()
+                        + ", Count: " + entry.getValue());
+            }
+        }
     }
 
+    // =========================================================
+    // 17. COMMON ELEMENTS IN TWO ARRAYS
+    // =========================================================
+    // Approach: Brute Force — har pair compare karo
+    // TC: O(n * m) — n = arr1.length, m = arr2.length
+    // SC: O(1)
+    // NOTE: Optimal approach HashSet use karti hai → O(n + m)
+    // =========================================================
     static void commonElementArrays(int[] arr1, int[] arr2) {
         System.out.print("Common elements: ");
         for (int i = 0; i < arr1.length; i++) {
             for (int j = 0; j < arr2.length; j++) {
                 if (arr1[i] == arr2[j]) {
                     System.out.print(arr1[i] + " ");
-                    break;
+                    break; // Match mila → next i pe jao
                 }
             }
         }
         System.out.println();
     }
 
-    static void duplicateValueUsingHashMap(int[] arr){
+    // =========================================================
+    // 18. DUPLICATE VALUE USING HASHMAP (Cleaner Version)
+    // =========================================================
+    // Approach: HashMap se frequency count, phir ek baar print
+    //           Printed elements ko 0 mark karo (dubara na chape)
+    // TC: O(n)   SC: O(n)
+    // =========================================================
+    static void duplicateValueUsingHashMap(int[] arr) {
+        Map<Integer, Integer> duplicateCount = new HashMap<>();
 
-        Map<Integer,Integer> duplicatCount = new HashMap<>();
-
-        for (int i = 0; i < arr.length; i++){
-           if(duplicatCount.containsKey(arr[i])){
-               int currentCount = duplicatCount.get(arr[i]);
-               duplicatCount.put(arr[i],currentCount + 1);
-           }else{
-               duplicatCount.put(arr[i], 1);
-           }
+        // Step 1: Frequency count karo
+        for (int i = 0; i < arr.length; i++) {
+            if (duplicateCount.containsKey(arr[i])) {
+                int currentCount = duplicateCount.get(arr[i]);
+                duplicateCount.put(arr[i], currentCount + 1);
+            } else {
+                duplicateCount.put(arr[i], 1);
+            }
         }
+
         System.out.println("Duplicate Elements with Count:");
-        for (int i = 0; i < arr.length; i++){
-            if(duplicatCount.get(arr[i]) > 1){
-                System.out.println(arr[i] + " -> " + duplicatCount.get(arr[i]));
-                duplicatCount.put(arr[i], 0);
+        for (int i = 0; i < arr.length; i++) {
+            if (duplicateCount.get(arr[i]) > 1) {
+                System.out.println(arr[i] + " -> " + duplicateCount.get(arr[i]));
+                duplicateCount.put(arr[i], 0); // Mark as printed — dubara print na ho
             }
         }
     }
 
-//    array[] = {1,2,3,4,5}
-//    Output: 2,3,4,5,1
-    static void leftRotateArray(int[] arr){
-       int n = arr.length;
-//        System.out.println("arr{n-1]: " + arr[n-1]);
-       int temp = arr[0];
+    // =========================================================
+    // 19. LEFT ROTATE ARRAY (1 Position)
+    // =========================================================
+    // Approach:
+    //   Step 1: Pehla element save karo (temp)
+    //   Step 2: Sab elements ek jagah left shift karo
+    //   Step 3: temp ko last position pe daalo
+    //
+    // Example: {1,2,3,4,5} → {2,3,4,5,1}
+    // TC: O(n)   SC: O(1)
+    // =========================================================
+    static void leftRotateArray(int[] arr) {
+        int n = arr.length;
+        int temp = arr[0]; // Pehla element bachao
 
-       for (int i = 0; i < arr.length - 1; i++){
-           arr[i] = arr[i+1];
-       }
+        // Sab ko ek baar left shift karo
+        for (int i = 0; i < arr.length - 1; i++) {
+            arr[i] = arr[i + 1];
+        }
 
-       arr[n-1] = temp;
+        arr[n - 1] = temp; // Pehla element last pe daalo
+
         for (int i = 0; i < n; i++) {
-            System.out.print(arr[i]+" ");
+            System.out.print(arr[i] + " ");
         }
     }
 
+    // =========================================================
+    // 20. REMOVE DUPLICATE ELEMENTS
+    // =========================================================
+    // Approach (Current — HashMap):
+    //   HashMap mein daalo → automatically duplicates hatt jaate hain
+    //   Keys nikaalo → unique array banao
+    // TC: O(n)   SC: O(n)
+    //
+    // Approach (Commented — Two Pointer):
+    //   Sort karo, phir adjacent compare karo
+    //   TC: O(n log n)   SC: O(1)
+    //
+    // ⚠️ HashMap order guarantee nahi karta
+    // =========================================================
     static int[] removeDuplicateElementOfArray(int[] arr) {
-    /*    Arrays.sort(arr); // Step 1: Sort array
+        /*
+         * Two Pointer (Sorted array ke liye):
+         * Arrays.sort(arr);
+         * int j = 0;
+         * for (int i = 1; i < arr.length; i++) {
+         *     if (arr[i] != arr[j]) {
+         *         j++;
+         *         arr[j] = arr[i];
+         *     }
+         * }
+         * return Arrays.copyOf(arr, j + 1);
+         */
 
-        int j = 0;
-        for (int i = 1; i < arr.length; i++) {
-            if (arr[i] != arr[j]) {
-                j++;
-                arr[j] = arr[i]; // Overwrite duplicates
-            }
+        // HashMap approach: duplicates naturally filter ho jaate hain
+        Map<Integer, Integer> map = new HashMap<>();
+        for (int i = 0; i < arr.length; i++) {
+            map.put(arr[i], 1); // Duplicate hoga toh overwrite — koi issue nahi
         }
 
-        return Arrays.copyOf(arr, j + 1); // Step 3: Create a new array with unique values*/
-
-
-       // using HashMap
-        Map<Integer,Integer> map = new HashMap<>();
-        // Step 1: Add elements to the map (duplicates will be discarded)
-        for (int i = 0; i < arr.length; i++){
-           map.put(arr[i] , 1);
-        }
-        // Step 2: Extract unique elements from the map keys
+        // Map keys se result array banao
         int[] result = new int[map.size()];
         int index = 0;
-        for (int key:map.keySet()){
-            result[index++]= key;
+        for (int key : map.keySet()) {
+            result[index++] = key;
         }
-
         return result;
     }
 
-    static int longestConsecutive(int[] nums){
-        if ( nums == null || nums.length == 0){
-            return 0;
-        }
-         // Step 1: Sabhi numbers ko HashSet mein daalo
+    // =========================================================
+    // 21. LONGEST CONSECUTIVE SEQUENCE
+    // =========================================================
+    // Problem: Array mein longest consecutive sequence ki length
+    // Example: {100,4,200,1,3,2} → 4 (1,2,3,4)
+    //
+    // Approach (HashSet Optimal):
+    //   Step 1: Sab numbers HashSet mein daalo → O(1) lookup
+    //   Step 2: Sirf sequence start dhundho (num-1 set mein nahi)
+    //   Step 3: Wahan se aage count karo
+    // TC: O(n)   SC: O(n)
+    // =========================================================
+    static int longestConsecutive(int[] nums) {
+        if (nums == null || nums.length == 0) return 0;
+
+        // Step 1: Set mein daalo
         HashSet<Integer> numSet = new HashSet<>();
-        for (int i = 0; i < nums.length; i++){
+        for (int i = 0; i < nums.length; i++) {
             numSet.add(nums[i]);
         }
 
         int longestStreak = 0;
-        // Step 2: Har number ke liye check karo
-        for (int i = 0; i < nums.length; i++){
+
+        for (int i = 0; i < nums.length; i++) {
             int num = nums[i];
-            // Check karo ki yeh sequence ka starting point hai ya nahi
-            if ((!numSet.contains(num - 1))){
+
+            // Sirf tab start karo jab yeh sequence ka pehla element ho
+            // (matlab num-1 set mein nahi hai)
+            if (!numSet.contains(num - 1)) {
                 int currentNum = num;
                 int currentStreak = 1;
-                // Sequence ki length count karo
-                while(!numSet.contains(currentNum + 1)){
+
+                // Aage aage count karo jab tak sequence chale
+                while (!numSet.contains(currentNum + 1)) {
                     currentNum += 1;
                     currentStreak += 1;
                 }
-                // Maximum length update karo
-                longestStreak = Math.max(longestStreak,currentStreak);
 
+                longestStreak = Math.max(longestStreak, currentStreak);
             }
         }
-
         return longestStreak;
     }
-    static void  reverseArray(int[]a,int i, int j){
-        int li = i;
-        int ri = j;
 
-        while(li < ri){
+    // =========================================================
+    // 22. REVERSE ARRAY IN-PLACE (Two Pointer)
+    // =========================================================
+    // Approach: Left aur Right pointers — swap karte hue beech tak jao
+    // TC: O(n)   SC: O(1)
+    // NOTE: Yeh actual array modify karta hai (print wala nahi karta)
+    // =========================================================
+    static void reverseArray(int[] a, int i, int j) {
+        int li = i;  // Left pointer
+        int ri = j;  // Right pointer
+
+        while (li < ri) {
+            // Swap karo
             int temp = a[li];
             a[li] = a[ri];
             a[ri] = temp;
@@ -379,212 +620,297 @@ public class BasicArrayQuestions {
         }
     }
 
-//    Input: N = 7, array[] = {1,2,3,4,5,6,7} , k=2 , right
-//    Output: 6 7 1 2 3 4 5
-  static void  rotateArrayKtimes(int[] arr,int k){
-        k = k % arr.length;
-        if(k < 0){
-            k = k + arr.length;
+    // =========================================================
+    // 23. ROTATE ARRAY K TIMES (Right Rotation)
+    // =========================================================
+    // Problem: Array ko k positions right rotate karo
+    // Example: {1,2,3,4,5,6,7}, k=2 → {6,7,1,2,3,4,5}
+    //
+    // Approach (Reversal Trick — 3 Steps):
+    //   k = k % n  (agar k > n ho toh handle karo)
+    //   Step 1: Reverse from 0 to (n-k-1)
+    //   Step 2: Reverse from (n-k) to (n-1)
+    //   Step 3: Reverse full array
+    //
+    // TC: O(n)   SC: O(1)
+    // =========================================================
+    static void rotateArrayKtimes(int[] arr, int k) {
+        k = k % arr.length; // k > n case handle karo
+        if (k < 0) {
+            k = k + arr.length; // Negative k handle karo
         }
-//     part 1
-      reverseArray(arr,0,arr.length - k - 1);
-        // part 2
-      reverseArray(arr,arr.length - k, arr.length - 1);
-// part 1 + part 2 ( complete)
-      reverseArray(arr,0,arr.length - 1);
+
+        reverseArray(arr, 0, arr.length - k - 1);    // Part 1 reverse
+        reverseArray(arr, arr.length - k, arr.length - 1); // Part 2 reverse
+        reverseArray(arr, 0, arr.length - 1);         // Full array reverse
     }
 
-//    Input: 1 ,0 ,2 ,3 ,0 ,4 ,0 ,1
-//    Output: 1 ,2 ,3 ,4 ,1 ,0 ,0 ,0
-    static void moveAllZerosToEnd(int[] arr){
-        int left = 0;
+    // =========================================================
+    // 24. MOVE ALL ZEROS TO END
+    // =========================================================
+    // Problem: Zeros ko end pe le jao, order maintain karo
+    // Example: {1,0,2,3,0,4,0,1} → {1,2,3,4,1,0,0,0}
+    //
+    // Approach (Two Pointer):
+    //   left = non-zero elements ki next position
+    //   Jab bhi non-zero mile → left aur i swap karo
+    // TC: O(n)   SC: O(1)
+    // =========================================================
+    static void moveAllZerosToEnd(int[] arr) {
+        int left = 0; // Yahan next non-zero element jayega
 
-        for (int i = 0; i < arr.length; i++){
-            if (arr[i] != 0){
+        for (int i = 0; i < arr.length; i++) {
+            if (arr[i] != 0) {
+                // Non-zero element mila → left position pe swap karo
                 int temp = arr[i];
                 arr[i] = arr[left];
                 arr[left] = temp;
                 left++;
             }
+            // Zero mila → kuch mat karo, i aage badho
         }
     }
 
-    static void countOfsmallerElement(int[] arr, int x) {
+    // =========================================================
+    // 25. COUNT ELEMENTS SMALLER THAN OR EQUAL TO X
+    // =========================================================
+    // Approach: Linear scan — count badhao jab arr[i] <= x
+    // TC: O(n)   SC: O(1)
+    // =========================================================
+    static void countOfSmallerElement(int[] arr, int x) {
         int count = 0;
-
 
         for (int i = 0; i < arr.length; i++) {
             if (arr[i] <= x) {
                 count++;
             }
         }
-
-
         System.out.println("Count of elements smaller or equal to " + x + ": " + count);
     }
 
-//    arr6[] = {1,2,3,4,5}
-//    arr7[] = {2,3,4,4,5}
-//    Output:
-//    {1,2,3,4,5}
-    static void findUnion(int[] arr6,int[] arr7){
-
-        //TreeSet is a collection that stores unique elements in sorted (ascending) order.
+    // =========================================================
+    // 26. FIND UNION OF TWO ARRAYS
+    // =========================================================
+    // Approach: TreeSet use karo
+    //   TreeSet: unique elements + sorted order maintain karta hai
+    // TC: O((n+m) log n)   SC: O(n+m)
+    // =========================================================
+    static void findUnion(int[] arr6, int[] arr7) {
+        // TreeSet → unique + sorted
         Set<Integer> temp = new TreeSet<>();
 
-        for (int i = 0; i < arr6.length; i++){
-            temp.add(arr6[i]);
-        }
-        for (int i = 0; i < arr7.length; i++){
-            temp.add(arr7[i]);
-        }
+        for (int i = 0; i < arr6.length; i++) temp.add(arr6[i]);
+        for (int i = 0; i < arr7.length; i++) temp.add(arr7[i]);
 
-        System.out.println("temp; " + temp);
+        System.out.println("Union: " + temp);
     }
 
-
-    static void missingNumber(int[] arr8){
-
-        for (int i = 1; i <= arr8.length;i++){
-//            System.out.println("Index: " + i + ", Value: " + arr8[i - 1]);
-            if (i !=  arr8[i - 1]){
-//                System.out.println("Index: " + i + ", Value: " + arr8[i - 1]);
-                System.out.println("missing number is: " + i);
+    // =========================================================
+    // 27. MISSING NUMBER (1 to N range mein)
+    // =========================================================
+    // Approach: i (1 to n) ko arr[i-1] se compare karo
+    //           Pehla mismatch = missing number
+    // TC: O(n)   SC: O(1)
+    // ⚠️ Assumption: Array sorted hai aur 1 to n range mein hai
+    // NOTE: Optimal: Sum formula → n*(n+1)/2 - actualSum
+    // =========================================================
+    static void missingNumber(int[] arr8) {
+        for (int i = 1; i <= arr8.length; i++) {
+            if (i != arr8[i - 1]) {
+                System.out.println("Missing number is: " + i);
                 break;
             }
         }
-
     }
 
-    //prices = {1, 1, 0, 1, 1, 1}
-//    Output: 3
-    static void maximumConsecutiveOnes(int[] arr){
-
+    // =========================================================
+    // 28. MAXIMUM CONSECUTIVE ONES
+    // =========================================================
+    // Problem: Array mein sabse zyada consecutive 1s kitne hain
+    // Example: {1,1,0,1,1,1} → 3
+    //
+    // Approach:
+    //   count = current streak of 1s
+    //   maxCount = best streak so far
+    //   0 milaa → maxCount update, count reset
+    // TC: O(n)   SC: O(1)
+    // =========================================================
+    static void maximumConsecutiveOnes(int[] arr) {
         int count = 0;
         int maxCount = 0;
 
-        for (int i = 0; i < arr.length; i++){
-            if(arr[i] == 1){
-                count++;
-
-            }else{
-                maxCount = Math.max(maxCount,count);
+        for (int i = 0; i < arr.length; i++) {
+            if (arr[i] == 1) {
+                count++; // Streak badhao
+            } else {
+                maxCount = Math.max(maxCount, count); // Best streak save karo
+                count = 0; // Reset karo
             }
         }
-
+        // Last streak check karo (loop ke baad update)
         maxCount = Math.max(maxCount, count);
-
         System.out.println("Maximum Consecutive Ones: " + maxCount);
     }
 
-//    N = 3, k = 5, array[] = {2,3,5}
-//    Result: 2
+    // =========================================================
+    // 29. LONGEST SUBARRAY WITH SUM = K (Positive Numbers Only)
+    // =========================================================
+    // Approach: Sliding Window (Two Pointer)
+    //   right pointer aage badhta hai → sum badhta hai
+    //   sum > k hone pe left pointer aage badhao → sum ghata
+    //   sum == k milne pe length update karo
+    // TC: O(n)   SC: O(1)
+    // ⚠️ Sirf positive numbers ke liye kaam karta hai
+    // =========================================================
     static int longestSubarrayWithSumKPositive(int[] arr, int k) {
         int left = 0, right = 0, maxLength = 0;
         int currentSum = 0;
 
         while (right < arr.length) {
-            currentSum += arr[right];
+            currentSum += arr[right]; // Window expand karo
 
-            // Adjust the left pointer until the sum becomes ≤ k
+            // Sum zyada ho gaya → left se shrink karo
             while (currentSum > k && left <= right) {
                 currentSum -= arr[left];
                 left++;
             }
 
-            // If we find a valid subarray with sum k
+            // Valid subarray mila
             if (currentSum == k) {
                 maxLength = Math.max(maxLength, right - left + 1);
             }
-
             right++;
         }
-
         return maxLength;
     }
 
-//    Input Format: N = 3, k = 1, array[] = {-1, 1, 1}
-//    Result: 3
-    static int longestSubarrayWithSumKPositoveAndNegative(int[] arr,int k){
-     Map<Integer,Integer>  map = new HashMap<>();
-       int sum = 0;
-       int maxLen = 0;
+    // =========================================================
+    // 30. LONGEST SUBARRAY WITH SUM = K (Positive + Negative)
+    // =========================================================
+    // Approach: Prefix Sum + HashMap
+    //   sum = prefix sum at index i
+    //   Agar (sum - k) pehle dekha tha → wahan se yahan tak subarray valid hai
+    //   map.put(0, -1) → index -1 pe sum 0 tha (empty prefix)
+    // TC: O(n)   SC: O(n)
+    // =========================================================
+    static int longestSubarrayWithSumKPositiveAndNegative(int[] arr, int k) {
+        Map<Integer, Integer> map = new HashMap<>();
+        int sum = 0;
+        int maxLen = 0;
 
-       map.put(0,-1);
-       for (int i = 0; i < arr.length; i++){
-           sum += arr[i];
+        map.put(0, -1); // Base case: index -1 pe sum = 0
 
-           if(sum == k){
-               maxLen = i + 1;
-           }
+        for (int i = 0; i < arr.length; i++) {
+            sum += arr[i];
 
-           if (map.containsKey(sum - k)){
-               int prevIndex = map.get(sum - k);
-               maxLen = Math.max(maxLen, i - prevIndex);
-           }
-       }
+            // Poora prefix sum == k (0 se i tak)
+            if (sum == k) {
+                maxLen = i + 1;
+            }
 
-       return maxLen;
+            // sum - k pehle dekha tha → us point ke baad ka subarray valid hai
+            if (map.containsKey(sum - k)) {
+                int prevIndex = map.get(sum - k);
+                maxLen = Math.max(maxLen, i - prevIndex);
+            }
+
+            // Pehli baar dekha toh hi store karo (longer subarray ke liye)
+            if (!map.containsKey(sum)) {
+                map.put(sum, i);
+            }
+        }
+        return maxLen;
     }
 
-    // 2 passes
-//    Input: nums = [2,0,2,1,1,0]
-//    Output: [0,0,1,1,2,2]
+    // =========================================================
+    // 31. SORT COLORS — 2 Pass (Count and Overwrite)
+    // =========================================================
+    // Problem: 0, 1, 2 wale array ko sort karo
+    // Example: {2,0,2,1,1,0} → {0,0,1,1,2,2}
+    //
+    // Approach:
+    //   Pass 1: 0s, 1s, 2s count karo
+    //   Pass 2: Array overwrite karo counts ke hisaab se
+    // TC: O(n)   SC: O(1)
+    // NOTE: 2 passes lagte hain — single pass ke liye sortColors2 dekho
+    // =========================================================
     static void sortColors(int[] nums) {
         int n = nums.length;
         int count0 = 0, count1 = 0, count2 = 0;
 
-        // Step 1: Count 0s, 1s, and 2s
+        // Pass 1: Count karo
         for (int i = 0; i < n; i++) {
             if (nums[i] == 0) count0++;
             else if (nums[i] == 1) count1++;
             else count2++;
         }
 
-        // Step 2: Overwrite array with 0s, then 1s, then 2s
+        // Pass 2: Overwrite karo
         int idx = 0;
-
-        for (int i = 0; i < count0; i++) {
-            nums[idx++] = 0;
-        }
-        for (int i = 0; i < count1; i++) {
-            nums[idx++] = 1;
-        }
-        for (int i = 0; i < count2; i++) {
-            nums[idx++] = 2;
-        }
+        for (int i = 0; i < count0; i++) nums[idx++] = 0;
+        for (int i = 0; i < count1; i++) nums[idx++] = 1;
+        for (int i = 0; i < count2; i++) nums[idx++] = 2;
     }
 
-//    Input: nums = [2,0,2,1,1,0]
-//    Output: [0,0,1,1,2,2]
-//Dutch National Flag Algorithm  (single passes)
+    // =========================================================
+    // 32. SORT COLORS — 1 Pass (Dutch National Flag Algorithm)
+    // =========================================================
+    // Problem: 0, 1, 2 wale array ko single pass mein sort karo
+    //
+    // Approach (3 Pointers):
+    //   low  → 0s boundary (low se pehle sab 0)
+    //   mid  → current element
+    //   high → 2s boundary (high ke baad sab 2)
+    //
+    //   Case 0: swap(low, mid), low++, mid++
+    //   Case 1: mid++
+    //   Case 2: swap(mid, high), high-- (mid++ NAHI — unseen element)
+    // TC: O(n)   SC: O(1)
+    // =========================================================
     static void sortColors2(int[] nums) {
         int low = 0, mid = 0, high = nums.length - 1;
 
         while (mid <= high) {
             if (nums[mid] == 0) {
+                // 0 milaa → front pe bhejo
                 int temp = nums[low];
                 nums[low] = nums[mid];
                 nums[mid] = temp;
                 low++;
                 mid++;
             } else if (nums[mid] == 1) {
-                mid++;
+                mid++; // 1 sahi jagah hai
             } else {
+                // 2 milaa → end pe bhejo
                 int temp = nums[mid];
                 nums[mid] = nums[high];
                 nums[high] = temp;
-                high--;
+                high--; // mid++ NAHI — high se aaya element check karna hai
             }
         }
     }
 
-//    Input Format: N = 3, nums[] = {3,2,3}
-//    Result: 3
-    static void majorityElement(int[] nums){
+    // =========================================================
+    // 33. MAJORITY ELEMENT (> N/2 Times)
+    // =========================================================
+    // Problem: Wo element jo N/2 se zyada baar aata ho
+    // Example: {3,2,3} → 3
+    //
+    // Approach 1 (Current — Brute Force):
+    //   Har element ke liye count karo
+    //   TC: O(n²)   SC: O(1)
+    //
+    // Approach 2 (Optimal — Boyer-Moore Voting, commented):
+    //   candidate aur count track karo
+    //   count 0 → candidate change
+    //   same element → count++, different → count--
+    //   TC: O(n)   SC: O(1)
+    // =========================================================
+    static void majorityElement(int[] nums) {
         int n = nums.length;
         int halfLength = n / 2;
 
+        // Brute Force O(n²)
         for (int i = 0; i < n; i++) {
             int count = 0;
             for (int j = i + 1; j < n; j++) {
@@ -601,94 +927,110 @@ public class BasicArrayQuestions {
             }
         }
 
-/*        optimal code with time complexity is O(n)
-        int count = 0;
-        int candidate = 0;
-
-        for (int i = 0; i < nums.length; i++) {
-            if (count == 0) {
-                candidate = nums[i];
-            }
-
-            if (nums[i] == candidate) {
-                count++;
-            } else {
-                count--;
-            }
-        }
-
-        return candidate;*/
-
+        /*
+         * Boyer-Moore Voting — Optimal O(n):
+         * int count = 0, candidate = 0;
+         * for (int i = 0; i < nums.length; i++) {
+         *     if (count == 0) candidate = nums[i];
+         *     if (nums[i] == candidate) count++;
+         *     else count--;
+         * }
+         * return candidate;
+         */
     }
 
-    static void maxSubarraySum(int[] arr){
+    // =========================================================
+    // 34. MAXIMUM SUBARRAY SUM (Kadane's Algorithm)
+    // =========================================================
+    // Problem: Contiguous subarray jiska sum sabse zyada ho
+    // Example: {-2,1,-3,4,-1,2,1,-5,4} → 6 (subarray: {4,-1,2,1})
+    //
+    // Approach (Kadane's — Optimal):
+    //   currentSum += arr[i]
+    //   maxSum update karo
+    //   currentSum < 0 → reset to 0 (negative prefix kaam nahi aata)
+    // TC: O(n)   SC: O(1)
+    //
+    // Brute Force (commented): O(n²)
+    // =========================================================
+    static void maxSubarraySum(int[] arr) {
+        /*
+         * Brute Force O(n²):
+         * int maxSum = Integer.MIN_VALUE;
+         * for (int start = 0; start < arr.length; start++){
+         *     int currentSum = 0;
+         *     for (int end = start; end < arr.length; end++){
+         *         currentSum += arr[end];
+         *         maxSum = Math.max(currentSum, maxSum);
+         *     }
+         * }
+         */
 
-/*        Brut-force-method TimeComplexcity O(n^2)
-       int maxSum = Integer.MIN_VALUE;
-
-        for (int start = 0; start < arr.length; start++){
-            int currentSum = 0;
-            for (int end = start; end < arr.length; end++){
-                currentSum += arr[end];
-                maxSum = Math.max(currentSum,maxSum);
-            }
-        }
-        System.out.println("Max subarray Sum: " + maxSum);*/
-
-        //Kadane's Algorithm (optimal  TimeComplexcity O(n) )
+        // Kadane's Algorithm — Optimal O(n)
         int maxSum = Integer.MIN_VALUE;
         int currentSum = 0;
 
-        for (int i = 0 ; i < arr.length; i++){
+        for (int i = 0; i < arr.length; i++) {
             currentSum += arr[i];
-            maxSum= Math.max(currentSum, maxSum);
-            if (currentSum < 0){
-                currentSum = 0;
+            maxSum = Math.max(currentSum, maxSum); // Best track karo
+
+            if (currentSum < 0) {
+                currentSum = 0; // Negative prefix ko discard karo
             }
         }
-
         System.out.println("Max subarray Sum: " + maxSum);
-
     }
 
-//    Input: prices = [7,1,5,3,6,4]
-//    Output: 5
-//    Explanation: Buy on day 2 (price = 1) and
-//    sell on day 5 (price = 6), profit = 6-1 = 5.
-//
-//    Note: That buying on day 2 and selling on day 1
-//    is not allowed because you must buy before
-//    you sell.
-    static void maxProft(int[] arr) {
+    // =========================================================
+    // 35. BEST TIME TO BUY AND SELL STOCK
+    // =========================================================
+    // Problem: Maximum profit nikalo — pehle buy phir sell karo
+    // Example: {7,1,5,3,6,4} → 5 (buy @1, sell @6)
+    //
+    // Approach:
+    //   min_price = sabse sasta price jahan buy kiya
+    //   Har din: agar aaj ka price min se zyada → profit calculate karo
+    //            agar aaj ka price min se kam → min update karo
+    // TC: O(n)   SC: O(1)
+    // =========================================================
+    static void maxProfit(int[] arr) {
         int min_price = Integer.MAX_VALUE;
         int max_profit = 0;
-        int profit;
 
         for (int i = 0; i < arr.length; i++) {
             if (arr[i] < min_price) {
-                min_price = arr[i];
+                min_price = arr[i]; // Sasta din mila → yahan buy karo
             } else {
-                profit = arr[i] - min_price;  // sell - buy
-                max_profit = Math.max(max_profit, profit);  // maximum profit update
+                int profit = arr[i] - min_price; // Aaj sell karne ka profit
+                max_profit = Math.max(max_profit, profit); // Best profit update
             }
         }
-
         System.out.println("Max Profit = " + max_profit);
     }
-//    arr[] = {1,2,-4,-5}, N = 4
-//    Output: 1 -4 2 -5
-    static List<Integer> rearrangeBySign(int[] arr){
 
+    // =========================================================
+    // 36. REARRANGE ARRAY BY SIGN (Alternate Positive-Negative)
+    // =========================================================
+    // Problem: Positive aur Negative ko alternate karo
+    // Example: {1,2,-4,-5} → {1,-4,2,-5}
+    //
+    // Approach:
+    //   Step 1: Positive aur Negative alag lists mein daalo
+    //   Step 2: Alternate order mein result list mein daalo
+    // TC: O(n)   SC: O(n)
+    // ⚠️ Assumption: Equal number of positives and negatives
+    // =========================================================
+    static List<Integer> rearrangeBySign(int[] arr) {
         List<Integer> positive = new ArrayList<>();
         List<Integer> negative = new ArrayList<>();
-        for (int i = 0; i < arr.length; i++){
-            if(arr[i] > 0){
-                positive.add(arr[i]);
-            }else {
-                negative.add(arr[i]);
-            }
+
+        // Step 1: Separate karo
+        for (int i = 0; i < arr.length; i++) {
+            if (arr[i] > 0) positive.add(arr[i]);
+            else negative.add(arr[i]);
         }
 
+        // Step 2: Alternate order mein daalo (pos, neg, pos, neg...)
         List<Integer> result = new ArrayList<>();
         for (int i = 0; i < positive.size(); i++) {
             result.add(positive.get(i));
@@ -697,72 +1039,110 @@ public class BasicArrayQuestions {
         return result;
     }
 
-    static List<Integer> printLeaders(int[] arr){
-              List<Integer> leaders = new ArrayList<>();
-              int max_from_right = arr[arr.length - 1];
-               leaders.add(max_from_right); // rightmost element is always a leader
-                for (int i = arr.length - 2; i > 0; i--){
-               if(arr[i] > max_from_right){
-            max_from_right = arr[i];
-          leaders.add(max_from_right);
+    // =========================================================
+    // 37. PRINT LEADERS IN ARRAY
+    // =========================================================
+    // Problem: Leader = element jo apne right ke sab elements se bada ho
+    // Example: {10,22,12,3,0,6} → {22,12,6}
+    //          (6 is always leader, 12 > {3,0,6}, 22 > {12,3,0,6})
+    //
+    // Approach: Right se left traverse karo
+    //   max_from_right track karo
+    //   Jab arr[i] > max_from_right → leader hai
+    // TC: O(n)   SC: O(n) for result list
+    // =========================================================
+    static List<Integer> printLeaders(int[] arr) {
+        List<Integer> leaders = new ArrayList<>();
+        int max_from_right = arr[arr.length - 1];
+        leaders.add(max_from_right); // Rightmost element hamesha leader hai
+
+        // Right se left jao
+        for (int i = arr.length - 2; i > 0; i--) {
+            if (arr[i] > max_from_right) {
+                max_from_right = arr[i]; // Naya max mila
+                leaders.add(max_from_right); // Leader hai
             }
-         }
-        // Leaders are collected from right to left, so reverse them
+        }
+
+        // Right to left collect kiya → reverse karo for correct order
         Collections.reverse(leaders);
         return leaders;
     }
 
-//    input: [100, 200, 1, 3, 2, 4]
-//    Output: 4
-   static void longestSuccessiveElements(int[] arr){
-//        TreeSet is a collection in Java that stores unique elements in sorted (ascending) order and does not allow null elements.
-//        It is based on a Red-Black Tree and provides log(n) time complexity for basic operations
+    // =========================================================
+    // 38. LONGEST SUCCESSIVE ELEMENTS (Consecutive Sequence)
+    // =========================================================
+    // Problem: {100,200,1,3,2,4} → 4 (sequence: 1,2,3,4)
+    //
+    // Approach (HashSet Optimal):
+    //   num-1 set mein nahi → yeh sequence ka start hai
+    //   Wahan se count karo aage tak
+    // TC: O(n)   SC: O(n)
+    // =========================================================
+    static void longestSuccessiveElements(int[] arr) {
         Set<Integer> set = new HashSet<>();
-        for (int i = 0 ; i < arr.length; i++){
+        for (int i = 0; i < arr.length; i++) {
             set.add(arr[i]);
         }
+
         int max_len = 0;
 
-        for (int i = 0; i < arr.length; i++){
+        for (int i = 0; i < arr.length; i++) {
             int num = arr[i];
 
-            if(!set.contains(num - 1)){
+            // Sirf sequence ke starting point se shuru karo
+            if (!set.contains(num - 1)) {
                 int currentNum = num;
                 int count = 1;
 
-                while(set.contains(currentNum + 1)){
+                // Aage count karo
+                while (set.contains(currentNum + 1)) {
                     currentNum++;
                     count++;
                 }
 
-                max_len = Math.max(max_len,count);
+                max_len = Math.max(max_len, count);
                 System.out.println("Longest consecutive length: " + max_len);
             }
         }
-
-    }
-//    Input: [[1,2,3],[4,5,6],[7,8,9]]
-//    Output: [[7,4,1],[8,5,2],[9,6,3]]
-     static void rotateMatrix(int[][] matrix){
-           int n = matrix.length;
-
-           for (int i = 0; i < matrix.length; i++){
-               for (int j = i + 1; j < matrix.length; j++){
-                   int temp = matrix[i][j];
-                   matrix[i][j] = matrix[j][i];
-                   matrix[j][i] = temp;
-               }
-           }
-
-           for (int i = 0 ; i < n; i++){
-               reverseRow(matrix[i]);
-           }
     }
 
-    static void reverseRow(int[] row){
-        int left = 0; int right = row.length - 1;
+    // =========================================================
+    // 39. ROTATE MATRIX 90 DEGREES CLOCKWISE
+    // =========================================================
+    // Problem: [[1,2,3],[4,5,6],[7,8,9]] → [[7,4,1],[8,5,2],[9,6,3]]
+    //
+    // Approach (In-place — 2 Steps):
+    //   Step 1: Transpose karo (matrix[i][j] ↔ matrix[j][i])
+    //   Step 2: Har row ko reverse karo
+    // TC: O(n²)   SC: O(1)
+    // =========================================================
+    static void rotateMatrix(int[][] matrix) {
+        int n = matrix.length;
 
-        while(left < right){
+        // Step 1: Transpose
+        for (int i = 0; i < n; i++) {
+            for (int j = i + 1; j < n; j++) { // j = i+1 se shuru — diagonal ke ek taraf
+                int temp = matrix[i][j];
+                matrix[i][j] = matrix[j][i];
+                matrix[j][i] = temp;
+            }
+        }
+
+        // Step 2: Har row reverse karo
+        for (int i = 0; i < n; i++) {
+            reverseRow(matrix[i]);
+        }
+    }
+
+    // =========================================================
+    // HELPER: Reverse a Single Row (Two Pointer)
+    // =========================================================
+    static void reverseRow(int[] row) {
+        int left = 0;
+        int right = row.length - 1;
+
+        while (left < right) {
             int temp = row[left];
             row[left] = row[right];
             row[right] = temp;
@@ -771,68 +1151,72 @@ public class BasicArrayQuestions {
         }
     }
 
-//    Input Format: N = 4, array[] = {3, 1, 2, 4}, k = 6
-//    Result: 2
-    static void countSubarrays(int[] arr){
-        Map<Integer,Integer> map = new HashMap<>();
+    // =========================================================
+    // 40. COUNT SUBARRAYS WITH SUM = K
+    // =========================================================
+    // Problem: Kitne subarrays hain jinka sum = k
+    // Example: {3,1,2,4}, k=6 → 2
+    //
+    // Approach: Prefix Sum + HashMap
+    //   map.put(0,1) → empty subarray ka base case
+    //   Har index pe: sum - k pehle dekha → count badhao
+    // TC: O(n)   SC: O(n)
+    // =========================================================
+    static void countSubarrays(int[] arr) {
+        Map<Integer, Integer> map = new HashMap<>();
         int sum = 0;
         int count = 0;
         int k = 6;
-        map.put(0,1);
-        for (int i = 0; i < arr.length; i++){
+
+        map.put(0, 1); // Base case: empty prefix
+
+        for (int i = 0; i < arr.length; i++) {
             sum += arr[i];
 
-            if (map.containsKey(sum)){
+            // sum - k pehle mila tha → valid subarray count karo
+            if (map.containsKey(sum - k)) {
                 count += map.get(sum - k);
             }
 
-            if (map.containsKey(sum)) {
-                int freq = map.get(sum);
-                map.put(sum, freq + 1);
-            } else {
-                map.put(sum, 1);
-            }
+            // Current sum ko map mein store karo
+            map.put(sum, map.getOrDefault(sum, 0) + 1);
         }
-
-        System.out.println("count: " + count);
-
+        System.out.println("Count: " + count);
     }
 
-/*    Input Format: N = 5, r = 5, c = 3
-    Result: 6 (for variation 1)
-            1 4 6 4 1 (for variation 2)
-
-            1
-            1 1
-            1 2 1
-            1 3 3 1
-            1 4 6 4 1    (for variation 3)
-
-    Explanation: There are 5 rows in the output matrix. Each row is formed using the logic of Pascal’s triangle.*/
-    public static List<List<Integer>> pascalTriangle(int numRows){
+    // =========================================================
+    // 41. PASCAL'S TRIANGLE
+    // =========================================================
+    // Problem: numRows rows ki Pascal triangle generate karo
+    //
+    // Property: Har element = usse upar ke do elements ka sum
+    //           Pehla aur aakhri element = 1
+    //
+    // Approach: Row by row banao using previous row
+    // TC: O(n²)   SC: O(n²)
+    // =========================================================
+    public static List<List<Integer>> pascalTriangle(int numRows) {
         List<List<Integer>> result = new ArrayList<>();
 
-        for(int i = 0; i<numRows; i++) {
-            List<Integer> row = new ArrayList<>(i+1);
-            for(int j = 0; j <= i; j++) {
-                if(j == 0 || j == i) {
-                    row.add(1);
+        for (int i = 0; i < numRows; i++) {
+            List<Integer> row = new ArrayList<>(i + 1);
+            for (int j = 0; j <= i; j++) {
+                if (j == 0 || j == i) {
+                    row.add(1); // Corners hamesha 1
                 } else {
-                    int num = result.get(i-1).get(j) + result.get(i-1).get(j-1);
+                    // Upar ke do elements ka sum
+                    int num = result.get(i - 1).get(j) + result.get(i - 1).get(j - 1);
                     row.add(num);
                 }
             }
             result.add(row);
         }
         return result;
-
-
-
     }
+
+    // Helper: Pascal triangle print karo
     public static void printPascalTriangle(int numRows) {
         List<List<Integer>> triangle = pascalTriangle(numRows);
-
-
         for (List<Integer> row : triangle) {
             for (Integer num : row) {
                 System.out.print(num + " ");
@@ -841,6 +1225,7 @@ public class BasicArrayQuestions {
         }
     }
 
+    // Helper: Specific position (r, c) ka element nikalo
     public static int getElementAtPosition(int r, int c) {
         List<List<Integer>> triangle = pascalTriangle(r);
         if (r <= 0 || c < 0 || c >= triangle.get(r - 1).size()) {
@@ -848,192 +1233,209 @@ public class BasicArrayQuestions {
         }
         return triangle.get(r - 1).get(c);
     }
-    /*Input Format: N = 5, array[] = {1,2,2,3,2}
-        Result: 2
-        Explanation: Here we can see that the Count(1) = 1, Count(2) = 3 and Count(3) = 1.Therefore, the count of 2 is greater than N/2 times. Hence, 2 is the answer.*/
+
+    // =========================================================
+    // 42. MAJORITY ELEMENT > N/2 TIMES (HashMap)
+    // =========================================================
+    // Problem: Wo element jo N/2 se zyada baar aata ho
+    // Example: {1,2,2,3,2} → 2 (appears 3 > 5/2 = 2 times)
+    //
+    // Approach: HashMap se frequency count karo, jaise hi threshold
+    //           cross ho → return karo
+    // TC: O(n)   SC: O(n)
+    // NOTE: Optimal → Boyer-Moore Voting O(n) O(1)
+    // =========================================================
     static void majorityElementNBy2Times(int[] arr) {
         int halfLength = arr.length / 2;
         Map<Integer, Integer> map = new HashMap<>();
 
         for (int i = 0; i < arr.length; i++) {
-            map.put(arr[i], map.getOrDefault(arr[i], 0) + 1); // count badhao
+            map.put(arr[i], map.getOrDefault(arr[i], 0) + 1); // Count badhao
 
             if (map.get(arr[i]) > halfLength) {
-                System.out.println("majorityEleement1: " + arr[i]);
+                System.out.println("Majority element (N/2): " + arr[i]);
                 return;
             }
         }
     }
 
-    /*Input Format: N = 5, array[] = {1,2,2,3,2}
-    Result: 2
-    Explanation: Here we can see that the Count(1) = 1, Count(2) = 3 and Count(3) = 1.Therefore, the count of 2 is greater than N/3 times. Hence, 2 is the answer.*/
+    // =========================================================
+    // 43. MAJORITY ELEMENT > N/3 TIMES (HashMap)
+    // =========================================================
+    // Problem: Wo elements jo N/3 se zyada baar aate hain
+    // Example: {1,2,2,3,2} → 2 (appears 3 > 5/3 = 1 time)
+    //
+    // NOTE: Maximum 2 hi aise elements ho sakte hain
+    // TC: O(n)   SC: O(n)
+    // =========================================================
     static void majorityElementNBy3Times(int[] arr) {
-        int halfLength = arr.length / 3;
+        int thirdLength = arr.length / 3;
         Map<Integer, Integer> map = new HashMap<>();
 
         for (int i = 0; i < arr.length; i++) {
-            map.put(arr[i], map.getOrDefault(arr[i], 0) + 1); // count badhao
+            map.put(arr[i], map.getOrDefault(arr[i], 0) + 1); // Count badhao
 
-            if (map.get(arr[i]) > halfLength) {
-                System.out.println("majorityEleement: " + arr[i]);
+            if (map.get(arr[i]) > thirdLength) {
+                System.out.println("Majority element (N/3): " + arr[i]);
                 return;
             }
         }
     }
 
-//    static int[] subarraysWithXorK(int[] arr){
-//
-//    }
-
+    // =========================================================
+    // MAIN METHOD
+    // =========================================================
     public static void main(String[] args) {
-        int[] arr = {1789, 2035, 1899, 1456, 2013};
+        int[] arr  = {1789, 2035, 1899, 1456, 2013};
         int[] arr2 = {2, 4, 15, 4, 10, 1};
         int[] arr3 = {1, 2, 3, 4, 5};
-        int[] arr4 = {1 ,0 ,2 ,3 ,0 ,4 ,0 ,1};
+        int[] arr4 = {1, 0, 2, 3, 0, 4, 0, 1};
         int[] arr5 = {10, 1, 2, 8, 4, 5};
-        int[] arr6 = {1,2,3,4,5,6,7,8,9,10};
-        int[] arr7 = {2,3,4,4,5,11,12};
+        int[] arr6 = {1, 2, 3, 4, 5, 6, 7, 8, 9, 10};
+        int[] arr7 = {2, 3, 4, 4, 5, 11, 12};
         int[] nums = {49, 1, 3, 200, 2, 4, 70, 5};
         int[] arr8 = {1, 2, 4, 5};
         int[] arr9 = {1, 1, 0, 1, 1, 1};
-        int[] arr10 ={2,3,5,1,9};
+        int[] arr10 = {2, 3, 5, 1, 9};
         int k = 10;
-
         int[] arr11 = {-1, 1, 1};
         int k1 = 5;
-        int[] arr12 = {2,0,2,1,1,0};
-        int[] arr13 = {3,2,3};
-        int[] arr14 = {-2,1,-3,4,-1,2,1,-5,4};
-        int[] arr15 = {7,1,5,3,6,4};
+        int[] arr12 = {2, 0, 2, 1, 1, 0};
+        int[] arr13 = {3, 2, 3};
+        int[] arr14 = {-2, 1, -3, 4, -1, 2, 1, -5, 4};
+        int[] arr15 = {7, 1, 5, 3, 6, 4};
         int[] arr16 = {1, 2, -4, -5};
         int[] arr17 = {10, 22, 12, 3, 0, 6};
         int[] arr18 = {100, 200, 1, 3, 2, 4};
-        int arr19[][] =  {{1, 2, 3}, {4, 5, 6}, {7, 8, 9}};
-        int arr20[] =  {3, 1, 2, 4};
-        int[] arr21 = {1,2,2,3,2};
+        int[][] arr19 = {{1, 2, 3}, {4, 5, 6}, {7, 8, 9}};
+        int[] arr20 = {3, 1, 2, 4};
+        int[] arr21 = {1, 2, 2, 3, 2};
         int numRows = 5;
         int[] arr22 = {4, 2, 2, 6, 4};
         int k2 = 6;
-        // 1. SUM AND AVERAGE OF ARRAY
-      /*  sumOfArray(arr2);
-        avgOfArray(arr2);*/
 
-        //  2. SORTING ARRAY
-     /*   sortedArray(arr);
-        System.out.println("Sorted Array:");
-        for (int num : arr2) {
-            System.out.print(num + " ");
-        }*/
+        // ── 1. Sum & Average ──────────────────────────────────
+        sumOfArray(arr2);
+        avgOfArray(arr2);
 
-        //  3. FINDING ELEMENTS IN ARRAY
-      /*  largestElementArray(arr2);
-        secondLrgestElementArray(arr2);
-        boolean isSorted = ifArraySort(arr2);
-        System.out.println("Is arr2 sorted? " + isSorted);*/
+        // ── 2. Sorting ────────────────────────────────────────
+        sortedArray(arr);
+        System.out.print("Sorted Array: ");
+        for (int num : arr) System.out.print(num + " ");
+        System.out.println();
 
-        //  4. CHECK IF ARRAY CONTAINS A SPECIFIC VALUE
-       /* boolean containsValue = containSpecificValue(arr2);
-        System.out.println("Does arr2 contain specific value? " + containsValue);
-*/
-        //  5. FIND INDEX OF AN ELEMENT
+        // ── 3. Finding Elements ───────────────────────────────
+        largestElementArray(arr2);
+        secondLargestElementArray(arr2);
+        System.out.println("Is arr2 sorted? " + ifArraySort(arr2));
+
+        // ── 4. Contains Specific Value ────────────────────────
+        System.out.println("Contains specific value? " + containSpecificValue(arr2));
+
+        // ── 5. Find Index ─────────────────────────────────────
         int index = findIndexOfArrayElement(arr2);
         System.out.println("Index of specific value: " + index);
 
-        //  6. REMOVE SPECIFIC ELEMENT
+        // ── 6. Remove Specific Element ────────────────────────
         removeSpecificElement(arr2);
 
-        //  7. COPY ARRAY
+        // ── 7. Copy Array ─────────────────────────────────────
         copyOfArray(arr2);
 
-        //  8. INSERT ELEMENT AT A SPECIFIC POSITION
+        // ── 8. Insert Element ─────────────────────────────────
         int[] result = insertElementSpecificPosition(arr2);
-        System.out.println("New Array after insertion: " + Arrays.toString(result));
+        System.out.println("After insertion: " + Arrays.toString(result));
+        System.out.println("Insert (ArrayList): " + insertElementSpecificPositionUsingArrayList(arr2));
 
-        List<Integer> result2 = insertElementSpecificPositionUsingArrayList(arr2);
-        System.out.println("Insert element at specific position (ArrayList): " + result2);
-
-        //  9. FIND DUPLICATE VALUES
+        // ── 9. Duplicates ─────────────────────────────────────
         duplicateValueOfArray(arr2);
-       duplicateValueUsingHashMap(arr2);
+        duplicateValueUsingHashMap(arr2);
 
-        //  10. REMOVE DUPLICATE ELEMENTS
-        removeDuplicateElementOfArray(arr2);
-        List<Integer> result3 = removeSpecificElementUsingArrayList(arr2);
-        System.out.println("Array after removing specific element: " + result3);
+        // ── 10. Remove Duplicates ─────────────────────────────
+        System.out.println("Without duplicates: " + Arrays.toString(removeDuplicateElementOfArray(arr2)));
+        System.out.println("Remove index 2 (ArrayList): " + removeSpecificElementUsingArrayList(arr2));
 
-        //  11. FIND MAX AND MIN ELEMENTS
-        int[] maxAndMinResult = maxAndminValueOfArray(arr2);
-        System.out.println("Max and Min: " + Arrays.toString(maxAndMinResult));
+        // ── 11. Max & Min ─────────────────────────────────────
+        System.out.println("Max and Min: " + Arrays.toString(maxAndMinValueOfArray(arr2)));
 
-        //  12. REVERSE ARRAY
+        // ── 12. Reverse ───────────────────────────────────────
         reverseArray(arr2);
+
+        // ── 13. Left Rotate ───────────────────────────────────
         leftRotateArray(arr3);
-        System.out.println("Rotated Array: " + Arrays.toString(arr2));
-        int length = longestConsecutive(nums);
-        System.out.println("Length of the longest consecutive sequence: " + length);
-        int m = 3;
-        rotateArrayKtimes(arr3,k);
-        System.out.println("Rotated Array: " + Arrays.toString(arr3));
+
+        // ── 14. Longest Consecutive ───────────────────────────
+        System.out.println("Longest consecutive: " + longestConsecutive(nums));
+
+        // ── 15. Rotate K Times ────────────────────────────────
+        rotateArrayKtimes(arr3, k);
+        System.out.println("Rotated K times: " + Arrays.toString(arr3));
+
+        // ── 16. Move Zeros to End ─────────────────────────────
         moveAllZerosToEnd(arr4);
-        System.out.println("move all zero to end: " + Arrays.toString(arr4));
-        int x = 9;
-        countOfsmallerElement(arr5,x);
-        findUnion(arr6,arr7);
+        System.out.println("Zeros moved to end: " + Arrays.toString(arr4));
+
+        // ── 17. Count Smaller Elements ───────────────────────
+        countOfSmallerElement(arr5, 9);
+
+        // ── 18. Union ─────────────────────────────────────────
+        findUnion(arr6, arr7);
+
+        // ── 19. Missing Number ────────────────────────────────
         missingNumber(arr8);
+
+        // ── 20. Max Consecutive Ones ──────────────────────────
         maximumConsecutiveOnes(arr9);
-        longestSubarrayWithSumKPositive(arr10,k);
-        System.out.println("Longest Subarray Length: " + longestSubarrayWithSumKPositive(arr10,m));
-        longestSubarrayWithSumKPositoveAndNegative(arr11,k1);
-        System.out.println("Longest Subarray Length: " + longestSubarrayWithSumKPositoveAndNegative(arr10,m));
+
+        // ── 21. Longest Subarray (Positive) ───────────────────
+        System.out.println("Longest subarray sum=k (positive): " + longestSubarrayWithSumKPositive(arr10, 3));
+
+        // ── 22. Longest Subarray (Pos+Neg) ────────────────────
+        System.out.println("Longest subarray sum=k (any): " + longestSubarrayWithSumKPositiveAndNegative(arr11, k1));
+
+        // ── 23. Sort Colors (2 pass) ──────────────────────────
         sortColors(arr12);
-        for (int num : arr12) {
-            System.out.print(num + " ");
-        }
+        System.out.println("Sort Colors (2 pass): " + Arrays.toString(arr12));
 
-        sortColors2(arr12);
+        // ── 24. Sort Colors (1 pass DNF) ─────────────────────
+        int[] arr12b = {2, 0, 2, 1, 1, 0};
+        sortColors2(arr12b);
+        System.out.println("Sort Colors (1 pass): " + Arrays.toString(arr12b));
 
-        for (int num1 : arr12) {
-            System.out.print(num1 + " ");
-        }
+        // ── 25. Majority Element ──────────────────────────────
         majorityElement(arr13);
 
+        // ── 26. Max Subarray Sum ──────────────────────────────
         maxSubarraySum(arr14);
 
-        maxProft(arr15);
+        // ── 27. Best Time to Buy & Sell ───────────────────────
+        maxProfit(arr15);
 
-        List<Integer> result1 = rearrangeBySign(arr16);
+        // ── 28. Rearrange by Sign ─────────────────────────────
+        System.out.println("Rearranged by sign: " + rearrangeBySign(arr16));
 
-   /*     for (int num : result1) {
-            System.out.print(num + " ");
-        }*/
+        // ── 29. Leaders ───────────────────────────────────────
+        System.out.println("Leaders: " + printLeaders(arr17));
 
-        List<Integer> leaders = printLeaders(arr17);
-
-        for (int val : leaders) {
-            System.out.print(val + " ");
-        }
-
+        // ── 30. Longest Successive ────────────────────────────
         longestSuccessiveElements(arr18);
 
+        // ── 31. Rotate Matrix ─────────────────────────────────
         rotateMatrix(arr19);
-
-        for (int i = 0; i < arr19.length; i++) {
-            for (int j = 0; j < arr19[0].length; j++) {
-                System.out.print(arr19[i][j] + " ");
-            }
-            System.out.println();
+        System.out.println("Rotated Matrix:");
+        for (int[] row : arr19) {
+            System.out.println(Arrays.toString(row));
         }
-        countSubarrays(arr20);
-        printPascalTriangle(numRows);
-        int result4 = getElementAtPosition(5, 3);  // row = 5, column = 3
-        System.out.println("Element at position 5, 3: " + result4);
 
+        // ── 32. Count Subarrays ───────────────────────────────
+        countSubarrays(arr20);
+
+        // ── 33. Pascal's Triangle ─────────────────────────────
+        printPascalTriangle(numRows);
+        System.out.println("Element at (5,3): " + getElementAtPosition(5, 3));
+
+        // ── 34. Majority Element N/2 & N/3 ───────────────────
         majorityElementNBy2Times(arr21);
         majorityElementNBy3Times(arr21);
-
-//        subarraysWithXorK(arr22,k2);
     }
-
-
 }
