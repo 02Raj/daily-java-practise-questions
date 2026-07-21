@@ -24,7 +24,8 @@ public class IsPalindrome {
 //       return true;
 
         // 2nd appraoch
-        int left = 0; int right = s.length() - 1;
+        int left = 0;
+        int right = s.length() - 1;
 
         while(left < right){
 

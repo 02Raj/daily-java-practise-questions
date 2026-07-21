@@ -13,6 +13,8 @@ import java.util.*;
 Yeh file basic array problems ka collection hai.
 Har method ek alag problem solve karta hai.
 Brute force se optimal tak ke approaches cover kiye hain.
+Har method ke upar ab Problem Statement + Input + Output bhi likha hai
+taaki bina code padhe hi samajh aa jaaye ki method kya karta hai.
 
 Methods List:
  1.  sortedArray              → Selection Sort
@@ -67,6 +69,10 @@ public class BasicArrayQuestions {
     // =========================================================
     // 1. SELECTION SORT
     // =========================================================
+    // 📝 Problem Statement: Diye gaye array ko ascending order mein sort karo.
+    // 📥 Input: int[] arr = {5, 2, 8, 1}
+    // 📤 Output: arr sorted ho jaayega in-place → {1, 2, 5, 8} (return type void hai)
+    // 🧠 Algorithm: Selection Sort
     // Approach: Har iteration mein minimum element dhundho
     //           aur usse current position pe swap karo
     // TC: O(n²) — do nested loops
@@ -96,6 +102,10 @@ public class BasicArrayQuestions {
     // =========================================================
     // 2. SUM OF ARRAY
     // =========================================================
+    // 📝 Problem Statement: Array ke sabhi elements ka total sum print karo.
+    // 📥 Input: int[] arr2 = {2, 4, 15, 4, 10, 1}
+    // 📤 Output: "Sum of array is: 36" (console print, return type void)
+    // 🧠 Algorithm: Linear Traversal (Brute Force Summation)
     // Approach: Ek baar traverse karo, sab jodo
     // TC: O(n)   SC: O(1)
     // =========================================================
@@ -112,6 +122,10 @@ public class BasicArrayQuestions {
     // =========================================================
     // 3. AVERAGE OF ARRAY
     // =========================================================
+    // 📝 Problem Statement: Array ke elements ka average nikalo aur print karo.
+    // 📥 Input: int[] arr2 = {2, 4, 15, 4, 10, 1}
+    // 📤 Output: "Avg of array is: 6" (integer division ki wajah se decimal cut)
+    // 🧠 Algorithm: Linear Traversal (Sum then Divide)
     // Approach: Sum nikaalo, phir n se divide karo
     // TC: O(n)   SC: O(1)
     // NOTE: int division use ho raha hai — decimal cut hoga
@@ -131,6 +145,10 @@ public class BasicArrayQuestions {
     // =========================================================
     // 4. LARGEST ELEMENT
     // =========================================================
+    // 📝 Problem Statement: Array ka sabse bada (maximum) element print karo.
+    // 📥 Input: int[] arr2 = {2, 4, 15, 4, 10, 1}
+    // 📤 Output: "Max: 15" (⚠️ current buggy loop last element skip kar sakta hai)
+    // 🧠 Algorithm: Linear Scan (Single Pass Maximum)
     // Approach: First element se max start karo, traverse karo
     // TC: O(n)   SC: O(1)
     // ⚠️ Bug: loop arr.length - 1 tak jaata hai — last element miss
@@ -150,6 +168,10 @@ public class BasicArrayQuestions {
     // =========================================================
     // 5. SECOND LARGEST ELEMENT
     // =========================================================
+    // 📝 Problem Statement: Array ka doosra sabse bada (unique) element print karo.
+    // 📥 Input: int[] arr2 = {2, 4, 15, 4, 10, 1}
+    // 📤 Output: "Second Largest Element: 10" (agar na mile toh "No second largest element found!")
+    // 🧠 Algorithm: Single Pass Two-Variable Tracking (Max & SecondMax)
     // Approach: Ek pass mein max aur secondMax dono track karo
     // TC: O(n)   SC: O(1)
     //
@@ -181,6 +203,10 @@ public class BasicArrayQuestions {
     // =========================================================
     // 6. CHECK IF ARRAY IS SORTED (Ascending)
     // =========================================================
+    // 📝 Problem Statement: Check karo ki array ascending order mein sorted hai ya nahi.
+    // 📥 Input: int[] arr2 = {2, 4, 15, 4, 10, 1}
+    // 📤 Output: boolean → false (kyunki 15 > 4 hai beech mein)
+    // 🧠 Algorithm: Linear Scan (Adjacent Pair Comparison)
     // Approach: Adjacent elements compare karo
     //           Koi bhi element agle se bada mila → not sorted
     // TC: O(n)   SC: O(1)
@@ -197,6 +223,10 @@ public class BasicArrayQuestions {
     // =========================================================
     // 7. CONTAINS SPECIFIC VALUE
     // =========================================================
+    // 📝 Problem Statement: Check karo ki array mein ek fixed value (7) present hai ya nahi.
+    // 📥 Input: int[] arr = {2, 4, 15, 4, 10, 1}
+    // 📤 Output: boolean → false (7 array mein nahi hai)
+    // 🧠 Algorithm: Linear Search
     // Approach: Linear search — har element check karo
     // TC: O(n)   SC: O(1)
     // ⚠️ Bug: loop arr.length - 1 tak — last index check nahi hota
@@ -216,6 +246,11 @@ public class BasicArrayQuestions {
     // =========================================================
     // 8. REMOVE SPECIFIC ELEMENT (New Array)
     // =========================================================
+    // 📝 Problem Statement: Array se ek fixed value (10) ke saare occurrences hata kar
+    //                        naya chhota array print karo.
+    // 📥 Input: int[] arr = {2, 4, 15, 4, 10, 1}
+    // 📤 Output: "Count: 1" phir "Updated Array: [2, 4, 15, 4, 1]"
+    // 🧠 Algorithm: Counting + Array Rebuild (Filter Technique)
     // Approach:
     //   Step 1: Count karo kitni baar element aata hai
     //   Step 2: Chhota array banao (size = n - count)
@@ -250,6 +285,11 @@ public class BasicArrayQuestions {
     // =========================================================
     // 9. REMOVE SPECIFIC ELEMENT USING ARRAYLIST
     // =========================================================
+    // 📝 Problem Statement: Array ko ArrayList mein convert karke index 2 ka
+    //                        element remove karo.
+    // 📥 Input: int[] arr = {2, 4, 15, 4, 10, 1}
+    // 📤 Output: List<Integer> → [2, 4, 4, 10, 1] (index 2 yaani value 15 hata di)
+    // 🧠 Algorithm: ArrayList remove(index) API
     // Approach: Array → ArrayList, phir remove(index) call karo
     // TC: O(n)   SC: O(n)
     // NOTE: remove(2) means index 2 remove hoga, value 2 nahi
@@ -269,6 +309,11 @@ public class BasicArrayQuestions {
     // =========================================================
     // 10. INSERT ELEMENT AT SPECIFIC POSITION (New Array)
     // =========================================================
+    // 📝 Problem Statement: Ek fixed element (3) ko fixed position (index 2) pe
+    //                        insert karo aur naya array return karo.
+    // 📥 Input: int[] arr = {2, 4, 15, 4, 10, 1}
+    // 📤 Output: int[] → {2, 4, 3, 15, 4, 10, 1}
+    // 🧠 Algorithm: Array Rebuild (Manual Insertion via New Array)
     // Approach:
     //   Naya array banao (size + 1)
     //   Traverse karo — jab position aaye toh element daalo
@@ -296,6 +341,11 @@ public class BasicArrayQuestions {
     // =========================================================
     // 11. INSERT ELEMENT USING ARRAYLIST
     // =========================================================
+    // 📝 Problem Statement: Array ko ArrayList mein convert karke index 2 pe
+    //                        value 3 insert karo.
+    // 📥 Input: int[] arr = {2, 4, 15, 4, 10, 1}
+    // 📤 Output: List<Integer> → [2, 4, 3, 15, 4, 10, 1]
+    // 🧠 Algorithm: ArrayList add(index, value) API
     // Approach: Array → ArrayList, phir add(index, value)
     // TC: O(n)   SC: O(n)
     // =========================================================
@@ -313,6 +363,10 @@ public class BasicArrayQuestions {
     // =========================================================
     // 12. COPY OF ARRAY (Manual Deep Copy)
     // =========================================================
+    // 📝 Problem Statement: Original array ki deep copy banao aur dono print karo.
+    // 📥 Input: int[] originalArray = {2, 4, 15, 4, 10, 1}
+    // 📤 Output: "Original Array: 2 4 15 4 10 1 " phir "Copied Array: 2 4 15 4 10 1 "
+    // 🧠 Algorithm: Manual Deep Copy (Element by Element)
     // Approach: Naya array banao, element by element copy karo
     // TC: O(n)   SC: O(n)
     // NOTE: Ye deep copy hai — original change se copy affect nahi hoga
@@ -340,6 +394,10 @@ public class BasicArrayQuestions {
     // =========================================================
     // 13. FIND INDEX OF ARRAY ELEMENT
     // =========================================================
+    // 📝 Problem Statement: Ek fixed value (4) ka pehla index array mein dhundho.
+    // 📥 Input: int[] arr = {2, 4, 15, 4, 10, 1}
+    // 📤 Output: int → 1 (index 1 pe pehli baar 4 milta hai), na mile toh -1
+    // 🧠 Algorithm: Linear Search
     // Approach: Linear search — pehla match return karo
     // TC: O(n)   SC: O(1)
     // Returns: index if found, -1 if not found
@@ -358,6 +416,10 @@ public class BasicArrayQuestions {
     // =========================================================
     // 14. MAX AND MIN VALUE OF ARRAY
     // =========================================================
+    // 📝 Problem Statement: Array ka maximum aur minimum value ek saath nikalo.
+    // 📥 Input: int[] arr = {2, 4, 15, 4, 10, 1}
+    // 📤 Output: int[] → {15, 1}  (index 0 = max, index 1 = min)
+    // 🧠 Algorithm: Single Pass Min-Max Tracking
     // Approach: Ek hi pass mein max aur min dono track karo
     // TC: O(n)   SC: O(1)
     // Returns: int[] { max, min }
@@ -377,6 +439,11 @@ public class BasicArrayQuestions {
     // =========================================================
     // 15. REVERSE ARRAY (Print Only — Array Change Nahi Hota)
     // =========================================================
+    // 📝 Problem Statement: Array ko reverse order mein print karo, actual array
+    //                        modify kiye bina.
+    // 📥 Input: int[] arr = {2, 4, 15, 4, 10, 1}
+    // 📤 Output: "Reverse Array: 1 10 4 15 4 2 "
+    // 🧠 Algorithm: Reverse Traversal (Print Only, No In-place Swap)
     // Approach: End se start tak print karo
     // TC: O(n)   SC: O(1)
     // NOTE: Actual array modify nahi hota — sirf print hota hai
@@ -392,6 +459,11 @@ public class BasicArrayQuestions {
     // =========================================================
     // 16. DUPLICATE VALUE OF ARRAY (HashMap Approach)
     // =========================================================
+    // 📝 Problem Statement: Array mein jo bhi elements duplicate (1 se zyada baar)
+    //                        aate hain unhe unki count ke saath print karo.
+    // 📥 Input: int[] arr = {2, 4, 15, 4, 10, 1}
+    // 📤 Output: "Duplicate value: 4, Count: 2"
+    // 🧠 Algorithm: HashMap Frequency Counting
     // Approach (Optimal):
     //   HashMap mein har element ki frequency store karo
     //   Phir jinki frequency > 1 hai unhe print karo
@@ -438,6 +510,10 @@ public class BasicArrayQuestions {
     // =========================================================
     // 17. COMMON ELEMENTS IN TWO ARRAYS
     // =========================================================
+    // 📝 Problem Statement: Do arrays diye hain, unme common elements print karo.
+    // 📥 Input: int[] arr1 = {1,2,3,4,5,6,7,8,9,10}, int[] arr2 = {2,3,4,4,5,11,12}
+    // 📤 Output: "Common elements: 2 3 4 5 "
+    // 🧠 Algorithm: Brute Force Nested Loop (O(n*m))
     // Approach: Brute Force — har pair compare karo
     // TC: O(n * m) — n = arr1.length, m = arr2.length
     // SC: O(1)
@@ -459,6 +535,11 @@ public class BasicArrayQuestions {
     // =========================================================
     // 18. DUPLICATE VALUE USING HASHMAP (Cleaner Version)
     // =========================================================
+    // 📝 Problem Statement: Array ke duplicate elements unki count ke saath print
+    //                        karo, but ek baar print hone ke baad dobara print na ho.
+    // 📥 Input: int[] arr = {2, 4, 15, 4, 10, 1}
+    // 📤 Output: "Duplicate Elements with Count:" phir "4 -> 2"
+    // 🧠 Algorithm: HashMap Frequency Counting (with Printed-Marker Reset)
     // Approach: HashMap se frequency count, phir ek baar print
     //           Printed elements ko 0 mark karo (dubara na chape)
     // TC: O(n)   SC: O(n)
@@ -488,6 +569,10 @@ public class BasicArrayQuestions {
     // =========================================================
     // 19. LEFT ROTATE ARRAY (1 Position)
     // =========================================================
+    // 📝 Problem Statement: Array ko ek position left rotate karo.
+    // 📥 Input: int[] arr = {1, 2, 3, 4, 5}
+    // 📤 Output: Console print → "2 3 4 5 1 " (arr in-place bhi modify ho jaata hai)
+    // 🧠 Algorithm: Left Rotation (Temp Variable Shift Technique)
     // Approach:
     //   Step 1: Pehla element save karo (temp)
     //   Step 2: Sab elements ek jagah left shift karo
@@ -515,6 +600,11 @@ public class BasicArrayQuestions {
     // =========================================================
     // 20. REMOVE DUPLICATE ELEMENTS
     // =========================================================
+    // 📝 Problem Statement: Array se duplicate elements hata kar sirf unique
+    //                        elements ka naya array return karo.
+    // 📥 Input: int[] arr = {2, 4, 15, 4, 10, 1}
+    // 📤 Output: int[] → {2, 4, 15, 10, 1} (order guaranteed nahi, HashMap use ho raha)
+    // 🧠 Algorithm: HashMap-based Deduplication (alt: Sort + Two Pointer)
     // Approach (Current — HashMap):
     //   HashMap mein daalo → automatically duplicates hatt jaate hain
     //   Keys nikaalo → unique array banao
@@ -558,9 +648,12 @@ public class BasicArrayQuestions {
     // =========================================================
     // 21. LONGEST CONSECUTIVE SEQUENCE
     // =========================================================
-    // Problem: Array mein longest consecutive sequence ki length
-    // Example: {100,4,200,1,3,2} → 4 (1,2,3,4)
-    //
+    // 📝 Problem Statement: Array mein longest consecutive integers ki sequence
+    //                        ki length nikalo (order array mein kuch bhi ho sakta hai).
+    // 📥 Input: int[] nums = {100, 4, 200, 1, 3, 2}
+    // 📤 Output: int → 4 (sequence 1,2,3,4)
+    // Approach (HashSet Optimal):
+    // 🧠 Algorithm: HashSet Optimal — Longest Consecutive Sequence Technique
     // Approach (HashSet Optimal):
     //   Step 1: Sab numbers HashSet mein daalo → O(1) lookup
     //   Step 2: Sirf sequence start dhundho (num-1 set mein nahi)
@@ -602,6 +695,11 @@ public class BasicArrayQuestions {
     // =========================================================
     // 22. REVERSE ARRAY IN-PLACE (Two Pointer)
     // =========================================================
+    // 📝 Problem Statement: Diye gaye range [i, j] ke beech array ko actual mein
+    //                        (in-place) reverse karo.
+    // 📥 Input: int[] a = {1,2,3,4,5,6,7}, i = 0, j = 6
+    // 📤 Output: a in-place ho jaata hai → {7,6,5,4,3,2,1} (return type void)
+    // 🧠 Algorithm: Two Pointer Technique
     // Approach: Left aur Right pointers — swap karte hue beech tak jao
     // TC: O(n)   SC: O(1)
     // NOTE: Yeh actual array modify karta hai (print wala nahi karta)
@@ -623,7 +721,10 @@ public class BasicArrayQuestions {
     // =========================================================
     // 23. ROTATE ARRAY K TIMES (Right Rotation)
     // =========================================================
-    // Problem: Array ko k positions right rotate karo
+    // 📝 Problem Statement: Array ko k positions right rotate karo.
+    // 📥 Input: int[] arr = {1,2,3,4,5,6,7}, k = 2
+    // 📤 Output: arr in-place ho jaata hai → {6,7,1,2,3,4,5} (return type void)
+    // 🧠 Algorithm: Reversal Algorithm (3-Step Reverse Trick)
     // Example: {1,2,3,4,5,6,7}, k=2 → {6,7,1,2,3,4,5}
     //
     // Approach (Reversal Trick — 3 Steps):
@@ -648,7 +749,11 @@ public class BasicArrayQuestions {
     // =========================================================
     // 24. MOVE ALL ZEROS TO END
     // =========================================================
-    // Problem: Zeros ko end pe le jao, order maintain karo
+    // 📝 Problem Statement: Array ke saare zeros ko end mein le jao, baaki
+    //                        non-zero elements ka relative order same rakho.
+    // 📥 Input: int[] arr = {1, 0, 2, 3, 0, 4, 0, 1}
+    // 📤 Output: arr in-place ho jaata hai → {1, 2, 3, 4, 1, 0, 0, 0}
+    // 🧠 Algorithm: Two Pointer Technique (Stable Partition)
     // Example: {1,0,2,3,0,4,0,1} → {1,2,3,4,1,0,0,0}
     //
     // Approach (Two Pointer):
@@ -674,6 +779,11 @@ public class BasicArrayQuestions {
     // =========================================================
     // 25. COUNT ELEMENTS SMALLER THAN OR EQUAL TO X
     // =========================================================
+    // 📝 Problem Statement: Array mein kitne elements hain jo x se chhote ya
+    //                        barabar hain, unka count print karo.
+    // 📥 Input: int[] arr = {10, 1, 2, 8, 4, 5}, x = 9
+    // 📤 Output: "Count of elements smaller or equal to 9: 5"
+    // 🧠 Algorithm: Linear Scan Counting
     // Approach: Linear scan — count badhao jab arr[i] <= x
     // TC: O(n)   SC: O(1)
     // =========================================================
@@ -691,6 +801,10 @@ public class BasicArrayQuestions {
     // =========================================================
     // 26. FIND UNION OF TWO ARRAYS
     // =========================================================
+    // 📝 Problem Statement: Do arrays ka union nikalo — unique elements, sorted order mein.
+    // 📥 Input: int[] arr6 = {1..10}, int[] arr7 = {2,3,4,4,5,11,12}
+    // 📤 Output: "Union: [1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12]"
+    // 🧠 Algorithm: TreeSet (Set Union, Auto Sorted + Unique)
     // Approach: TreeSet use karo
     //   TreeSet: unique elements + sorted order maintain karta hai
     // TC: O((n+m) log n)   SC: O(n+m)
@@ -708,6 +822,11 @@ public class BasicArrayQuestions {
     // =========================================================
     // 27. MISSING NUMBER (1 to N range mein)
     // =========================================================
+    // 📝 Problem Statement: Sorted array (1 to n range) mein se missing number
+    //                        dhundho.
+    // 📥 Input: int[] arr8 = {1, 2, 4, 5}
+    // 📤 Output: "Missing number is: 3"
+    // 🧠 Algorithm: Linear Scan Comparison (alt: Sum Formula n*(n+1)/2)
     // Approach: i (1 to n) ko arr[i-1] se compare karo
     //           Pehla mismatch = missing number
     // TC: O(n)   SC: O(1)
@@ -726,7 +845,11 @@ public class BasicArrayQuestions {
     // =========================================================
     // 28. MAXIMUM CONSECUTIVE ONES
     // =========================================================
-    // Problem: Array mein sabse zyada consecutive 1s kitne hain
+    // 📝 Problem Statement: Binary array (0s aur 1s) mein maximum consecutive
+    //                        1s ki length nikalo.
+    // 📥 Input: int[] arr = {1, 1, 0, 1, 1, 1}
+    // 📤 Output: "Maximum Consecutive Ones: 3"
+    // 🧠 Algorithm: Streak Counting (Single Pass Window)
     // Example: {1,1,0,1,1,1} → 3
     //
     // Approach:
@@ -755,6 +878,11 @@ public class BasicArrayQuestions {
     // =========================================================
     // 29. LONGEST SUBARRAY WITH SUM = K (Positive Numbers Only)
     // =========================================================
+    // 📝 Problem Statement: Sirf positive numbers wale array mein sabse lambi
+    //                        subarray dhundho jiska sum exactly k ho.
+    // 📥 Input: int[] arr = {2, 3, 5, 1, 9}, k = 3
+    // 📤 Output: int → 1 (subarray {3} ya {1,2} type match; length return hoti hai)
+    // 🧠 Algorithm: Sliding Window (Two Pointer, Positive-only)
     // Approach: Sliding Window (Two Pointer)
     //   right pointer aage badhta hai → sum badhta hai
     //   sum > k hone pe left pointer aage badhao → sum ghata
@@ -787,6 +915,11 @@ public class BasicArrayQuestions {
     // =========================================================
     // 30. LONGEST SUBARRAY WITH SUM = K (Positive + Negative)
     // =========================================================
+    // 📝 Problem Statement: Positive aur negative dono numbers wale array mein
+    //                        sabse lambi subarray dhundho jiska sum exactly k ho.
+    // 📥 Input: int[] arr = {-1, 1, 1}, k = 5
+    // 📤 Output: int → 0 (koi bhi subarray ka sum 5 nahi ban raha is input mein)
+    // 🧠 Algorithm: Prefix Sum + HashMap
     // Approach: Prefix Sum + HashMap
     //   sum = prefix sum at index i
     //   Agar (sum - k) pehle dekha tha → wahan se yahan tak subarray valid hai
@@ -825,7 +958,15 @@ public class BasicArrayQuestions {
     // =========================================================
     // 31. SORT COLORS — 2 Pass (Count and Overwrite)
     // =========================================================
-    // Problem: 0, 1, 2 wale array ko sort karo
+    // 📝 Problem Statement: Sirf 0, 1, 2 wale array ko sort karo (Dutch National
+    //                        Flag problem), 2 pass approach se.
+    // 📥 Input: int[] nums = {2, 0, 2, 1, 1, 0}
+    // 📤 Output: nums in-place ho jaata hai → {0, 0, 1, 1, 2, 2}
+    // Example: {2,0,2,1,1,0} → {0,0,1,1,2,2}
+    //
+    // Approach:
+    //   Pass 1:
+    // 🧠 Algorithm: Counting Sort (2 Pass)
     // Example: {2,0,2,1,1,0} → {0,0,1,1,2,2}
     //
     // Approach:
@@ -855,8 +996,11 @@ public class BasicArrayQuestions {
     // =========================================================
     // 32. SORT COLORS — 1 Pass (Dutch National Flag Algorithm)
     // =========================================================
-    // Problem: 0, 1, 2 wale array ko single pass mein sort karo
-    //
+    // 📝 Problem Statement: Sirf 0, 1, 2 wale array ko single pass mein sort karo.
+    // 📥 Input: int[] nums = {2, 0, 2, 1, 1, 0}
+    // 📤 Output: nums in-place ho jaata hai → {0, 0, 1, 1, 2, 2}
+    // Approach (3 Pointers):
+    // 🧠 Algorithm: Dutch National Flag Algorithm (3 Pointer)
     // Approach (3 Pointers):
     //   low  → 0s boundary (low se pehle sab 0)
     //   mid  → current element
@@ -893,7 +1037,11 @@ public class BasicArrayQuestions {
     // =========================================================
     // 33. MAJORITY ELEMENT (> N/2 Times)
     // =========================================================
-    // Problem: Wo element jo N/2 se zyada baar aata ho
+    // 📝 Problem Statement: Wo element dhundho jo array mein N/2 se zyada baar
+    //                        aata ho.
+    // 📥 Input: int[] nums = {3, 2, 3}
+    // 📤 Output: "Majority element is: 3"
+    // 🧠 Algorithm: Brute Force (alt Optimal: Boyer-Moore Voting Algorithm)
     // Example: {3,2,3} → 3
     //
     // Approach 1 (Current — Brute Force):
@@ -942,7 +1090,11 @@ public class BasicArrayQuestions {
     // =========================================================
     // 34. MAXIMUM SUBARRAY SUM (Kadane's Algorithm)
     // =========================================================
-    // Problem: Contiguous subarray jiska sum sabse zyada ho
+    // 📝 Problem Statement: Contiguous subarray dhundho jiska sum sabse zyada ho,
+    //                        aur wo maximum sum print karo.
+    // 📥 Input: int[] arr = {-2, 1, -3, 4, -1, 2, 1, -5, 4}
+    // 📤 Output: "Max subarray Sum: 6" (subarray {4,-1,2,1})
+    // 🧠 Algorithm: Kadane's Algorithm
     // Example: {-2,1,-3,4,-1,2,1,-5,4} → 6 (subarray: {4,-1,2,1})
     //
     // Approach (Kadane's — Optimal):
@@ -984,7 +1136,11 @@ public class BasicArrayQuestions {
     // =========================================================
     // 35. BEST TIME TO BUY AND SELL STOCK
     // =========================================================
-    // Problem: Maximum profit nikalo — pehle buy phir sell karo
+    // 📝 Problem Statement: Stock prices ka array diya hai — ek din buy karke
+    //                        baad wale din sell karke maximum profit nikalo.
+    // 📥 Input: int[] arr = {7, 1, 5, 3, 6, 4}
+    // 📤 Output: "Max Profit = 5" (buy @1, sell @6)
+    // 🧠 Algorithm: Greedy Single Pass (Min Price Tracking)
     // Example: {7,1,5,3,6,4} → 5 (buy @1, sell @6)
     //
     // Approach:
@@ -1011,7 +1167,11 @@ public class BasicArrayQuestions {
     // =========================================================
     // 36. REARRANGE ARRAY BY SIGN (Alternate Positive-Negative)
     // =========================================================
-    // Problem: Positive aur Negative ko alternate karo
+    // 📝 Problem Statement: Array ke positive aur negative numbers ko alternate
+    //                        (pos, neg, pos, neg...) order mein rearrange karo.
+    // 📥 Input: int[] arr = {1, 2, -4, -5}
+    // 📤 Output: List<Integer> → [1, -4, 2, -5]
+    // 🧠 Algorithm: Two List Separation + Alternate Merge
     // Example: {1,2,-4,-5} → {1,-4,2,-5}
     //
     // Approach:
@@ -1042,7 +1202,11 @@ public class BasicArrayQuestions {
     // =========================================================
     // 37. PRINT LEADERS IN ARRAY
     // =========================================================
-    // Problem: Leader = element jo apne right ke sab elements se bada ho
+    // 📝 Problem Statement: Array ke "leaders" dhundho — leader wo element hai
+    //                        jo apne right side ke saare elements se bada ho.
+    // 📥 Input: int[] arr = {10, 22, 12, 3, 0, 6}
+    // 📤 Output: List<Integer> → [22, 12, 6]
+    // 🧠 Algorithm: Right-to-Left Traversal (Suffix Maximum Technique)
     // Example: {10,22,12,3,0,6} → {22,12,6}
     //          (6 is always leader, 12 > {3,0,6}, 22 > {12,3,0,6})
     //
@@ -1072,7 +1236,12 @@ public class BasicArrayQuestions {
     // =========================================================
     // 38. LONGEST SUCCESSIVE ELEMENTS (Consecutive Sequence)
     // =========================================================
-    // Problem: {100,200,1,3,2,4} → 4 (sequence: 1,2,3,4)
+    // 📝 Problem Statement: Array mein longest consecutive integers ki sequence
+    //                        ki length print karo (21 wale method jaisa hi, but print karta hai).
+    // 📥 Input: int[] arr = {100, 200, 1, 3, 2, 4}
+    // 📤 Output: "Longest consecutive length: 4" (sequence 1,2,3,4)
+    // 🧠 Algorithm: HashSet Optimal — Longest Consecutive Sequence Technique
+    // Example: {100,200,1,3,2,4} → 4 (sequence: 1,2,3,4)
     //
     // Approach (HashSet Optimal):
     //   num-1 set mein nahi → yeh sequence ka start hai
@@ -1110,7 +1279,11 @@ public class BasicArrayQuestions {
     // =========================================================
     // 39. ROTATE MATRIX 90 DEGREES CLOCKWISE
     // =========================================================
-    // Problem: [[1,2,3],[4,5,6],[7,8,9]] → [[7,4,1],[8,5,2],[9,6,3]]
+    // 📝 Problem Statement: N x N matrix ko in-place 90 degree clockwise rotate karo.
+    // 📥 Input: int[][] matrix = {{1,2,3},{4,5,6},{7,8,9}}
+    // 📤 Output: matrix in-place ho jaata hai → {{7,4,1},{8,5,2},{9,6,3}}
+    // 🧠 Algorithm: Transpose + Reverse Rows (In-place Matrix Rotation)
+    // Example: [[1,2,3],[4,5,6],[7,8,9]] → [[7,4,1],[8,5,2],[9,6,3]]
     //
     // Approach (In-place — 2 Steps):
     //   Step 1: Transpose karo (matrix[i][j] ↔ matrix[j][i])
@@ -1138,6 +1311,10 @@ public class BasicArrayQuestions {
     // =========================================================
     // HELPER: Reverse a Single Row (Two Pointer)
     // =========================================================
+    // 📝 Problem Statement: Ek single row (1D array) ko in-place reverse karo.
+    // 📥 Input: int[] row = {1, 2, 3}
+    // 📤 Output: row in-place ho jaata hai → {3, 2, 1}
+    // 🧠 Algorithm: Two Pointer Technique
     static void reverseRow(int[] row) {
         int left = 0;
         int right = row.length - 1;
@@ -1154,7 +1331,11 @@ public class BasicArrayQuestions {
     // =========================================================
     // 40. COUNT SUBARRAYS WITH SUM = K
     // =========================================================
-    // Problem: Kitne subarrays hain jinka sum = k
+    // 📝 Problem Statement: Array mein kitni subarrays hain jinka sum exactly
+    //                        k (=6, fixed) hai, unka total count print karo.
+    // 📥 Input: int[] arr = {3, 1, 2, 4}
+    // 📤 Output: "Count: 2" (subarrays: {3,1,2} aur {2,4})
+    // 🧠 Algorithm: Prefix Sum + HashMap
     // Example: {3,1,2,4}, k=6 → 2
     //
     // Approach: Prefix Sum + HashMap
@@ -1187,8 +1368,11 @@ public class BasicArrayQuestions {
     // =========================================================
     // 41. PASCAL'S TRIANGLE
     // =========================================================
-    // Problem: numRows rows ki Pascal triangle generate karo
-    //
+    // 📝 Problem Statement: Diye gaye numRows tak Pascal's Triangle generate karo.
+    // 📥 Input: int numRows = 5
+    // 📤 Output: List<List<Integer>> →
+    //            [[1], [1,1], [1,2,1], [1,3,3,1], [1,4,6,4,1]]
+    // 🧠 Algorithm: Dynamic Programming (Row Built from Previous Row)
     // Property: Har element = usse upar ke do elements ka sum
     //           Pehla aur aakhri element = 1
     //
@@ -1215,6 +1399,10 @@ public class BasicArrayQuestions {
     }
 
     // Helper: Pascal triangle print karo
+    // 📝 Problem Statement: pascalTriangle() se aayi list ko row-wise console pe print karo.
+    // 📥 Input: int numRows = 5
+    // 📤 Output: Console pe har row print hoti hai (1 / 1 1 / 1 2 1 / ...), return void
+    // 🧠 Algorithm: Simple Traversal & Print
     public static void printPascalTriangle(int numRows) {
         List<List<Integer>> triangle = pascalTriangle(numRows);
         for (List<Integer> row : triangle) {
@@ -1226,6 +1414,11 @@ public class BasicArrayQuestions {
     }
 
     // Helper: Specific position (r, c) ka element nikalo
+    // 📝 Problem Statement: Pascal's Triangle ke row r (1-indexed) aur column c
+    //                        (0-indexed) ka element nikalo.
+    // 📥 Input: r = 5, c = 3
+    // 📤 Output: int → 4 (row 5 → 1 4 6 4 1, index 3 = 4)
+    // 🧠 Algorithm: Direct Lookup (via Pascal's Triangle Construction)
     public static int getElementAtPosition(int r, int c) {
         List<List<Integer>> triangle = pascalTriangle(r);
         if (r <= 0 || c < 0 || c >= triangle.get(r - 1).size()) {
@@ -1237,7 +1430,11 @@ public class BasicArrayQuestions {
     // =========================================================
     // 42. MAJORITY ELEMENT > N/2 TIMES (HashMap)
     // =========================================================
-    // Problem: Wo element jo N/2 se zyada baar aata ho
+    // 📝 Problem Statement: Wo element dhundho jo array mein N/2 se zyada baar
+    //                        aata ho, HashMap frequency count use karke.
+    // 📥 Input: int[] arr = {1, 2, 2, 3, 2}
+    // 📤 Output: "Majority element (N/2): 2" (2 appears 3 > 5/2 = 2 times)
+    // 🧠 Algorithm: HashMap Frequency Counting (alt Optimal: Boyer-Moore Voting)
     // Example: {1,2,2,3,2} → 2 (appears 3 > 5/2 = 2 times)
     //
     // Approach: HashMap se frequency count karo, jaise hi threshold
@@ -1262,7 +1459,11 @@ public class BasicArrayQuestions {
     // =========================================================
     // 43. MAJORITY ELEMENT > N/3 TIMES (HashMap)
     // =========================================================
-    // Problem: Wo elements jo N/3 se zyada baar aate hain
+    // 📝 Problem Statement: Wo element dhundho jo array mein N/3 se zyada baar
+    //                        aata ho, HashMap frequency count use karke.
+    // 📥 Input: int[] arr = {1, 2, 2, 3, 2}
+    // 📤 Output: "Majority element (N/3): 2" (2 appears 3 > 5/3 = 1 time)
+    // 🧠 Algorithm: HashMap Frequency Counting
     // Example: {1,2,2,3,2} → 2 (appears 3 > 5/3 = 1 time)
     //
     // NOTE: Maximum 2 hi aise elements ho sakte hain
