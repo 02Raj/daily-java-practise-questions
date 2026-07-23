@@ -135,5 +135,13 @@ public class MergeSortedArray {
         merge(nums3, 0, new int[]{1}, 1);
         System.out.print("Test 3: ");
         System.out.println(java.util.Arrays.toString(nums3)); // [1]
+
+
+        int[] nums11 = {1, 3, 5, 0, 0, 0};
+        int[] nums22 = {2, 4, 6};
+
+        merge(nums11, 3, nums22, 3);
+
+        System.out.println(java.util.Arrays.toString(nums1));
     }
 }
