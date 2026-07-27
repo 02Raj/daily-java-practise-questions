@@ -1,0 +1,28 @@
+Index: Algorithm/slidingwindow/fixed/MaxSumSubarray.java
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.BaseRevisionTextPatchEP
+<+>package Algorithm.slidingwindow.fixed;\r\n\r\n\r\npublic class MaxSumSubarray {\r\n    public static void main(String[] args) {\r\n        int[] arr = {2, 4, 1, 7, 3, 5};\r\n        int k = 3;\r\n\r\n        int windowSum = 0;\r\n        for (int i = 0; i < k; i++) {\r\n            windowSum += arr[i];\r\n        }\r\n\r\n        int maxSum = windowSum;\r\n\r\n        for (int i = k; i < arr.length; i++) {\r\n            windowSum += arr[i];\r\n            windowSum -= arr[i - k];\r\n            maxSum = Math.max(maxSum, windowSum);\r\n        }\r\n\r\n        System.out.println(\"Max Sum: \" + maxSum);\r\n    }\r\n}
+===================================================================
+diff --git a/Algorithm/slidingwindow/fixed/MaxSumSubarray.java b/Algorithm/slidingwindow/fixed/MaxSumSubarray.java
+--- a/Algorithm/slidingwindow/fixed/MaxSumSubarray.java	(revision 760f7a11dac7f2891f4b099862f2fd42d72dd9bb)
++++ b/Algorithm/slidingwindow/fixed/MaxSumSubarray.java	(date 1778042188405)
+@@ -4,16 +4,17 @@
+ public class MaxSumSubarray {
+     public static void main(String[] args) {
+         int[] arr = {2, 4, 1, 7, 3, 5};
++        int n =  arr.length;
+         int k = 3;
+ 
+         int windowSum = 0;
+-        for (int i = 0; i < k; i++) {
++        for (int i = 0; i <= n - k; i++) {
+             windowSum += arr[i];
+         }
+ 
+         int maxSum = windowSum;
+ 
+-        for (int i = k; i < arr.length; i++) {
++        for (int i = k; i < i + k; i++) {
+             windowSum += arr[i];
+             windowSum -= arr[i - k];
+             maxSum = Math.max(maxSum, windowSum);
