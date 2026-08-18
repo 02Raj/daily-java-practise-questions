@@ -159,8 +159,7 @@ public class ThreeSum {
         return result;
     }
 
-    private static void twoPointer(int[] nums, int start, int target,
-                                   List<List<Integer>> result) {
+    private static void twoPointer(int[] nums, int start, int target, List<List<Integer>> result) {
         int L = start;
         int R = nums.length - 1;
 
