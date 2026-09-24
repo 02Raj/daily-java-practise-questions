@@ -18,6 +18,15 @@ public class EvenNumberFilter {
         // count for eveneNumbers
         long countEvenNumbers = numbers.stream().filter(n -> n % 2 == 0).count();
         System.out.println("Count of Even Numbers: " + countEvenNumbers);
+
+
+        // find first even number
+        Integer findFirstEvenNumber = numbers.stream().filter(n -> n % 2 ==0).findFirst().orElse(null);
+        System.out.println("First Even Number: " + findFirstEvenNumber);
+
+        // check all the numbers are even or not
+        boolean allEveen  = numbers.stream().allMatch(n -> n % 2 == 0);
+        System.out.println("All Numbers are Even: " + allEveen);
     }
 }
 
