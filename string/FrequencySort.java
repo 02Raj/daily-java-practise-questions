@@ -92,8 +92,7 @@ public class FrequencySort {
         }
 
         // Step 2: Max-Heap sorted by frequency (highest first)
-        PriorityQueue<Map.Entry<Character, Integer>> maxHeap =
-                new PriorityQueue<>((a, b) -> b.getValue() - a.getValue());
+        PriorityQueue<Map.Entry<Character, Integer>> maxHeap = new PriorityQueue<>((a, b) -> b.getValue() - a.getValue());
 
         maxHeap.addAll(freq.entrySet());
 

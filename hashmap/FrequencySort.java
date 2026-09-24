@@ -12,17 +12,15 @@ public class FrequencySort {
         }
 
         List<Character> chars = new ArrayList<>(map.keySet());
-
+        System.out.println("Frequency Map: " + map);
 
         chars.sort((a, b) -> map.get(b) - map.get(a));
-
+        System.out.println("Sorted Characters by Frequency: " + chars);
 
         StringBuilder ans = new StringBuilder();
 
         for (char ch : chars) {
-
             int frequency = map.get(ch);
-
             for (int i = 0; i < frequency; i++) {
                 ans.append(ch);
             }
