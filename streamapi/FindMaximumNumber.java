@@ -22,5 +22,9 @@ public class FindMaximumNumber {
         // check negative numbers exist or not
         boolean isNegative = numbers.stream().noneMatch(n -> n < 0);
         System.out.println("Is any negative number exist: " + isNegative);
+
+        // find maximum number using reduce and stream
+         Integer maxNumber = numbers.stream().reduce(0, (a,b) -> Math.max(a,b));
+         System.out.println("Maximum Number (using reduce): " + maxNumber);
     }
 }

@@ -9,6 +9,16 @@ public class UppercaseNames {
         List<String> names = Arrays.asList("Alice","Charlie", "James");
         String upperCaseNames = String.valueOf(names.stream().map(String::toUpperCase).collect(Collectors.toList()));
         System.out.println(upperCaseNames);
+
+        List<String> names2 = Arrays.asList(
+                "Rahul", "Amit", "Rohit", "Ankit", "Ravi", "Suresh"
+        );
+
+        List<String> upperCaseNames2 = names2.stream()
+                .filter(name -> name.startsWith("R"))
+                .map(name -> name.toUpperCase())
+                .collect(Collectors.toList());
+        System.out.println("Uppercase names starting with R: " + upperCaseNames2);
     }
 }
 /*
