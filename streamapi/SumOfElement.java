@@ -6,7 +6,7 @@ import java.util.List;
 public class SumOfElement {
     public static void main(String[] args) {
         List<Integer> numbers = Arrays.asList(10,20,30,40,50);
-        int sum = numbers.stream().mapToInt(Integer::intValue).sum();
+        int sum = numbers.stream().mapToInt(n -> n.intValue()).sum();
         System.out.println("result: " + sum);
 
 

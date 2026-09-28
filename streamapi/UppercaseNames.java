@@ -7,7 +7,7 @@ import java.util.stream.Collectors;
 public class UppercaseNames {
     public static void main(String[] args) {
         List<String> names = Arrays.asList("Alice","Charlie", "James");
-        String upperCaseNames = String.valueOf(names.stream().map(String::toUpperCase).collect(Collectors.toList()));
+        String upperCaseNames = String.valueOf(names.stream().map(name -> name.toUpperCase()).collect(Collectors.toList()));
         System.out.println(upperCaseNames);
 
         List<String> names2 = Arrays.asList(

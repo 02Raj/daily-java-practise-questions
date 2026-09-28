@@ -11,8 +11,12 @@ public class NameStreamPractice {
                 "Rahul", "Amit", "Rohit", "Ankit", "Priya", "Ravi"
         );
 
+//        List<String> namesStartingWithR = names.stream()
+//                .filter(name -> name.startsWith("R")).map(String:: toUpperCase)
+//                .toList();
+
         List<String> namesStartingWithR = names.stream()
-                .filter(name -> name.startsWith("R")).map(String:: toUpperCase)
+                .filter(name -> name.startsWith("R")).map(name -> name.toUpperCase())
                 .toList();
 
         System.out.println(
