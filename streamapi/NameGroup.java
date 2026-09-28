@@ -19,6 +19,16 @@ public class NameGroup {
 
         Map<String, Long> count  =   names.stream().collect(Collectors.groupingBy(n->n,Collectors.counting()));
         System.out.println("Grouped Names: " + count);
+
+        // optmized version
+        Map<String,Long> count1 = names.stream()
+                .collect(Collectors.groupingBy(n->n,Collectors.counting()));
+
+        count1.entrySet()
+                .stream()
+                .filter(entry -> entry.getValue() > 1);
+        System.out.println("Grouped Names3: " + count1);
+
     }
 
 }
