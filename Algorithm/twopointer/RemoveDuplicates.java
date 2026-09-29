@@ -85,6 +85,9 @@ In-place (no extra space)
 ===========================================================
 */
 
+import java.util.HashSet;
+import java.util.Set;
+
 public class RemoveDuplicates {
 
     public static int removeDuplicates(int[] nums) {
@@ -102,6 +105,19 @@ public class RemoveDuplicates {
         }
 
         return j + 1;
+    }
+
+    public static Set<Integer> removeDuplicates2(int[] nums) {
+
+        Set<Integer> uniqueNumbers = new HashSet<>();
+
+        for (Integer number : nums) {
+            uniqueNumbers.add(number);
+        }
+
+        System.out.println(uniqueNumbers);
+
+        return uniqueNumbers;
     }
 
     // 🔥 MAIN METHOD (run from here)
@@ -122,5 +138,7 @@ public class RemoveDuplicates {
         int[] arr4 = {1,2,3};
         System.out.print("Test 4: ");
         System.out.println(removeDuplicates(arr4)); // Expected: 3
+
+        System.out.println(removeDuplicates2(arr4));
     }
 }
