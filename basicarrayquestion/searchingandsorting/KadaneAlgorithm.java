@@ -8,14 +8,15 @@ public class KadaneAlgorithm {
 
         int maxSum = 0;
         int currentSum = 0;
-        for (int i = 0 ; i < arr.length - 1; i++){
+        for (int i = 0 ; i < arr.length; i++){
             currentSum += arr[i];
             maxSum = Math.max(currentSum, maxSum);
+            if(currentSum < 0){
+                currentSum = 0;
+            }
         }
 
-        if(currentSum < 0){
-            currentSum = 0;
-        }
+
     }
 
     public static void main(String[] args) {

@@ -6,6 +6,7 @@ This repository contains a collection of Java coding questions that I practice d
 ## Interview Preparation Sheet
 
 - [60 most frequently asked DSA questions for up to 10 LPA](Most_Frequently_Asked_DSA_Questions_Upto_10_LPA.md) - 15 each from Array, String, Stack and Linked List.
+- [Frequently asked DSA practice package](frequently_asked_dsa/README.md) - package structure and instructions for adding your own Java solutions.
 
 ---
 
