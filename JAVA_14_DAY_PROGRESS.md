@@ -7,7 +7,7 @@
 - Practice language: Hinglish explanations; English interview answers
 - Compatibility target: Java 8
 - Daily target: 2 hours 30 minutes
-- Current lesson: Day 1 — OOP Fundamentals and Polymorphism
+- Current lesson: Day 3 — JVM Memory, Strings, Immutability and Equality
 
 ## Initial Repository Assessment
 
@@ -21,32 +21,39 @@
 
 | Date | Day | Topic | Mistake or Knowledge Gap | Correct Understanding | Revisit |
 |---|---:|---|---|---|---|
+| 2026-11-17 | 1 | Overloading and overriding | Correctly selected `display(Object)` for `10`, but expected the parent implementation to execute | Overloading uses the reference's compile-time type; after signature selection, an overridden instance method is dispatched using the runtime object type | Yes |
+| 2026-11-17 | 1 | Overload ambiguity with `null` | Considered the inherited `display(String)` but omitted the child's `display(Integer)` from the overload set | With a `Child` reference, both accessible inherited and declared overloads participate; `String` and `Integer` are unrelated, so neither is more specific | Yes |
+| 2026-11-17 | 1 | Composition over inheritance | Core reasoning was correct, but the interview answer omitted HAS-A semantics, fragile base-class risk, testability, and a concrete example | Composition delegates behavior to replaceable collaborators, limits coupling to superclass internals, and works naturally with interface-based dependency injection | Yes |
+| 2026-11-17 | 1 | Payment-service design | Placed common validation in each implementation and described `@Qualifier` as per-call runtime selection | Shared request invariants belong at the service boundary; a qualifier selects the injected bean during container wiring, while runtime dispatch occurs when calling the interface method on that injected object | Yes |
+| 2026-11-17 | 1 | Interface-based payment coding | Created the interface and two implementations, but left `pay()` empty and used `main` directly inside `PaymentService` without constructor injection or validation | The service should own an injected `PaymentMethod`, validate common input, then delegate through the interface; implementations should provide observable provider-specific behavior | Yes |
+| 2026-11-19 | 2 | Overridable method in constructor | Expected Child print: 100 during instantiation | Subclass fields initialize only AFTER superclass constructor finishes; calling an overridden method during super() sees default 0/null values | Yes |
+| 2026-11-20 | 2 | Static nested class in Builder pattern | Assumed static was used because DB connection belongs to the class/app | Non-static inner classes require an existing enclosing outer instance (outer.new Inner()), which creates a paradox when the builder's purpose is to construct the outer instance; static nested classes can be instantiated independently | Yes |
 
 ## Daily Progress
 
 ### Day 1 — OOP Fundamentals and Polymorphism
 
-- Topics studied: Not started
-- Questions attempted: 0
-- Correct answers: 0
-- Incorrect answers: 0
-- Coding exercises completed: None
-- Conceptual weaknesses: Pending diagnostic
-- Interview performance: Not assessed
-- Revision required: Pending
-- Daily completion status: In progress
+- Topics studied: Overloading versus overriding; compile-time overload selection; runtime method dispatch; field hiding; inherited method-body behavior; composition versus inheritance; Spring interface injection with multiple implementations
+- Questions attempted: 7
+- Correct answers: 4
+- Incorrect answers: 3 (all included partially correct reasoning)
+- Coding exercises completed: Interface-based payment service completed after an independent skeleton attempt and guided implementation
+- Conceptual weaknesses: Separating compile-time signature selection from runtime overridden-method dispatch; detecting ambiguity among unrelated overload parameter types; distinguishing dependency selection from runtime method dispatch; locating shared validation without duplication; translating constructor-injection design into code
+- Interview performance: Correctly identified Spring's multiple-bean ambiguity and `@Qualifier`; English answers need clearer structure and more complete production alternatives
+- Revision required: Revisit two-stage method-call resolution and overload specificity, especially for `null`
+- Daily completion status: Completed
 
 ### Day 2 — Static, Final, Constructors and Initialization
 
-- Topics studied: Not started
-- Questions attempted: 0
-- Correct answers: 0
-- Incorrect answers: 0
-- Coding exercises completed: None
-- Conceptual weaknesses: Not assessed
-- Interview performance: Not assessed
-- Revision required: Pending
-- Daily completion status: Not started
+- Topics studied: Static vs instance initialization order, parent-child class loading sequence, overridable method call in constructor trap, final reference vs deep immutability, static in Spring singletons, race conditions and thread safety with AtomicInteger, constructor chaining with this() and super(), static nested class vs inner class in Builder pattern
+- Questions attempted: 6
+- Correct answers: 4
+- Incorrect answers: 2
+- Coding exercises completed: Initialization sequence demo, Constructor trap demo, Immutable profile defensive copying demo, Race condition concurrency demo, Immutable DatabaseConfig Builder pattern implementation
+- Conceptual weaknesses: Subclass field initialization timing relative to superclass constructor execution (calling overridable method from constructor); requirement of outer instance for non-static inner class
+- Interview performance: Correctly identified two-phase parent-child initialization sequence; fell for constructor trap; correctly identified mutable reference leak in final classes; correctly identified race condition on shared static mutable state in Spring singletons; correctly predicted constructor chaining call order; clarified why Builder must be static nested class
+- Revision required: Revisit object lifecycle phases (Heap zero-initialization -> super() -> subclass instance fields -> subclass constructor body); inner class instantiation mechanics
+- Daily completion status: Completed
 
 ### Day 3 — JVM Memory, Strings, Immutability and Equality
 
@@ -58,7 +65,7 @@
 - Conceptual weaknesses: Not assessed
 - Interview performance: Not assessed
 - Revision required: Pending
-- Daily completion status: Not started
+- Daily completion status: In progress
 
 ### Day 4 — Collections Framework Part 1
 

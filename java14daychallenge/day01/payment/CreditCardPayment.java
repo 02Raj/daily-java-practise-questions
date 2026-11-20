@@ -1,4 +1,11 @@
 package java14daychallenge.day01.payment;
 
-public class CreditCardPayment {
+import java.math.BigDecimal;
+
+public class CreditCardPayment implements PaymentMethod {
+
+    @Override
+    public void pay(BigDecimal amount) {
+        System.out.println("Paid " + amount + " using Credit Card");
+    }
 }

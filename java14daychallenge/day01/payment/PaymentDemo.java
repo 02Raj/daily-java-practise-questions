@@ -9,9 +9,12 @@ public class PaymentDemo {
                 new PaymentService(new CreditCardPayment());
         PaymentService upiPaymentService =
                 new PaymentService(new UpiPayment());
+        PaymentService walletPaymentService =
+                new PaymentService(new WalletPayment());
 
         cardPaymentService.processPayment(new BigDecimal("500.00"));
         upiPaymentService.processPayment(new BigDecimal("250.00"));
+        walletPaymentService.processPayment(new BigDecimal("150.00"));
 
         try {
             upiPaymentService.processPayment(BigDecimal.ZERO);
